@@ -1,0 +1,103 @@
+.ui-icon-search:after {
+    background-image: url("../images/icons8-search-100.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-myprofile:after {
+    background-image: url("../images/icons8-user-60.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-petstatus:after {
+    background-image: url("../images/icons8-pet-commands-summon-100\ \(1\).png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+    -webkit-border-radius: 0em;
+    border-radius: 0em;
+}
+
+.ui-icon-favourites:after {
+    background-image: url("../images/icons8-heart-100\ \(3\).png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-orderhistory:after {
+    background-image: url("../images/icons8-order-history-100\ \(1\).png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-help:after {
+    background-image: url("../images/icons8-help-100\ \(1\).png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.tile-container{
+    display: flex;
+    position: relative;
+    margin: auto;
+    width:100%;
+    align-items: center;
+  }
+
+.tile{
+    width: 20%;
+    min-height:8px;
+    display: inline-block;
+    margin: auto;
+}
+
+.nav_fonts{
+    font-size: 5pt;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.ui-btn-icon-top:after{
+    background-color: #5BD4F6 !important;
+    border-radius: 0px !important;
+}
+
+.ui-btn-icon-top:hover:after{
+    background-color: #14C2F3 !important;
+    border-radius: 0px !important;
+}
+
+.ui-btn-icon-top:active:after{
+    background-color: #14C2F3 !important;
+    border-radius: 0px !important;
+}
+
+.ui-btn-icon-left{
+    margin: 10px  5px 5px 6px !important;
+}
+
+.ui-btn-icon-left:after{
+    background-color: #5BD4F6 !important;
+    border-radius: 0px !important;
+}
+
+.ui-btn-icon-left:hover:after{
+    background-color: #5BD4F6 !important;
+    border-radius: 0px !important;
+}
+
+.ui-btn-icon-left:active:after{
+    background-color: transparent!important;
+    border-radius: 0px !important;
+}
+
+.ui-icon-arrow-l:hover{
+    background-color: #5BD4F6 !important;
+    border-color: #5BD4F6 !important;
+}
+
