@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "CourseWork_Implemetation",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
