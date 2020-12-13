@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "CourseWork_Implemetation",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
