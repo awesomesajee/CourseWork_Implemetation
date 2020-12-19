@@ -1,6 +1,11 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
+<script>
+    $('.pointsbar li:active:before').addClass("active");
+    console.log("hello");
+</script>
+
 <div>
     <div style="display: block;height: 45%;">
 
@@ -41,12 +46,65 @@
             <p style="text-align: center;margin-top: -10px;">Happy Paws Balance</p>
             <div style="width: 100%;">
                 <ul class="pointsbar">
-                    <li>25</li>
-                    <li>50</li>
+                    <li id="list1">25</li>
+                    <li id="list2">50</li>
                     <li>75</li>
                     <li>100</li>
                     <li>125</li>
                 </ul>
+            </div>
+            <div style="background-color: #F5F5F5;margin-top: 100px;width: 346px;margin-left: -14px;height: 230px;">
+                <p style="text-align: center;padding-top: 20px;">Rewards you can earn with happy paws</p>
+                <table class="reward_details">
+                    <tr>
+                        <td>25</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free bath for your pet.</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Two free walks for the pet.</td>
+                    </tr>
+                    <tr>
+                        <td>75</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>                    
+                        <td>Free haircut for your pet.</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free traning for the pet.</td>
+                    </tr>
+                    <tr>
+                        <td>125</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free spa for a day for your pet.</td>                        
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <p style="text-align: center;font-weight: bold;">Available REWARDS</p>
+                <div style="border: 7px solid white;background-color: #C5F0FC;border-radius: 35px;width: 275px;margin: auto;height: 275px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <p style="text-align: center;font-weight: bold;">FREE BATH</p>
+                    <img src="../images/dog_bath.png" alt="" style="margin: auto;width: 100px;display: block;">
+                    <div style="margin-top: 10px;text-align: center;margin: auto">
+                        <p class="gammification_progress_text" style="color: black !important;">25</p>
+                        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+                    </div>
+                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                </div>
+
+                <div style="border: 7px solid white;background-color: #C5F0FC;border-radius: 35px;width: 275px;margin: auto;height: 275px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 20px;">
+                    <p style="text-align: center;font-weight: bold;">TWO FREE WALKS</p>
+                    <img src="../images/dog_walking.png" alt="" style="margin: auto;width: 180px;display: block;">
+                    <div style="margin-top: 10px;text-align: center;margin: auto">
+                        <p class="gammification_progress_text" style="color: black !important;">50</p>
+                        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+                    </div>
+                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                </div>
             </div>
 
         </div>
