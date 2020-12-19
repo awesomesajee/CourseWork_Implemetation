@@ -1,6 +1,54 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4fxzjh0_9j9aIXCecrSeDxBztKU5Lzao&callback=initMap" defer></script>
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+  }
 
+  .card-map{
+    height: 65px !important;
+    width: 155px;
+    background-color: #F1C40F;
+    border-radius: 50px 0px 0px 50px;
+  }
+
+  .img-map{
+    height: 65px !important;
+    width: 155px;
+    border-radius: 50px 50px 50px 50px;
+    padding: auto;
+  }
+
+  .gm-style .gm-style-iw-c{
+    border-radius: 50px 10px 10px 50px;
+    padding-right: auto;
+    padding-bottom: auto;
+    background-color: aquamarine;
+    overflow:hidden;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .gm-style-iw-d {
+    overflow:hidden !important;
+    padding-right: auto;
+    padding-bottom: auto;
+  }
+
+  .gm-style-iw-d {
+    padding-right: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .gm-style-iw-t::after{
+    visibility: hidden;
+  }
+
+</style>
 <div class="gamification_progress_bar">
   <div style="display: inline;float: left;margin-top: 10px">
     <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
@@ -21,7 +69,47 @@
   <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
     <div class="gamification_progress_bar_full"></div>
   </div>
+
+  <div>
+    <div id="map"></div>
+
+    <!-- <div class="card-map" id="marker-tag">
+      <div class="" style="margin-left: 60px; margin-top: 15px;">
+        ho
+      </div>
+    </div>
+     -->
+  </div>
+
 </div>
     
-    
+<script>
+  
+
+
+  // Initialize and add the map
+  function initMap() {
+    // The location of Uluru
+    const uluru = { lat: 51.520919, lng: -0.140126 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+     const marker = new google.maps.Marker({
+       position: uluru,
+       map: map,
+       title: "University of Westminster"
+     });
+     
+     var infowindow = new google.maps.InfoWindow({
+      content: 
+      '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
+    });
+
+    infowindow.open(map,marker);
+
+  }
+</script>
 
