@@ -1,0 +1,38 @@
+.pointsbar{
+    margin-left: -40px;
+    position: relative;
+}
+.pointsbar li{
+    list-style-type: none;
+    float: left;
+    width: 20%;
+    position: relative;
+    text-align: center;
+}
+.pointsbar li:before{
+    content: '1';
+    width: 20px;
+    height: 20px;
+    line-height: 30px;
+    border: 1px solid #535353;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: #535353;
+    position: relative;
+    z-index: 2
+}
+.pointsbar li:after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: #878787;
+    top: 15px;
+    left: -50%;
+    z-index: 1;
+}
+.pointsbar li:first-child:after{
+    content: none;
+}
