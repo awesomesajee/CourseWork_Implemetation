@@ -33,3 +33,41 @@ body{
     display: flex !important;
 
 }
+.ui-collapsible-inset .ui-collapsible-heading .ui-btn{
+    width: 350px !important;
+    background-color: white !important;
+    color: black !important;
+    left: 7px !important;
+    font-size: 18px !important;
+    padding-left: 15px !important;
+}
+
+.ui-collapsible-inset, .ui-collapsible-set{
+    margin: 0px !important;
+}
+.ui-btn-icon-left:after{
+    background-image: url("../images/icons8-double-right-48.png") !important;
+    width: 90px !important;
+    height: 55px !important;
+    top: 10px !important;
+    left: 260px !important;
+}
+.ui-icon-minus:after{
+    background-image: url("../images/icons8-double-down-48.png") !important;
+    width: 90px !important;
+    height: 55px !important;
+    top: 10px !important;
+    left: 260px !important;
+}
+.ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content{
+    width: 350px !important;
+    margin: -5px 13px !important;
+    border-right-width: 1px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.footer-style{
+    position: fixed !important;
+    bottom: 0 !important;
+    width: 100%;
+}
