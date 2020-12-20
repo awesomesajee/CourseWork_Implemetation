@@ -49,30 +49,34 @@
   }
 
 </style>
-<div class="gamification_progress_bar">
-  <div style="display: inline;float: left;margin-top: 10px">
-    <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
-    <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
-  </div>
-  
-  <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
-    <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
-    <div style="display: block;text-align: center;">
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
-      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+<div>
+  <div class="gamification_progress_bar">
+    <div style="display: inline;float: left;margin-top: 10px">
+      <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
+      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
     </div>
-  </div>
-  <div style="display: inline;float: left;">
-    <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
-  </div>
-  <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
-    <div class="gamification_progress_bar_full"></div>
+    
+    <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
+      <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
+      <div style="display: block;text-align: center;">
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
+        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+      </div>
+    </div>
+    <div style="display: inline;float: left;">
+      <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
+    </div>
+    <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
+      <div class="gamification_progress_bar_full"></div>
+    </div> 
+  
   </div>
 
+  <!--start of the map-->
   <div>
     <div id="map"></div>
-
+  
     <!-- <div class="card-map" id="marker-tag">
       <div class="" style="margin-left: 60px; margin-top: 15px;">
         ho
@@ -81,35 +85,39 @@
      -->
   </div>
 
-</div>
-    
-<script>
+  <script>
   
 
 
-  // Initialize and add the map
-  function initMap() {
-    // The location of Uluru
-    const uluru = { lat: 51.520919, lng: -0.140126 };
-    // The map, centered at Uluru
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 14,
-      center: uluru,
-    });
-    // The marker, positioned at Uluru
-     const marker = new google.maps.Marker({
-       position: uluru,
-       map: map,
-       title: "University of Westminster"
-     });
-     
-     var infowindow = new google.maps.InfoWindow({
-      content: 
-      '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
-    });
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      const uluru = { lat: 51.520919, lng: -0.140126 };
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: uluru,
+      });
+      // The marker, positioned at Uluru
+       const marker = new google.maps.Marker({
+         position: uluru,
+         map: map,
+         title: "University of Westminster"
+       });
+       
+       var infowindow = new google.maps.InfoWindow({
+        content: 
+        '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
+      });
+  
+      infowindow.open(map,marker);
+  
+    }
+  </script>
+  
+</div>
 
-    infowindow.open(map,marker);
 
-  }
-</script>
+    
+
 

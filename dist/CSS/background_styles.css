@@ -15,7 +15,7 @@ body{
 
 .gamification_progress_bar{
     background-color: #0B3954 !important;
-    width: 100%;
+    width: 380px;
     height: 70px;
     display: block;
 }
