@@ -15,7 +15,7 @@ body{
 
 .gamification_progress_bar{
     background-color: #0B3954 !important;
-    width: 100%;
+    width: 380px;
     height: 70px;
     display: block;
 }
@@ -29,7 +29,6 @@ body{
 }
 .ui-content{
     padding: 0px !important;
-    overflow-x: auto !important;
     display: flex !important;
 
 }
@@ -64,6 +63,7 @@ body{
     margin: -5px 13px !important;
     border-right-width: 1px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    height: 1400px !important;
 }
 .search-bar{
     width: 100%;
@@ -79,4 +79,47 @@ body{
     position: fixed !important;
     bottom: 0 !important;
     width: 100%;
+}
+
+.background-container{
+    margin: 0 5px 0px 5px;
+    height: 1000px;
+}
+.poi-style{
+    display: block;
+    width: 365px;
+    border-radius: 50px 10px 10px 50px;
+    height: 100px;
+    background-color: #FAE2DB;
+    margin-bottom: 10px;
+}
+.view-button{
+    width: 55px !important;
+    display: inline !important;
+    height: 30px !important;
+    font-size: 10px !important;
+    background-color: transparent !important;
+    border: 2px solid #5BD4F6 !important;
+    color: #5BD4F6 !important;
+    font-weight: bold !important;
+}
+
+.book-button{
+    width: 55px !important;
+    display: inline !important;
+    height: 30px !important;
+    font-size: 10px !important;
+    background-color: #FF8139 !important;
+    border: 2px solid white !important;
+}
+.ui-controlgroup-horizontal .ui-controlgroup-controls{
+    position: relative !important;
+    top: -35px !important;
+    left: 90px !important;
+}
+
+.search-button{
+    background-image: url("../images/icons8-search-100.png");
+    width: 90px;
+    height: 55px;
 }

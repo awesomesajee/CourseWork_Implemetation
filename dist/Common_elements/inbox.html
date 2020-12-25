@@ -7,10 +7,10 @@
     
     <!-- the three things that jQuery Mobile needs to work -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="CSS/button_styles.css" />
-    <link rel="stylesheet" href="CSS/background_styles.css" />
-    <link rel="stylesheet" href="CSS/progressbar.css">
-    <link rel="stylesheet" href="themes/blue_test.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -28,6 +28,12 @@
       
 
     </script>
+
+<script>
+    $('#booking_btn').click(function(){
+     window.location.href='https://pet-temp-host.web.app/Common_elements/ordering.html';
+  })
+  </script>
 </head>
 <!-- End of head -->
 
@@ -35,7 +41,7 @@
   <!-- start of the header section -->
   <div data-role="header" data-theme="a" data-fullscreen="true">
       <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">T I T L E</h1>
+      <h1 id="headerText">I N B O X</h1>
       
   </div>
   <!-- End of header -->
@@ -49,22 +55,22 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
         <div class="nav_fonts">Search</div>
       </a>
-      <a name="Profile" href="Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
         <div class="nav_fonts">Profile</div>
       </a>
-      <a name="Pet Status" href="Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
         <div class="nav_fonts">Pet Status</div>
       </a>
-      <a name="Favourites" href="Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
         <div class="nav_fonts">Favourites</div>
       </a>
-      <a name="Booking History" href="Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
         <div class="nav_fonts">Book History</div>
       </a>
-      <a name="Help" href="Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
         <div class="nav_fonts">Help</div>
       </a>
 </nav>

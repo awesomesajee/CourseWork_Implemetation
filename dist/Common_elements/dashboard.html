@@ -1,27 +1,356 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgqhqtYHkqBSzCxVyOOGhLxEWMO2xILDQ&callback=initMap&libraries=places" defer></script>
 
-<div class="gamification_progress_bar">
-  <div style="display: inline;float: left;margin-top: 10px">
-    <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
-    <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
-  </div>
+<script>
+  $('.view-button').click(function(){
+   window.location.href='https://pet-temp-host.web.app/Common_elements/view.html';
+})
+
+$('.book-button').click(function(){
+   window.location.href='https://pet-temp-host.web.app/Common_elements/ordering.html';
+})
+</script>
+
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .card-map{
+    height: 65px !important;
+    width: 155px;
+    background-color: #F1C40F;
+    border-radius: 50px 0px 0px 50px;
+  }
+
+  .img-map{
+    height: 65px !important;
+    width: 155px;
+    border-radius: 50px 50px 50px 50px;
+    padding: auto;
+  }
+
+  .gm-style .gm-style-iw-c{
+    border-radius: 50px 10px 10px 50px;
+    padding-right: auto;
+    padding-bottom: auto;
+    background-color: aquamarine;
+    overflow:hidden;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .gm-style-iw-d {
+    overflow:hidden !important;
+    padding-right: auto;
+    padding-bottom: auto;
+  }
+
+  .gm-style-iw-d {
+    padding-right: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .gm-style-iw-t::after{
+    visibility: hidden;
+  }
+
+</style>
+<div  class="background-container">
+  <div class="gamification_progress_bar">
+    <div style="display: inline;float: left;margin-top: 10px">
+      <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
+      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+    </div>
+    
+    <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
+      <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
+      <div style="display: block;text-align: center;">
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
+        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+      </div>
+    </div>
+    <div style="display: inline;float: left;">
+      <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
+    </div>
+    <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
+      <div class="gamification_progress_bar_full"></div>
+    </div> 
   
-  <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
-    <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
-    <div style="display: block;text-align: center;">
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
-      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+  </div>
+  <!--Search text box for map-->
+  <div style="width: 320px;margin-left: 25px;margin-top: 20px;">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="height: 40px;"/>
+    <a name="Search" href="#page" class="search-button"></a>
+  </div>
+    
+
+  <hr>
+  
+
+  <!--start of the map-->
+  
+    <div id="map"></div>
+  
+    <!-- <div class="card-map" id="marker-tag">
+      <div class="" style="margin-left: 60px; margin-top: 15px;">
+        ho
+      </div>
+    </div>
+     -->
+
+  <script>
+    
+
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      const uluru = { lat: 51.520919, lng: -0.140126 };
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: uluru,
+      });
+
+      //map searchbox
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+      // For each place, get the icon, name and location.
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function(place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+         // Create a marker for each place.
+         markers.push(new google.maps.Marker({
+          map: map,
+          title: place.name,
+          position: place.geometry.location
+        }));
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+ 
+
+      // The marker, positioned at Uluru
+       const marker = new google.maps.Marker({
+         position: uluru,
+         map: map,
+         title: "University of Westminster"
+       });
+       
+       var infowindow = new google.maps.InfoWindow({
+        content: 
+        '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
+      });
+  
+      infowindow.open(map,marker);
+  
+    }
+  </script>
+
+  <hr>
+
+  <!--Start of the Sorting Panel-->
+  <div>
+    <p style="margin-left:25px">Sort By:</p>
+    <div data-role="controlgroup" data-type="horizontal" style="margin-top: -10px;margin-left: 10px;">
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="name_btn">NAME</a>
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="price_btn">PRICE</a>
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="rating_btn">RATING</a>
     </div>
   </div>
-  <div style="display: inline;float: left;">
-    <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
+  
+
+  <script>
+    var $divs = $("div.poi-style");
+    $('#name_btn').on("click", function() {
+      var alphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+        return ($(b).find("p.poi_text").text().toUpperCase()) > ($(a).find("p.poi_text").text().toUpperCase) ? 1 : -1;
+      });
+      $("#poiwrapper").html(alphabeticallyOrderedDivs);
+    });
+
+    $('#price_btn').on("click", function() {
+      console.log("hello");
+      
+      var pricealphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+        console.log($(b).find("p.price_text").text());
+        var id_of_div = $(b).find("p.price_text").text();
+        var id_number = parseInt(id_of_div.replace(/[^0-9.]/g, ""));
+        console.log(id_number);//12
+        return (parseInt($(b).find("p.price_text").text().replace(/[^0-9.]/g, ""))) < (parseInt($(a).find("p.price_text").text().replace(/[^0-9.]/g, ""))) ? 1 : -1;
+      });
+      console.log(pricealphabeticallyOrderedDivs);
+      $("#poiwrapper").html(pricealphabeticallyOrderedDivs);
+    });
+  
+  </script>
+
+  <!--Start of the POIs-->
+  <div id="poiwrapper">
+  <!--Start of POI 1-->
+  <div class="poi-style" data-name="1">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/icon-map-1.jpg">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Shirly</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
+    </div>
+    <div style="position: relative;top: -85px;left: 245px;">
+      <button class="view-button">VIEW</button>
+      <button class="book-button">BOOK</button>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 116, School Lane, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Dog Walking</p>
+      <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/dog_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
   </div>
-  <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
-    <div class="gamification_progress_bar_full"></div>
+  <!--End of POI 1-->
+
+  <!--Start of POI 2-->
+  <div class="poi-style" data-name="2">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/marin.jpg">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Marie</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+    </div>
+    <div style="position: relative;top: -85px;left: 245px;">
+      <button class="view-button">VIEW</button>
+      <button class="book-button">BOOK</button>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 117, Mary's street, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Cat Grooming</p>
+      <p style="display: inline;" class="price_text">$ 15.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
   </div>
+  <!--End of POI 2-->
+
+  <!--Start of POI 3-->
+  <div class="poi-style" data-name="2">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic2.jpg">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Chris Brown</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+    </div>
+    <div style="position: relative;top: -85px;left: 245px;">
+      <button class="view-button">VIEW</button>
+      <button class="book-button">BOOK</button>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 119, Sanonie Street, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Dog Walking</p>
+      <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
+  </div>
+  <!--End of POI 3-->
+
+  <!--Start of POI 4-->
+  <div class="poi-style" data-name="2">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic.png">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Kirti Sanon</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+    </div>
+    <div style="position: relative;top: -85px;left: 245px;">
+      <button class="view-button">VIEW</button>
+      <button class="book-button">BOOK</button>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 115, Amsterdam Street, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Dog Grooming</p>
+      <p style="display: inline;" class="price_text">$ 20.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
+  </div>
+  <!--End of POI 4-->
+
+  <!--Start of POI 5-->
+  <div class="poi-style" data-name="2">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic3.jpg">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Jimmi Kim</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+    </div>
+    <div style="position: relative;top: -85px;left: 245px;">
+      <button class="view-button">VIEW</button>
+      <button class="book-button">BOOK</button>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 200, Calinbury Street, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Cat Walking</p>
+      <p style="display: inline;" class="price_text">$ 8.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
+  </div>
+  <!--End of POI 5-->
+  </div>
+  </div>
+  
 </div>
+
+
     
-    
+
 
