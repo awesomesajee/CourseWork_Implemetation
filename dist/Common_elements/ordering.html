@@ -14,20 +14,22 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-    <script>
+    <script>    
+
       $(document).ready(function() {
         $('a').click(function(e) {
           e.preventDefault();
           $('#content').load($(this).attr('href'));
           var header_text = e.target.name;
           $('#headerText').html(header_text);
-        })
-      });
-
+        });    
+      });        
       
-
     </script>
+    
+
 </head>
 <!-- End of head -->
 
@@ -35,15 +37,189 @@
   <!-- start of the header section -->
   <div data-role="header" data-theme="a" data-fullscreen="true">
       <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">B O O K/h1>
+      <h1 id="headerText">B O O K</h1>
       
   </div>
   <!-- End of header -->
 
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
-      
-     
+    <div  class="background-container">
+      <!--Start of POI 1-->
+  <div class="poi-style" data-name="1" style="margin: auto; margin-top: 10px;">
+    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/icon-map-1.jpg">
+    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Shirly</p>
+    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
+    </div>
+    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 116, School Lane, California, USA</p>
+    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+      <p style="display: inline;margin-right: 10px;">Dog Walking</p>
+      <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+    </div>
+    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/dog_image.png" alt="" style="width: 25px;"></div>
+    <div style="position: relative;top: -165px;left: 120px;">
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+    </div>
+  </div>
+  <!--End of POI 1-->
+
+
+  <form id="msform">
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">Booking Details</li>
+      <li>Payment Details</li>
+      <li>Order Completion</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+      <h2 class="fs-title">Booking Details</h2>
+      <h3 class="fs-subtitle">Step 1</h3>
+      <label for="location">Location</label>
+      <input type="text" name="email" placeholder="Select your location" />
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Schedule</legend>
+        <label for="rb1">Once</label>
+        <input type="radio" name="rb" id="rb1" value="rb1"/>
+        <label for="rb2">Recurring</label>
+        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+      </div>
+      <label for="speed">Service</label>
+        <select name="speed" id="speed">
+            <option>Dog Walking</option>
+            <option>Dog Grooming</option>
+            <option selected="selected">Cat Walking</option>
+            <option>Cat Grooming</option>
+        </select>
+      <label for="speed">Pick Up Date/Time</label>    
+      <input type="date" name="pass" placeholder="Select Pickup date/time" />
+      <label for="speed">Drop off Date/Time</label>  
+      <input type="datetime" name="cpass" placeholder="Select Dropoff date/time" />
+
+      <button class="next">SECURE CHECKOUT</button>
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Payment Details</h2>
+      <h3 class="fs-subtitle">Step 2</h3>
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Select Payment Method</legend>
+        <label for="rb1">CASH</label>
+        <input type="radio" name="rb" id="rb1" value="rb1"/>
+        <label for="rb2">CARD</label>
+        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+      </div>
+      <label for="speed">Redeem Happy Paw Points</label> 
+      <input type="checkbox" data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1">
+      <!--Happy Pow Table-->
+
+      <div>
+          <h1>Booking Summary</h1>
+      </div>
+
+      <button class="previous">PREVIOUS</button>
+      <button class="next">CONFIRM AND PAY</button>
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Order Completion</h2>
+      <h3 class="fs-subtitle">Step 3</h3>
+      <!--insert QR Code here-->
+      <input type="text" name="fname" placeholder="First Name" />
+      <input type="text" name="lname" placeholder="Last Name" />
+      <input type="text" name="phone" placeholder="Phone" />
+      <textarea name="address" placeholder="Address"></textarea>
+      <button class="previous">PREVIOUS</button>
+      <button class="submit">SUBMIT</button>
+    </fieldset>
+  </form>
+
+  <script>
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    $(document).on('click','.next', function(){
+    console.log("hello");
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        console.log(current_fs);
+        next_fs = $(this).parent().next();
+        console.log(next_fs);
+
+//activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+        next_fs.show();
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+        //2. bring next_fs from the right(50%)
+                left = (now * 50)+"%";
+        //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale('+scale+')',
+                    'position': 'absolute'
+                });
+                next_fs.css({'left': left, 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(document).on('click','.previous', function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+//de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+        previous_fs.show(); 
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+        //2. take current_fs to the right(50%) - from 0%
+                left = ((1-now) * 50)+"%";
+        //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function(){
+            return false;
+        });
+
+</script>
+    </div>
   </div>
     <!-- End of content -->
 
