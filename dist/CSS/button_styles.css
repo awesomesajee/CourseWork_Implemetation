@@ -101,3 +101,17 @@
     border-color: #5BD4F6 !important;
 }
 
+.sorting-up:after{
+    background-image: url("../images/icons8-descending-sorting-26.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.sorting-down:after{
+    background-image: url("../images/icons8-ascending-sorting-26.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
