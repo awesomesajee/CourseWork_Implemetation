@@ -24,8 +24,27 @@
           $('#content').load($(this).attr('href'));
           var header_text = e.target.name;
           $('#headerText').html(header_text);
-        });    
-      });        
+        }); 
+
+        $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html');
+        
+        function loadUserData() {
+          var textData = localStorage.getItem("userData");
+          var data = JSON.parse(textData);
+
+          $('.poi-style').find('p.poi_text').html(data.name);
+          $('.poi-style').find('p.poi_address').html(data.address);
+          $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+          $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+          $('.poi-style .price_array').find('p.poi-service').html(data.service);
+          $('.poi-style .price_array').find('p.price_text').html(data.price);
+          $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+          
+        }
+
+        setTimeout(loadUserData, 500);
+        
+      });
       
     </script>
     
@@ -42,29 +61,15 @@
   </div>
   <!-- End of header -->
 
+  
+
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
     <div  class="background-container">
-      <!--Start of POI 1-->
-  <div class="poi-style" data-name="1" style="margin: auto; margin-top: 10px;">
-    <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/icon-map-1.jpg">
-    <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Shirly</p>
-    <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
-      <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
-      <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
-    </div>
-    <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 116, School Lane, California, USA</p>
-    <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
-      <p style="display: inline;margin-right: 10px;">Dog Walking</p>
-      <p style="display: inline;" class="price_text">$ 10.00/hr</p>
-    </div>
-    <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/dog_image.png" alt="" style="width: 25px;"></div>
-    <div style="position: relative;top: -165px;left: 120px;">
-      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
-      <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
-    </div>
-  </div>
-  <!--End of POI 1-->
+
+      <div id="userContent" style="margin-top: 10px;"></div>
+  
+
 
 
   <form id="msform">
