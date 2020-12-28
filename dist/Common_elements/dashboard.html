@@ -10,7 +10,9 @@
       divs.id = id;
       divs.className = "sort-style";
       $('#test123').append(divs);
-      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html');
+      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+        $('#' + id).enhanceWithin();
+      });
     }
   });
 </script>

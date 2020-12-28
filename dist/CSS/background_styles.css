@@ -114,3 +114,11 @@ body{
     width: 90px;
     height: 55px;
 }
+
+.hide-class{
+    display: none;
+}
+.ui-flipswitch-active a{
+    pointer-events: none;
+}
+
