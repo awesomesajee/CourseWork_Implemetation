@@ -19,14 +19,31 @@
     <script>    
 
       $(document).ready(function() {
+        $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+          $('#userContent').enhanceWithin();
+
+        });
         $('a').click(function(e) {
           e.preventDefault();
           $('#content').load($(this).attr('href'));
           var header_text = e.target.name;
           $('#headerText').html(header_text);
-        }); 
+        });  
 
-        $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html');
+        $('#ts1').change(function(e) {
+          e.preventDefault();
+          var myswitch = $(this);
+          var show = myswitch[0].selectedIndex == 1 ? true:false;
+          if(show)
+          {
+            $('#show-me').show();
+          } else if(!show)
+          {
+            $('#show-me').hide();
+          }
+        });
+        
+        
         
         function loadUserData() {
           var textData = localStorage.getItem("userData");
@@ -40,14 +57,16 @@
           $('.poi-style .price_array').find('p.price_text').html(data.price);
           $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
           $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
-          
+          $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
         }
 
         setTimeout(loadUserData, 500);
         
-      });
+      });    
       
     </script>
+
+  
     
 
 </head>
@@ -69,8 +88,8 @@
     <div  class="background-container">
 
       <div id="userContent" style="margin-top: 10px;"></div>
-  
 
+  
 
 
   <form id="msform">
@@ -88,10 +107,10 @@
       <input type="text" name="email" placeholder="Select your location" />
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
         <legend>Schedule</legend>
-        <label for="rb1">Once</label>
-        <input type="radio" name="rb" id="rb1" value="rb1"/>
-        <label for="rb2">Recurring</label>
-        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+        <label for="rb4">Once</label>
+        <input type="radio" name="rb" id="rb4" value="rb4"/>
+        <label for="rb5">Recurring</label>
+        <input type="radio" name="rb" id="rb5" value="rb5" checked="checked"/>
       </div>
       <label for="speed">Service</label>
         <select name="speed" id="speed">
@@ -103,9 +122,8 @@
       <label for="speed">Pick Up Date/Time</label>    
       <input type="date" name="pass" placeholder="Select Pickup date/time" />
       <label for="speed">Drop off Date/Time</label>  
-      <input type="datetime" name="cpass" placeholder="Select Dropoff date/time" />
-
-      <button class="next">SECURE CHECKOUT</button>
+      <input type="date" name="cpass" placeholder="Select Dropoff date/time" />
+      <input class="next" type="button" value="SECURE CHECKOUT" />
     </fieldset>
     <fieldset>
       <h2 class="fs-title">Payment Details</h2>
@@ -117,16 +135,34 @@
         <label for="rb2">CARD</label>
         <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
       </div>
-      <label for="speed">Redeem Happy Paw Points</label> 
-      <input type="checkbox" data-role="flipswitch" name="flip-checkbox-1" id="flip-checkbox-1">
+      <label for="speed">Redeem Happy Paw Points</label>
+      <select name="ts1" id="ts1" data-role="flipswitch">
+        <option value="No" selected="selected">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+      
       <!--Happy Pow Table-->
-
+      <div id="show-me" style="margin-left: -15px;" class="hide-class">
+      <table style="width: 330px;border-collapse: collapse;">
+        <tr>
+          <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
+          <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
+            <div style="margin-top: 10px;text-align: center;margin: auto">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;">50</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 30px;height: 30px;margin-bottom: 8px;">
+          </div>
+          </td>
+          <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
+          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
+        </tr>
+      </table>
+    </div>
       <div>
           <h1>Booking Summary</h1>
       </div>
 
-      <button class="previous">PREVIOUS</button>
-      <button class="next">CONFIRM AND PAY</button>
+      <input class="previous" type="button" value="PREVIOUS" />
+      <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
     </fieldset>
     <fieldset>
       <h2 class="fs-title">Order Completion</h2>
@@ -136,7 +172,7 @@
       <input type="text" name="lname" placeholder="Last Name" />
       <input type="text" name="phone" placeholder="Phone" />
       <textarea name="address" placeholder="Address"></textarea>
-      <button class="previous">PREVIOUS</button>
+      <input class="previous" type="button" value="PREVIOUS" />
       <button class="submit">SUBMIT</button>
     </fieldset>
   </form>
@@ -145,16 +181,14 @@
     var current_fs, next_fs, previous_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
+    $(document).ready(function() {
+
     $(document).on('click','.next', function(){
-    console.log("hello");
         if(animating) return false;
         animating = true;
 
-        current_fs = $(this).parent();
-        console.log(current_fs);
-        next_fs = $(this).parent().next();
-        console.log(next_fs);
-
+        current_fs = $(this).parent().parent();
+        next_fs = current_fs.next();
 //activate next step on progressbar using the index of next_fs
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -189,8 +223,8 @@
         if(animating) return false;
         animating = true;
 
-        current_fs = $(this).parent();
-        previous_fs = $(this).parent().prev();
+        current_fs = $(this).parent().parent();
+        previous_fs = current_fs.prev();
 
 //de-activate current step on progressbar
         $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
@@ -224,8 +258,26 @@
             return false;
         });
 
+        $('#open-pop-up').click(function() {
+          $('#payment-success').popup("open");
+          
+        });
+      });
+
 </script>
     </div>
+        <div data-role="popup" id="payment-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+          <p style="color: #6DC33A;font-size: 25px;">Payment Successful</p>
+          <img src="../images/right-icon.png" alt="" style="width: 55px;">
+          <button style="width: 160px;margin: auto;margin-top: 15px;background-color: #FF5C00;">VIEW QR CODE</button>
+          <div class="pow-number" style="margin: auto;margin-top: 15px;color: #F1C40F;">
+            <p style="display: inline;">You earned</p>
+            <p style="display: inline;" class="happy-pow-earned">4</p>
+            <img src="../images/icons8-dog-paw-print-100.png" alt="" style="width: 25px;">
+            <p style="display: inline;">happy paw points</p>
+          </div>
+        </div>
+
   </div>
     <!-- End of content -->
 
