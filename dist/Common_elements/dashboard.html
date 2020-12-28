@@ -211,7 +211,8 @@
             profilepic: "../images/icon-map-1.jpg",
             animalImagePath: "../images/dog_image.png",
             service: "Dog Walking",
-            price: "$ 10.00/hr"
+            price: "$ 10.00/hr",
+            points: "1"
           },
           {
             name: "Anne Marie",
@@ -220,7 +221,8 @@
             profilepic: "../images/marin.jpg",
             animalImagePath: "../images/cat_image.png",
             service: "Cat Grooming",
-            price: "$ 15.00/hr"
+            price: "$ 15.00/hr",
+            points: "1.5"
           },
           {
             name: "Chris Brown",
@@ -229,7 +231,8 @@
             profilepic: "../images/prof_pic2.jpg",
             animalImagePath: "../images/dog_image.png",
             service: "Dog Walking",
-            price: "$ 10.00/hr"
+            price: "$ 10.00/hr",
+            points: "1"
           },
           {
             name: "Kirti Sanon",
@@ -237,8 +240,9 @@
             rating: "2.5",
             profilepic: "../images/prof_pic.jpg",
             animalImagePath: "../images/dog_image.png",
-            service: "Dog Grooming",
-            price: "$ 20.00/hr"
+            service: "Dog Training",
+            price: "$ 20.00/hr",
+            points: "2"
           },
           {
             name: "Devon Dipp",
@@ -247,13 +251,21 @@
             profilepic: "../images/prof_pic3.jpg",
             animalImagePath: "../images/cat_image.png",
             service: "Cat Walking",
-            price: "$ 8.00/hr"
+            price: "$ 8.00/hr",
+            points: "0.8"
           }
         ];
         function createCallback( i ){
           return function(){
             localStorage.setItem("userData", JSON.stringify(data[i]));
             window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';
+          }
+        }
+
+        function viewPagetransfer( i ){
+          return function(){
+            localStorage.setItem("userData", JSON.stringify(data[i]));
+            window.location.href = 'https://pet-temp-host.web.app/Common_elements/view.html';
           }
         }
 
@@ -266,7 +278,9 @@
           $('#'+id+' .poi-style .price_array').find('p.poi-service').html(data[i].service);
           $('#'+id+' .poi-style .price_array').find('p.price_text').html(data[i].price);
           $('#'+id+' .poi-style .poi-animal').find('img.animal').attr("src", data[i].animalImagePath);
+          $('#'+id+' .poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data[i].points);
           $('#'+id+' .poi-style .btn-panel .book-button').click(createCallback( i ));
+          $('#'+id+' .poi-style .btn-panel .view-button').click(viewPagetransfer( i ));
         }
       }
       
