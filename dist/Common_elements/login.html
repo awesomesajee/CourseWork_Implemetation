@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
+</head>
+<script>
+    $(document).on('click', '#login-btn', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation.html';
+    });
+</script>
+<body>
+    
+    <!-- start of the header section -->
+ <div data-role="header" data-theme="a" data-fullscreen="true">
+   <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+   <h1 id="headerText">OWNER LOGIN</h1>    
+</div>
+<!-- End of header -->
+
+<div style="background-color: #90DBF0;
+height: 622px;
+width: 100%;">
+    <img src="" alt="">
+    <div style="border: 3px solid white;
+    width: 300px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    padding: 10px;">
+    
+    <input type="text" name="fullname" id="full_name" value="" placeholder="Enter Your Name"/>
+    <input type="password" name="password" id="password" value="" placeholder="Enter Your Password"/>
+    <Button id="login-btn">LOGIN</Button>
+    <div id="my-signin2"></div>
+
+    </div>
+</div>
+</body>
+</html>
