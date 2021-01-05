@@ -17,7 +17,16 @@
 </head>
 <script>
     $(document).on('click', '#login-btn', function (e) {
-     window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation.html';
+        var username = $('#full_name').val();
+        var password = $('#password').val();
+        if(username === "Anne Marie" && password === "123")
+        {
+            window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation.html';
+        }
+        else
+        {
+            console.log("Incorrect Username or Password");
+        }
     });
 </script>
 <body>
@@ -38,14 +47,58 @@ width: 100%;">
     margin: auto;
     margin-top: 100px;
     border-radius: 10px;
-    padding: 10px;">
+    padding: 10px;
+    height: 315px;">
     
-    <input type="text" name="fullname" id="full_name" value="" placeholder="Enter Your Name"/>
-    <input type="password" name="password" id="password" value="" placeholder="Enter Your Password"/>
-    <Button id="login-btn">LOGIN</Button>
-    <div id="my-signin2"></div>
+    <div style="margin-bottom: -20px;">
+        <input type="text" name="fullname" id="full_name" value="Anne Marie" placeholder="Enter Your Name" style="position: relative;
+        left: 38px;
+        width: 240px;
+        height: 40px;"/>
+        <img src="../images/username-txt-box.png" alt="" style="width: 26px;
+        position: relative;
+        top: -40px;
+        left: 8px;">
+    </div>
+    <div style="margin-bottom: -20px;">
+        <input type="password" name="password" id="password" value="123" placeholder="Enter Your Password" style="position: relative;
+        left: 38px;
+        width: 240px;
+        height: 40px;"/>
+        <img src="../images/password-txtbox.png" alt="" style="width: 26px;
+        position: relative;
+        top: -40px;
+        left: 8px;">
+    </div>   
+    <div style="margin-bottom: 21px;">
+        <Button id="login-btn" style="background-color: #FF8139;">LOGIN</Button>
+    </div>        
+    <div>
+        <Button style="background-color: #4285F4;">Log in with Google</Button>
+        <img src="../images/icons8-google-64.png" alt="" style="width: 36px; position: relative;background-color: white; top: -46px;left: 3px;border: 1px solid white;border-radius: 5px;">
+    </div>
+    <div style="margin-top: -20px;">
+        <input type="checkbox" style="width: 15px;"><label for="checkbox" style="position: relative;
+        top: -8px;
+        left: 25px;
+        font-size: 12px;">Remember me</label>
+        <a href="" style="position: relative;
+        top: -34px;
+        left: 165px;
+        font-size: 12px;
+        color: black;
+        font-weight: normal;">Forgot Password?</a>
+    </div>
 
     </div>
+    <div style="width: 130px;
+    position: relative;
+    left: 245px;">
+        <img src="../images/login owner-picture.png" alt="" style="width: 100%;
+        height: 100%;">
+
+    </div>
+    
 </div>
 </body>
 </html>
