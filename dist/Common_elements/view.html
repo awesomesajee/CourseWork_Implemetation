@@ -40,6 +40,11 @@
         }
 
         setTimeout(loadUserData, 500);
+
+        $('#add-fav-btn').click(function() {
+          $('#add-fav-success').popup("open");
+          
+        });
       });
 
       
@@ -86,7 +91,7 @@
       </div>
       <div style="width: 175px;height: 450px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 8px;position: relative;top: -165px;left: 10px;" class="prof-pic-div">
         <div style="width: 100%;" class="div-prof-small"><img src="../images/prof_pic.jpg" alt="" style="width: 100%;border-radius: 10px;" class="prof_pic_view_poi"></div>
-        <button style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
+        <button id="add-fav-btn" style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
         <div style="width: 150px;margin: auto;margin-top: -60px;">
           <p style="font-weight: bold;">ABOUT</p>
           <p style="font-size: 10px;margin-top: -10px;">I have a beautiful black cat. It needs lots of care and attention. My best friend is my cat the dolly.</p>
@@ -151,6 +156,16 @@
 
       
 
+    </div>
+    <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+      <p style="color:#FF2548;font-size: 25px;">Added to favourites</p>
+      <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">
+      <button style="width: 230px;margin: auto;margin-top: 25px;background-color: #FF2548;">
+        <img src="../images/heart icon.png" alt="" style="width: 30px;
+        position: relative;
+        top: -2px;
+        left: -5px;">
+        VIEW FAVOURITES</button>
     </div>
       
      
