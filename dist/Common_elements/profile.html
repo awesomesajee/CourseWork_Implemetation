@@ -56,19 +56,32 @@
             <h4>MY PETS</h4>
             <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
         </div>
-        <div data-role="collapsible" style="display: inline-block;">
+        <div data-role="collapsible" style="display: inline-block;" class="rewards">
             <h4>REWARDS</h4>
             <p style="text-align: center;">Redeem your REWARDS today!!!</p>
-            <div style="margin-left: 50px;margin-top: -20px;">
-                <div style="font-size: 80px;font-weight: bold;display: inline;">90</div>
+            <div style="margin-left: 50px;margin-top: -20px;" class="div-before">
+                <div style="font-size: 80px;font-weight: bold;display: inline;" class="div-within">90</div>
                 <div style="display: inline;"><img src="../images/icons8-dog-paw-print-100.png" alt="" style="margin-top: -60px;margin-left: -10px;"></div>
             </div>
             <p style="text-align: center;margin-top: -10px;">Happy Paws Balance</p>
-            <div style="width: 100%;">
+            <script type="text/javascript">
+                $(".pointsbar li:nth-child(4)").addClass('before-pro');
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+                var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(data.points);
+                $('.rewards .div-before').find('div.div-within').html(received_points);
+                if(textData != null)
+                {
+                    $(".pointsbar li:nth-child(4)").removeClass('before-pro');
+                    $(".pointsbar li:nth-child(4)").addClass('new-pro');
+                }
+                
+            </script>
+            <div class="progress" style="width: 100%;" data-value="10">
                 <ul class="pointsbar">
-                    <li id="list1">25</li>
-                    <li id="list2">50</li>
-                    <li>75</li>
+                    <li class="active">25</li>
+                    <li class="active">50</li>
+                    <li class="active">75</li>
                     <li>100</li>
                     <li>125</li>
                 </ul>

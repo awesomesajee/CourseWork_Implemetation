@@ -14,20 +14,61 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-    <script>
+    <script>    
+
       $(document).ready(function() {
+        $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+          $('#userContent').enhanceWithin();
+
+        });
         $('a').click(function(e) {
           e.preventDefault();
           $('#content').load($(this).attr('href'));
           var header_text = e.target.name;
           $('#headerText').html(header_text);
-        })
-      });
+        });  
 
+        $('#ts1').change(function(e) {
+          e.preventDefault();
+          var myswitch = $(this);
+          var show = myswitch[0].selectedIndex == 1 ? true:false;
+          if(show)
+          {
+            $('#show-me').show();
+          } else if(!show)
+          {
+            $('#show-me').hide();
+          }
+        });
+        
+        
+        
+        function loadUserData() {
+          var textData = localStorage.getItem("userData");
+          var data = JSON.parse(textData);
+
+          $('.poi-style').find('p.poi_text').html(data.name);
+          $('.poi-style').find('p.poi_address').html(data.address);
+          $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+          $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+          $('.poi-style .price_array').find('p.poi-service').html(data.service);
+          $('.poi-style .price_array').find('p.price_text').html(data.price);
+          $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+          $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+          $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+        }
+
+        setTimeout(loadUserData, 500);
+        
+      });    
       
-
     </script>
+
+  
+    
+
 </head>
 <!-- End of head -->
 
@@ -35,15 +76,208 @@
   <!-- start of the header section -->
   <div data-role="header" data-theme="a" data-fullscreen="true">
       <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">B O O K/h1>
+      <h1 id="headerText">B O O K</h1>
       
   </div>
   <!-- End of header -->
 
+  
+
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
+    <div  class="background-container">
+
+      <div id="userContent" style="margin-top: 10px;"></div>
+
+  
+
+
+  <form id="msform">
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">Booking Details</li>
+      <li>Payment Details</li>
+      <li>Order Completion</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+      <h2 class="fs-title">Booking Details</h2>
+      <h3 class="fs-subtitle">Step 1</h3>
+      <label for="location">Location</label>
+      <input type="text" name="email" placeholder="Select your location" />
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Schedule</legend>
+        <label for="rb4">Once</label>
+        <input type="radio" name="rb" id="rb4" value="rb4"/>
+        <label for="rb5">Recurring</label>
+        <input type="radio" name="rb" id="rb5" value="rb5" checked="checked"/>
+      </div>
+      <label for="speed">Service</label>
+        <select name="speed" id="speed">
+            <option>Dog Walking</option>
+            <option>Dog Grooming</option>
+            <option selected="selected">Cat Walking</option>
+            <option>Cat Grooming</option>
+        </select>
+      <label for="speed">Pick Up Date/Time</label>    
+      <input type="date" name="pass" placeholder="Select Pickup date/time" />
+      <label for="speed">Drop off Date/Time</label>  
+      <input type="date" name="cpass" placeholder="Select Dropoff date/time" />
+      <input class="next" type="button" value="SECURE CHECKOUT" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Payment Details</h2>
+      <h3 class="fs-subtitle">Step 2</h3>
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Select Payment Method</legend>
+        <label for="rb1">CASH</label>
+        <input type="radio" name="rb" id="rb1" value="rb1"/>
+        <label for="rb2">CARD</label>
+        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+      </div>
+      <label for="speed">Redeem Happy Paw Points</label>
+      <select name="ts1" id="ts1" data-role="flipswitch">
+        <option value="No" selected="selected">No</option>
+        <option value="Yes">Yes</option>
+      </select>
       
-     
+      <!--Happy Pow Table-->
+      <div id="show-me" style="margin-left: -15px;" class="hide-class">
+      <table style="width: 330px;border-collapse: collapse;">
+        <tr>
+          <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
+          <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
+            <div style="margin-top: 10px;text-align: center;margin: auto">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;">50</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 30px;height: 30px;margin-bottom: 8px;">
+          </div>
+          </td>
+          <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
+          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
+        </tr>
+      </table>
+    </div>
+      <div>
+          <h1>Booking Summary</h1>
+      </div>
+
+      <input class="previous" type="button" value="PREVIOUS" />
+      <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Order Completion</h2>
+      <h3 class="fs-subtitle">Step 3</h3>
+      <!--insert QR Code here-->
+      <input type="text" name="fname" placeholder="First Name" />
+      <input type="text" name="lname" placeholder="Last Name" />
+      <input type="text" name="phone" placeholder="Phone" />
+      <textarea name="address" placeholder="Address"></textarea>
+      <input class="previous" type="button" value="PREVIOUS" />
+      <button class="submit">SUBMIT</button>
+    </fieldset>
+  </form>
+
+  <script>
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    $(document).ready(function() {
+
+    $(document).on('click','.next', function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent().parent();
+        next_fs = current_fs.next();
+//activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+        next_fs.show();
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+        //2. bring next_fs from the right(50%)
+                left = (now * 50)+"%";
+        //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale('+scale+')',
+                    'position': 'absolute'
+                });
+                next_fs.css({'left': left, 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(document).on('click','.previous', function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent().parent();
+        previous_fs = current_fs.prev();
+
+//de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+        previous_fs.show(); 
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+        //2. take current_fs to the right(50%) - from 0%
+                left = ((1-now) * 50)+"%";
+        //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function(){
+            return false;
+        });
+
+        $('#open-pop-up').click(function() {
+          $('#payment-success').popup("open");
+          
+        });
+      });
+
+</script>
+    </div>
+        <div data-role="popup" id="payment-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+          <p style="color: #6DC33A;font-size: 25px;">Payment Successful</p>
+          <img src="../images/right-icon.png" alt="" style="width: 55px;">
+          <button style="width: 160px;margin: auto;margin-top: 15px;background-color: #FF5C00;">VIEW POINTS</button>
+          <div class="pow-number" style="margin: auto;margin-top: 15px;color: #F1C40F;">
+            <p style="display: inline;">You earned</p>
+            <p style="display: inline;" class="happy-pow-earned">4</p>
+            <img src="../images/icons8-dog-paw-print-100.png" alt="" style="width: 25px;">
+            <p style="display: inline;">happy paw points</p>
+          </div>
+        </div>
+
   </div>
     <!-- End of content -->
 
