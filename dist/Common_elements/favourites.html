@@ -1,16 +1,219 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-<!--Search text box for map-->
-<!--<div class="search-bar">
+<style>
+.search-design{
+    width: 330px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.poi-style{
+    width: 343px;
+}
+
+.bookBtn-des{
+    left: 280px;
+    width: 58px;
+}
+
+.contact-icons{
+    left: 182px;
+    width: 200px;
+    height: 60px;
+}
+</style>
+
+<div  class="background-container">
+    <!--Search text box for map-->
+  <!--<div class="search-bar">
     <form>
           <input data-type="search" id="divOfPs-input" placeholder="Search your favourite">
     </form>
-</div>-->
-<div style="width: 320px;margin-left: 25px;margin-top: 20px;">
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="height: 40px;"/>
-    <a name="Search" href="#page" class="search-button"></a>
-</div>
+   </div>-->
+    <div class="search-design">
+        <input id="fav-input" class="controls" type="text" placeholder="Search your favourite" style="height: 40px;"/>
+    </div>
     
+    <hr class="search-design" style="margin-bottom: 4px;">
+    <p class="search-design" style="margin-top: 0px; font-size: xx-small;">Select your favourite caretakers and click on the email button to email.</p>
 
-  <hr>
+    <div class="search-design" style="margin-top: 0px">
+        <button class="delete-btn" id="del-btn" disabled="disabled">DELETE</button>
+        <button class="sendemail-btn" id="email-btn" disabled="disabled">EMAIL SELECTED(2)</button>
+    </div>
+
+    <div class="search-design" data-filter="true" data-input="#fav-input" style="margin-top: 12px; margin-left: 12px;">
+        <!--Start of POI 1-->
+        <label for="poi1" style="margin:0px 0px 0px 0px; padding-left:0px">
+            <div class="poi-style" data-name="1" id="poi1" name="poi1">
+                <input type="checkbox" name="poichckboxesdvdv" id="poi1chckbox" class="custom" style="display: none">
+                <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/icon-map-1.jpg">
+                <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Shirly</p>
+                <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+                <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+                <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
+                </div>
+                <div style="position: relative;top: -85px;" class="bookBtn-des">
+                    <button class="book-button">BOOK</button>
+                </div>
+                <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 116, School Lane, California, USA</p>
+                <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+                <p style="display: inline;margin-right: 10px;">Dog Walking</p>
+                <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+                </div>
+                <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/dog_image.png" alt="" style="width: 25px;"></div>
+                <div style="position: relative;top: -165px;" class="contact-icons">
+                <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+                <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+                </div>
+            </div>
+        </label>
+        <!--End of POI 1-->
+
+        <!--Start of POI 2-->
+        <div class="poi-style" data-name="2">
+            <input type="checkbox" name="poichckboxes" id="poi2chckbox" class="custom">
+            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/marin.jpg">
+            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Marie</p>
+            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+            </div>
+            <div style="position: relative;top: -85px;" class="bookBtn-des">
+                <button class="book-button">BOOK</button>
+            </div>
+            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 117, Mary's street, California, USA</p>
+            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;">Cat Grooming</p>
+            <p style="display: inline;" class="price_text">$ 15.00/hr</p>
+            </div>
+            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+            <div style="position: relative;top: -165px;" class="contact-icons">
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+            </div>
+        </div>
+        <!--End of POI 2-->
+
+        <!--Start of POI 3-->
+        <div class="poi-style" data-name="2">
+            <input type="checkbox" name="poichckboxes" id="poi3chckbox" class="custom">
+            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic2.jpg">
+            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Chris Brown</p>
+            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+            </div>
+            <div style="position: relative;top: -85px;" class="bookBtn-des">
+                <button class="book-button">BOOK</button>
+            </div>
+            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 119, Sanonie Street, California, USA</p>
+            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;">Dog Walking</p>
+            <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+            </div>
+            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+            <div style="position: relative;top: -165px;" class="contact-icons">
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+            </div>
+        </div>
+        <!--End of POI 3-->
+
+        <!--Start of POI 4-->
+        <div class="poi-style" data-name="2">
+            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic.png">
+            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Kirti Sanon</p>
+            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+            </div>
+            <div style="position: relative;top: -85px;" class="bookBtn-des">
+                <button class="book-button">BOOK</button>
+            </div>
+            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 115, Amsterdam Street, California, USA</p>
+            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;">Dog Grooming</p>
+            <p style="display: inline;" class="price_text">$ 20.00/hr</p>
+            </div>
+            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+            <div style="position: relative;top: -165px;" class="contact-icons">
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+            </div>
+        </div>
+        <!--End of POI 4-->
+
+        <!--Start of POI 5-->
+        <div class="poi-style" data-name="2">
+            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic3.jpg">
+            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Jimmi Kim</p>
+            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
+            </div>
+            <div style="position: relative;top: -85px;" class="bookBtn-des">
+                <button class="book-button">BOOK</button>
+            </div>
+            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 200, Calinbury Street, California, USA</p>
+            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;">Cat Walking</p>
+            <p style="display: inline;" class="price_text">$ 8.00/hr</p>
+            </div>
+            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
+            <div style="position: relative;top: -165px;" class="contact-icons">
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+            </div>
+        </div>
+        <!--End of POI 5-->
+    </div>
+
+</div>
+
+<script>
+    /*$("input[name='poichckboxes']").on('change', function() {
+        console.log($("input[name='poichckboxes']:checked").length)
+        if($("input[name='poichckboxes']:checked").length>0){           
+            $("#del-btn").removeProp('disabled');
+        }
+        else{
+            $("#del-btn").prop('disabled');
+        }
+    })*/
+
+    $(function () {
+            $("input[name='poichckboxes']").change(function () {
+                if ($(this).is(":checked")) {
+                    $('#del-btn').removeAttr('disabled');
+                    $('#email-btn').removeAttr('disabled');
+                }
+                else {
+                    var isChecked = false;
+                    $("input[name='poichckboxes']").each(function () {
+                        if ($(this).is(":checked")) {
+                            $('#del-btn').removeAttr('disabled');
+                            $('#email-btn').removeAttr('disabled');
+                            isChecked = true;
+                        }
+                    });
+                    if (!isChecked) {
+                        $('#del-btn').attr('disabled', 'disabled');
+                        $('#email-btn').attr('disabled', 'disabled');
+                    }
+                }
+ 
+ 
+            })
+        });
+</script>
+
+<!--<script>
+    $('#del-btn').on("click", function() {
+        console.log("ATleast nw work willl u")
+    });
+</script>-->
+
+
