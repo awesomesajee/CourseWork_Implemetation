@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- head section which contains meta data -->
 <head>
     <meta charset="utf-8">
     <title>Canoodle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- the three things that jQuery Mobile needs to work -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="../CSS/button_styles.css" />
@@ -16,58 +16,114 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-    <script>    
+    <script>
 
-      $(document).ready(function() {
-        $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
-          $('#userContent').enhanceWithin();
+        $(document).ready(function () {
+            $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
+                $('#userContent').enhanceWithin();
+
+            });
+            $('a').click(function (e) {
+                e.preventDefault();
+                $('#content').load($(this).attr('href'));
+                var header_text = e.target.name;
+                $('#headerText').html(header_text);
+            });
+
+            $('#ts1').change(function (e) {
+                e.preventDefault();
+                var myswitch = $(this);
+                var show = myswitch[0].selectedIndex == 1 ? true : false;
+                if (show) {
+                    $('#show-me').show();
+                } else if (!show) {
+                    $('#show-me').hide();
+                }
+            });
+
+
+
+            function loadUserData() {
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+
+                $('.poi-style').find('p.poi_text').html(data.name);
+                $('.poi-style').find('p.poi_address').html(data.address);
+                $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+                $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+                $('.poi-style .price_array').find('p.poi-service').html(data.service);
+                $('.poi-style .price_array').find('p.price_text').html(data.price);
+                $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+                $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+                $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+            }
+
+            setTimeout(loadUserData, 500);
 
         });
-        $('a').click(function(e) {
-          e.preventDefault();
-          $('#content').load($(this).attr('href'));
-          var header_text = e.target.name;
-          $('#headerText').html(header_text);
-        });  
 
-        $('#ts1').change(function(e) {
-          e.preventDefault();
-          var myswitch = $(this);
-          var show = myswitch[0].selectedIndex == 1 ? true:false;
-          if(show)
-          {
-            $('#show-me').show();
-          } else if(!show)
-          {
-            $('#show-me').hide();
-          }
-        });
-        
-        
-        
-        function loadUserData() {
-          var textData = localStorage.getItem("userData");
-          var data = JSON.parse(textData);
-
-          $('.poi-style').find('p.poi_text').html(data.name);
-          $('.poi-style').find('p.poi_address').html(data.address);
-          $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
-          $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
-          $('.poi-style .price_array').find('p.poi-service').html(data.service);
-          $('.poi-style .price_array').find('p.price_text').html(data.price);
-          $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
-          $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
-          $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
-        }
-
-        setTimeout(loadUserData, 500);
-        
-      });    
-      
     </script>
 
-  
-    
+
+    <script>
+
+        $(document).ready(function () {
+            $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
+                $('#userContent').enhanceWithin();
+
+            });
+            $('a').click(function (e) {
+                e.preventDefault();
+                $('#content').load($(this).attr('href'));
+                var header_text = e.target.name;
+                $('#headerText').html(header_text);
+            });
+
+            $('#ts1').change(function (e) {
+                e.preventDefault();
+                var myswitch = $(this);
+                var show = myswitch[0].selectedIndex == 1 ? true : false;
+                if (show) {
+                    $('#show-me').show();
+                } else if (!show) {
+                    $('#show-me').hide();
+                }
+            });
+
+
+
+            function loadUserData() {
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+
+                $('.poi-style').find('p.poi_text').html(data.name);
+                $('.poi-style').find('p.poi_address').html(data.address);
+                $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+                $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+                $('.poi-style .price_array').find('p.poi-service').html(data.service);
+                $('.poi-style .price_array').find('p.price_text').html(data.price);
+                $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+                $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+                $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+            }
+
+            function generateBarCode() {
+                var textData = localStorage.getItem("userData");
+                var orderSummary = JSON.parse(textData);
+
+                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price;
+                    var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
+                    $('#barcode').attr('src', url);
+                }
+
+            setTimeout(loadUserData, 500);
+
+        });
+
+    </script>
+
+
+
 
 </head>
 <!-- End of head -->
@@ -165,15 +221,26 @@
       <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
     </fieldset>
     <fieldset>
-      <h2 class="fs-title">Order Completion</h2>
-      <h3 class="fs-subtitle">Step 3</h3>
-      <!--insert QR Code here-->
-      <input type="text" name="fname" placeholder="First Name" />
-      <input type="text" name="lname" placeholder="Last Name" />
-      <input type="text" name="phone" placeholder="Phone" />
-      <textarea name="address" placeholder="Address"></textarea>
-      <input class="previous" type="button" value="PREVIOUS" />
-      <button class="submit">SUBMIT</button>
+        <h2 class="fs-title">Order Completion</h2>
+        <h3 class="fs-subtitle">Step 3</h3>
+        <!--insert QR Code here-->
+
+
+        <div>
+            <div style="display: block;height: 45%;">
+
+                <div style="display: block;position: relative;">
+
+
+                    <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" width="140" height="140" onload="generateBarCode()" />
+                </div>
+
+            </div>
+          
+        </div>
+
+
+
     </fieldset>
   </form>
 
