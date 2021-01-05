@@ -45,6 +45,14 @@
           $('#add-fav-success').popup("open");
           
         });
+
+        $('#view-fav-btn').click(function(e) {
+          e.preventDefault();
+          $('#content').load('https://pet-temp-host.web.app/Common_elements/favourites.html');
+          var header_text = e.target.name;
+          $('#headerText').html(header_text);
+
+        });
       });
 
       
@@ -160,7 +168,7 @@
     <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
       <p style="color:#FF2548;font-size: 25px;">Added to favourites</p>
       <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">
-      <button style="width: 230px;margin: auto;margin-top: 25px;background-color: #FF2548;">
+      <button id="view-fav-btn" style="width: 230px;margin: auto;margin-top: 25px;background-color: #FF2548;" name="Favourites">
         <img src="../images/heart icon.png" alt="" style="width: 30px;
         position: relative;
         top: -2px;
