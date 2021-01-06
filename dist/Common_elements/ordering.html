@@ -72,8 +72,8 @@
              $('#barcode').attr('src', url);
 
 
-             var urlProfile = data.profilepic;
-             $('#profilePic').attr('src', url);
+             var urlProfile = orderSummary.profilepic;
+             $('#profilePic').attr('src', urlProfile);
             }
 
     </script>
@@ -258,7 +258,7 @@
 
                     <div style="position: absolute;left: 6.83%;right: 6.56%;top: 18.65%;bottom: 30.2%;background: #FFFFFF;border-radius: 10px;">
 
-                        <img id='profilePic' onload="generateBarCode()" 
+                        <img id='profilePic' src="image/image" onload="generateBarCode()" 
                              style="position: absolute;left: 5.51%; right: 82.51%; top: 15.45%; bottom: 66.79%; border: 10px solid #FFFFFF; border-radius: 60px;"/>
 
                     </div>
