@@ -17,9 +17,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <script>
-        var current_fs, next_fs, previous_fs; //fieldsets
-        var left, opacity, scale; //fieldset properties which we will animate
-        var animating; //flag to prevent quick multi-click glitches
         $(document).ready(function () {
             $('#open-pop-up').click(function () {
                 $('#payment-success').popup("open");
@@ -53,9 +50,11 @@
     <div role="main" class="ui-content" id="content">
         <div class="background-container">
 
-            <div id="userContent" style="margin-top: 10px;"></div>
+            <div id="userContent" style="margin-top: 10px;">
 
-            <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+                <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+
+            </div>
 
 
         </div>
