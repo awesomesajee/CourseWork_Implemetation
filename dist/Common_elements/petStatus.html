@@ -1,6 +1,70 @@
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div  class="background-container">
-    <h1 id="headerTitle">Pet Status</h1>
-</div>
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <script>
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var left, opacity, scale; //fieldset properties which we will animate
+        var animating; //flag to prevent quick multi-click glitches
+        $(document).ready(function () {
+            $('#open-pop-up').click(function () {
+                $('#payment-success').popup("open");
+
+            });
+        });
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- start of the header section -->
+    <div data-role="header" data-theme="a" data-fullscreen="true">
+        <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+        <h1 id="headerText">P E T  S T A T U S</h1>
+
+    </div>
+
+    <div data-role="popup" id="payment-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+        <p style="color: #6DC33A;font-size: 25px;">Payment Successful</p>
+        <img src="../images/right-icon.png" alt="" style="width: 55px;">
+        <button style="width: 160px;margin: auto;margin-top: 15px;background-color: #FF5C00;">VIEW POINTS</button>
+        <div class="pow-number" style="margin: auto;margin-top: 15px;color: #F1C40F;">
+            <p style="display: inline;">You earned</p>
+            <p style="display: inline;" class="happy-pow-earned">4</p>
+            <img src="../images/icons8-dog-paw-print-100.png" alt="" style="width: 25px;">
+            <p style="display: inline;">happy paw points</p>
+        </div>
+    </div>
+
+    <div role="main" class="ui-content" id="content">
+        <div class="background-container">
+
+            <div id="userContent" style="margin-top: 10px;"></div>
+
+            <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+
+
+        </div>
+    </div>
+</body>
+
+</html>
