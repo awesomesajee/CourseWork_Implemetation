@@ -76,7 +76,9 @@
              $('#profilePic').attr('src', urlProfile);
              $('.caretaker_rating').html(orderSummary.rating);
              $('.caretaker_address').html(orderSummary.address);
-              $('.caretaker_name').html(orderSummary.name);
+             $('.caretaker_name').html(orderSummary.name);
+             $('.caretaker_animal').html(orderSummary.animalImagePath);   
+              $('.caretaker_service').html(orderSummary.price.substring(1));
             }
 
     </script>
@@ -261,17 +263,19 @@
 
                     <div style="position: absolute;left: 6.83%;right: 6.56%;top: 18.65%;bottom: 30.2%;background: #FFFFFF;border-radius: 10px;">
 
-                        <p style="display: inline;font-weight: bold;position: relative;top: -21px;left: 38px;font-size: 13px;font-family:system-ui;" class="caretaker_name"></p>
+                        <p style="display: inline;font-weight: bold;position: relative;top: -2px;left: 230px;font-size: 10px;font-family:system-ui;" class="caretaker_service"></p>
+                        
+                        <p style="display: inline;font-weight: bold;position: relative;top: -21px;left: -15px;font-size: 13px;font-family:system-ui;" class="caretaker_name"></p>
 
                         <img id="profilePic" src="../images/icon-map-1.jpg" onload="generateBarCode()" style="position: absolute;left: -15%;right: 81%;top: -64.45%;bottom: 66.79%;border: 10px solid #FFFFFF;border-radius: 60px;height: 65px;width: 65px;">
 
                         <img id="shareBtn" src="../images/share.png" style="position: absolute;left: 98.45%;right: 8.12%;top: -50.5%;bottom: 75.67%;height:40px;width:40px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
 
-                        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 12px;background-color: black;color: white;position: relative;top: -19px;left: 50px;">
+                        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 12px;background-color: black;color: white;position: relative;top: -19px;left: 5px;">
                             <img src="../images/star.png" alt="" style="width: 40px;margin-left: -11px;margin-bottom: 5px;padding: 5px;">
                             <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 9px;top: -3px;margin-right: 2px;" class="caretaker_rating"></p>
                         </div>
-                        <p style="font-size: 11px;position: relative;top: -30px;left: 20px;font-family: system-ui;"  class="caretaker_address"></p>
+                        <p style="font-size: 11px;position: relative;top: -30px;left: 20px;font-family: system-ui;" class="caretaker_address"></p>
                         <p style="font-size: 11px;position: relative;top: -40px;left: 20px;font-family: system-ui;">Available at <b>09/08/2020 1.00 p.m. - 2.00 p.m.</b></p>
                         <p style="font-size: 11px;position: relative;top: -34px;left: 19px;font-family: system-ui;">
                             Pet Name: <b class="pet_name">KITTY</b>
@@ -280,6 +284,9 @@
                         <p style="font-size: 11px;position: relative;top: -46px;left: 19px;font-family: system-ui;">
                             Total: <b class="caretaker_amount">$ 1250 . 00</b>
                         </p>
+                        <div style="display: inline;position: relative;top: -103px;left: 250px;">
+                            <img  class="caretaker_animal" src="" alt="" style="width: 25px;">
+                        </div>
                     </div>
 
                     <p style="font-size: 11px;position: relative;top: 57px;left: 40px;font-family: system-ui;">
