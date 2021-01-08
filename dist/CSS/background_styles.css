@@ -20,13 +20,27 @@ body{
     display: block;
 }
 .gamification_progress_bar_full{
-    background-color: #F1C40F !important;
     width: 50%;
     height: 15px;
     box-align: center;
     border-radius: 50px;
     display: flex;
 }
+.meter span {
+  display: block;
+  height: 100%;
+}
+.progress {
+  background-color: #F1C40F;
+  animation: progressBar 3s ease-in-out;
+  animation-fill-mode:both; 
+  border-radius: 50px;
+}
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
 .ui-content{
     padding: 0px !important;
     display: flex !important;
