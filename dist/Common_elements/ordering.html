@@ -153,15 +153,17 @@
         });
 
     </script>
-    <style>
-      .active{
-        background-color: transparent;
-      }
-      .ui-controlgroup-controls{
-        left: 140px;
-      }
-    </style>
-  
+ <style>
+  .active{
+    background-color: transparent;
+  }
+  .ui-controlgroup-controls{
+    left: 140px;
+  }
+</style>
+
+
+
 </head>
 <!-- End of head -->
 
@@ -205,18 +207,18 @@
         <label for="rb5">Recurring</label>
         <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="service">Service</label>
-        <select name="service" id="speed">
-            <option value="Dog Walking">Dog Walking</option>
-            <option value="Dog Grooming">Dog Grooming</option>
-            <option value="Cat Walking" selected="selected">Cat Walking</option>
-            <option value="Cat Grooming">Cat Grooming</option>
+      <label for="speed">Service</label>
+        <select name="speed" id="speed">
+          <option value="Dog Walking">Dog Walking</option>
+          <option value="Dog Grooming">Dog Grooming</option>
+          <option value="Cat Walking" selected="selected">Cat Walking</option>
+          <option value="Cat Grooming">Cat Grooming</option>
         </select>
-      <label for="pickup">Pick Up Date/Time</label>    
-      <input type="date" name="pickup" placeholder="Select Pickup date/time" />
-      <label for="dropoff">Drop off Date/Time</label>  
-      <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
-      <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
+        <label for="pickup">Pick Up Date/Time</label>    
+        <input type="date" name="pickup" placeholder="Select Pickup date/time" />
+        <label for="dropoff">Drop off Date/Time</label>  
+        <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
+        <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
     <fieldset id="fieldset2">
       <h2 class="fs-title">Payment Details</h2>
@@ -249,9 +251,9 @@
           <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
         </tr>
       </table>
-      </div>
+    </div>
       <div class="ui-body ui-body-a ui-corner-all" style="padding: 8px; background-color:#5bd4f6">
-          <h4>Booking Summary</h4>
+          <h6>Booking Summary</h6>
           <div id="summary"></div>
           <hr style="margin: 10px 0">
           <div id="totalVal"><h6><b>Total<span style='float:right'>$<span id="span-total">0</span></span></b></h6></div>
@@ -514,6 +516,93 @@
  
           e.preventDefault();
         });
+        $('#checkout-btn').on("click", function() {
+            var formvalues = $('#fieldset1').serializeArray();
+            console.log(formvalues);
+            $( "#summary" ).empty();
+            /*jQuery.each( formvalues, function( i, field ) {
+              $( "#summary" ).append("<p>"+field.value+"</p> ");
+  
+            });*/
+            var price=0;
+            if(formvalues[2].value==('Dog Walking')){
+              price=150;
+            }
+            else if(formvalues[2].value==('Dog Grooming')){
+              price=200;
+            }
+            else if(formvalues[2].value==('Cat Walking')){
+              price=180;
+            }
+            else{
+              price=260;
+            }
+
+            $( "#summary" ).append("<h6><b>"+formvalues[3].value+" - "+formvalues[4].value+"</b></h6>");
+            $( "#summary" ).append("<h6><b>"+formvalues[0].value+"</b></h6>");
+            $( "#summary" ).append("<h6><b>"+formvalues[2].value+"<span style='float:right'>$"+price+"</span></b></h6>");
+            displayTotalPrice(price);
+        });
+        function displayTotalPrice(totprice){
+          $('#ts1').change(function(e) {
+            e.preventDefault();
+            var myswitch = $(this);
+            var switchValue = myswitch.children("option:selected").val();
+            console.log(switchValue); 
+
+            if(switchValue=="Yes"){
+              totprice = totprice - 10;
+              $( "#span-total" ).text(totprice);
+            }
+            console.log(totprice);
+          });
+          $( "#span-total" ).text(totprice);
+          console.log(totprice);
+          
+        }
+
+          var $form = $('#msform');
+          var handler = StripeCheckout.configure({
+            key: 'pk_test_cp21BcECf4kMMUbSlRlZlsMo',
+            token: function(token) {
+              // Use the token to create the charge with a server-side script.
+              // You can access the token ID with `token.id`
+              console.log("Suceess");
+              //This will be printed when the transaction is successful. To charge, server side scripting is required.
+              if(token.id){
+                        //$("#thankyouPayment").html("Thank you, your payment was successful!");
+                        $('#payment-success').popup("open");
+                        //You can also use the following code to re-submit the form content to another file for further processing.
+                        //Don't forget to add action to your form
+                        //$form.get(0).submit();
+
+                        //Or save form data locally, using local storage.
+              }
+            }
+          });
+	  
+
+        $('#open-pop-up').on('click', function(e) {
+
+          //get value card or cash
+          var radioValue = $("input[name='paymentM']:checked").val();
+
+          if(radioValue=="card"){
+            // Code Section B  Open Checkout with further options
+            handler.open({
+            name: 'PAYMENT DETAILS',
+            currency: 'usd',
+            description: $('#summary h6 b:last').text(),
+            amount: $( "#span-total" ).text() * 100
+            
+            });
+          }
+          else{
+            $('#payment-success').popup("open");
+          }
+ 
+          e.preventDefault();
+        });
 
         // Code Section C  Close Checkout on page navigation
         $(window).on('popstate', function() {
@@ -521,6 +610,14 @@
         });
         
       });
+   
+
+        // Code Section C  Close Checkout on page navigation
+        $(window).on('popstate', function() {
+          handler.close();
+        });
+        
+      
     });    
 </script>
     </div>
