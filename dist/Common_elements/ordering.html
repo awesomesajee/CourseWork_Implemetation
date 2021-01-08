@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
 
     <script>    
 
@@ -41,6 +42,7 @@
           {
             $('#show-me').hide();
           }
+          
         });
         
         
@@ -65,7 +67,14 @@
       });    
       
     </script>
-
+    <style>
+      .active{
+        background-color: transparent;
+      }
+      .ui-controlgroup-controls{
+        left: 140px;
+      }
+    </style>
   
     
 
@@ -100,7 +109,7 @@
       <li>Order Completion</li>
     </ul>
     <!-- fieldsets -->
-    <fieldset>
+    <fieldset id="fieldset1">
       <h2 class="fs-title">Booking Details</h2>
       <h3 class="fs-subtitle">Step 1</h3>
       <label for="location">Location</label>
@@ -108,32 +117,32 @@
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
         <legend>Schedule</legend>
         <label for="rb4">Once</label>
-        <input type="radio" name="rb" id="rb4" value="rb4"/>
+        <input type="radio" name="schedule" id="rb4" value="Once"/>
         <label for="rb5">Recurring</label>
-        <input type="radio" name="rb" id="rb5" value="rb5" checked="checked"/>
+        <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="speed">Service</label>
-        <select name="speed" id="speed">
-            <option>Dog Walking</option>
-            <option>Dog Grooming</option>
-            <option selected="selected">Cat Walking</option>
-            <option>Cat Grooming</option>
+      <label for="service">Service</label>
+        <select name="service" id="speed">
+            <option value="Dog Walking">Dog Walking</option>
+            <option value="Dog Grooming">Dog Grooming</option>
+            <option value="Cat Walking" selected="selected">Cat Walking</option>
+            <option value="Cat Grooming">Cat Grooming</option>
         </select>
-      <label for="speed">Pick Up Date/Time</label>    
-      <input type="date" name="pass" placeholder="Select Pickup date/time" />
-      <label for="speed">Drop off Date/Time</label>  
-      <input type="date" name="cpass" placeholder="Select Dropoff date/time" />
-      <input class="next" type="button" value="SECURE CHECKOUT" />
+      <label for="pickup">Pick Up Date/Time</label>    
+      <input type="date" name="pickup" placeholder="Select Pickup date/time" />
+      <label for="dropoff">Drop off Date/Time</label>  
+      <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
+      <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
-    <fieldset>
+    <fieldset id="fieldset2">
       <h2 class="fs-title">Payment Details</h2>
       <h3 class="fs-subtitle">Step 2</h3>
-      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;left: 140px;">
         <legend>Select Payment Method</legend>
         <label for="rb1">CASH</label>
-        <input type="radio" name="rb" id="rb1" value="rb1"/>
+        <input type="radio" name="paymentM" id="rb1" value="cash"/>
         <label for="rb2">CARD</label>
-        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+        <input type="radio" name="paymentM" id="rb2" value="card" checked="checked"/>
       </div>
       <label for="speed">Redeem Happy Paw Points</label>
       <select name="ts1" id="ts1" data-role="flipswitch">
@@ -142,7 +151,7 @@
       </select>
       
       <!--Happy Pow Table-->
-      <div id="show-me" style="margin-left: -15px;" class="hide-class">
+      <div id="show-me" style="margin-left: -15px; margin-bottom: 14px" class="hide-class">
       <table style="width: 330px;border-collapse: collapse;">
         <tr>
           <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
@@ -157,8 +166,11 @@
         </tr>
       </table>
     </div>
-      <div>
-          <h1>Booking Summary</h1>
+      <div class="ui-body ui-body-a ui-corner-all" style="padding: 8px; background-color:#5bd4f6">
+          <h4>Booking Summary</h4>
+          <div id="summary"></div>
+          <hr style="margin: 10px 0">
+          <div id="totalVal"><h6><b>Total<span style='float:right'>$<span id="span-total">0</span></span></b></h6></div>
       </div>
 
       <input class="previous" type="button" value="PREVIOUS" />
@@ -258,10 +270,99 @@
             return false;
         });
 
-        $('#open-pop-up').click(function() {
-          $('#payment-success').popup("open");
-          
+        $('#checkout-btn').on("click", function() {
+            var formvalues = $('#fieldset1').serializeArray();
+            console.log(formvalues);
+            $( "#summary" ).empty();
+            /*jQuery.each( formvalues, function( i, field ) {
+              $( "#summary" ).append("<p>"+field.value+"</p> ");
+  
+            });*/
+            var price=0;
+            if(formvalues[2].value==('Dog Walking')){
+              price=150;
+            }
+            else if(formvalues[2].value==('Dog Grooming')){
+              price=200;
+            }
+            else if(formvalues[2].value==('Cat Walking')){
+              price=180;
+            }
+            else{
+              price=260;
+            }
+
+            $( "#summary" ).append("<h6><b>"+formvalues[3].value+" - "+formvalues[4].value+"</b></h6>");
+            $( "#summary" ).append("<h6><b>"+formvalues[0].value+"</b></h6>");
+            $( "#summary" ).append("<h6><b>"+formvalues[2].value+"<span style='float:right'>$"+price+"</span></b></h6>");
+            displayTotalPrice(price);
         });
+        function displayTotalPrice(totprice){
+          $('#ts1').change(function(e) {
+            e.preventDefault();
+            var myswitch = $(this);
+            var switchValue = myswitch.children("option:selected").val();
+            console.log(switchValue); 
+
+            if(switchValue=="Yes"){
+              totprice = totprice - 10;
+              $( "#span-total" ).text(totprice);
+            }
+            console.log(totprice);
+          });
+          $( "#span-total" ).text(totprice);
+          console.log(totprice);
+          
+        }
+
+          var $form = $('#msform');
+          var handler = StripeCheckout.configure({
+            key: 'pk_test_cp21BcECf4kMMUbSlRlZlsMo',
+            token: function(token) {
+              // Use the token to create the charge with a server-side script.
+              // You can access the token ID with `token.id`
+              console.log("Suceess");
+              //This will be printed when the transaction is successful. To charge, server side scripting is required.
+              if(token.id){
+                        //$("#thankyouPayment").html("Thank you, your payment was successful!");
+                        $('#payment-success').popup("open");
+                        //You can also use the following code to re-submit the form content to another file for further processing.
+                        //Don't forget to add action to your form
+                        //$form.get(0).submit();
+
+                        //Or save form data locally, using local storage.
+              }
+            }
+          });
+	  
+
+        $('#open-pop-up').on('click', function(e) {
+
+          //get value card or cash
+          var radioValue = $("input[name='paymentM']:checked").val();
+
+          if(radioValue=="card"){
+            // Code Section B  Open Checkout with further options
+            handler.open({
+            name: 'PAYMENT DETAILS',
+            currency: 'usd',
+            description: $('#summary h6 b:last').text(),
+            amount: $( "#span-total" ).text() * 100
+            
+            });
+          }
+          else{
+            $('#payment-success').popup("open");
+          }
+ 
+          e.preventDefault();
+        });
+
+        // Code Section C  Close Checkout on page navigation
+        $(window).on('popstate', function() {
+          handler.close();
+        });
+        
       });
 
 </script>
