@@ -1,6 +1,35 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<div>
+
+<script>
+    $(document).ready(function() {
+    $('#inbox-btn').click(function(){
+   window.location.href='https://pet-temp-host.web.app/Common_elements/inbox.html';
+    });
+
+    $('#moments-btn').click(function(){
+   window.location.href='https://pet-temp-host.web.app/Common_elements/moments.html';
+    });
+
+   
+    $('#edit-btn').on('click', function(e) {
+        e.preventDefault();
+        if ($(this).html() === "EDIT") {
+            $('.basic-info-txt').attr('disabled', false);
+            $('.basic-info-txt').closest('div').removeClass('ui-state-disabled');
+            $(this).html('SAVE')
+        }
+        else if ($(this).html() === "SAVE") {
+            $('.basic-info-txt').attr('disabled', true);
+            $('.basic-info-txt').addClass('disable-style');
+            $(this).html('EDIT')
+        }
+        
+    }).trigger('click');
+});
+</script>
+
+<div class="background-container">
     <div style="display: block;height: 45%;">
 
         <div style="display: block;position: relative;">
@@ -10,29 +39,205 @@
             <div style="display: inline;float: left;width: 40%;">
                 <img src="../images/caretaker_profile_picture.jpg" alt="" style="max-width: 100%;height: 200px;">
             </div>
-            <div style="display: inline;float: left;width: 60%;background-color: white;">
-                <p>Sarah Hyland</p>
-                <div></div>
+            <div style="display: inline;float: left;width: 60%;height: 100%;background-color: white;">
+                <p style="margin-left: 20px;font-weight: bold;">Sarah Hyland</p>
+                <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -14px;left: 19px;">
+                    <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+                    <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
+                </div>
+                <div style="position: relative;top: -25px;">
+                    <p style="margin-left: 20px;font-size: 14px;">ABOUT</p>
+                    <p style="margin-left: 20px;font-size: 11px;margin-top: -10px;">I have a beautiful black cat.</p>
+                    <a href="" style="margin-left: 20px;font-size: 10px;color: red;text-decoration: none;position: relative;top: -10px;">Read More</a>
+                </div>
+                <button style="width: 165px;font-size: 12px;position: relative;top: -32px;background-color: #FF2548;border: none;left: 14px;"><img src="../images/icons8-heart-100.png" alt="" style="width: 20px;margin-right: 20px;">MY FAVOURITES</button>
             </div>
         </div>      
     </div>
 
-    <div style="display: inline-block;margin-top: 65px;margin-left: -93px">
-        <button style="display: inline;width: 90px;margin-right: 40px;">INBOX</button>
-        <button style="display: inline; width: 110px;">MOMENTS</button>
+    <div style="display: inline-block;position: relative;top: -160px;margin-left: 11px;">
+        <button id="inbox-btn" style="display: inline;width: 165px;margin-right: 40px;"><img src="../images/icons8-secured-letter-100 (2).png" alt="" style="width: 30px;margin-right: 20px;">INBOX</button>
+        <button id="moments-btn" style="display: inline; width: 165px;position: relative;top: -68px;left: 180px;"><img src="../images/icons8-image-100.png" alt="" style="width: 30px;margin-right: 20px;">   MOMENTS</button>
     </div>
-    <div style="position:absolute">
+    <div style="position: relative;top: -228px;right: 5px;">
         <div data-role="collapsible" style="display: inline-block;">
-                <h4>BASIC INFORMATION</h4>
-                <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+            <h4>BASIC INFORMATION</h4>
+            <label class="label-basic-info" for="fname">Full Name</label> 
+                <input class="basic-info-txt" type="text" name="fname" id="full_name" value="Sarah Hyland" placeholder="Full Name" />
+            <label class="label-basic-info" for="email">Email Address</label> 
+                <input class="basic-info-txt" type="email" name="email" id="email" value="sarah@gmail.com" placeholder="Email Address" />
+            <label class="label-basic-info" for="phone_n">Phone Number</label> 
+                <input class="basic-info-txt" type="text" name="phone_n" id="phone_n" value="206 555-1212" placeholder="Phone Number" />
+            <label class="label-basic-info" for="location">Location</label>
+                <input class="basic-info-txt" type="text" name="location" id="location" value="New York, USA" placeholder="Location" />
+            <button id="edit-btn" style="width: 100px;
+            position: relative;
+            left: 226px;
+            top: 5px;
+            font-size: 12px;">SAVE</button>
+
         </div>
         <div data-role="collapsible" style="display: inline-block;">
             <h4>MY PETS</h4>
-            <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+           <div style="display: block;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+        height: 88px;">
+            <div style="width: 80px;
+            display: inline;">
+                <img src="../images/black-cat-dolly.jpg" alt="" style="width: 80px;
+                border-radius: 5px;">
+            </div>
+            <div style="display: inline;
+            width: 200px;
+            font-size: 12px;
+            position: relative;
+            float: right;
+            left: -30px;
+            top: -10px;">
+                <p style="font-size: 13px;
+                font-weight: bold;">DOLLY</p>
+                <p>Age : 3 years</p>
+                <p>I love wiskers a lot</p>
+            </div>
+            <div style="position: relative;
+            top: -88px;
+            left: 255px;">
+                <button style="width: 30px;
+                padding: 2px;
+                height: 30px;
+                display: inline;"><img src="../images/eye-icon.png" alt="" style="width: 20px;"></button>
+                <button style="width: 30px;
+                height: 30px;
+                padding: 2px;
+                display: inline;"><img src="../images/edit-icon.png" alt="" style="width: 20px;"></button>
+            </div>
         </div>
-        <div data-role="collapsible" style="display: inline-block;">
+
+           <div style="display: block;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+        height: 88px;">
+            <div style="width: 80px;
+            display: inline;">
+                <img src="../images/gray-cat.jpg" alt="" style="width: 80px;
+                border-radius: 5px;height: 90px;">
+            </div>
+            <div style="display: inline;
+            width: 200px;
+            font-size: 12px;
+            position: relative;
+            float: right;
+            left: -30px;
+            top: -10px;">
+                <p style="font-size: 13px;
+                font-weight: bold;">MARY</p>
+                <p>Age : 6 months</p>
+                <p>I love cuddles</p>
+            </div>
+            <div style="position: relative;
+            top: -77px;
+            left: 255px;">
+                <button style="width: 30px;
+                padding: 2px;
+                height: 30px;
+                display: inline;"><img src="../images/eye-icon.png" alt="" style="width: 20px;"></button>
+                <button style="width: 30px;
+                height: 30px;
+                padding: 2px;
+                display: inline;"><img src="../images/edit-icon.png" alt="" style="width: 20px;"></button>
+            </div>
+        </div>
+        <button style="width: 100px;
+        position: relative;
+        left: 226px;
+        top: 5px;
+        font-size: 12px;">ADD PETS</button>
+        </div>
+        <div data-role="collapsible" style="display: inline-block;" class="rewards">
             <h4>REWARDS</h4>
-            <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+            <p style="text-align: center;">Redeem your REWARDS today!!!</p>
+            <div style="margin-left: 50px;margin-top: -20px;" class="div-before">
+                <div style="font-size: 80px;font-weight: bold;display: inline;" class="div-within">90</div>
+                <div style="display: inline;"><img src="../images/icons8-dog-paw-print-100.png" alt="" style="margin-top: -60px;margin-left: -10px;"></div>
+            </div>
+            <p style="text-align: center;margin-top: -10px;">Happy Paws Balance</p>
+            <script type="text/javascript">
+                $(".pointsbar li:nth-child(4)").addClass('before-pro');
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+                var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(data.points);
+                $('.rewards .div-before').find('div.div-within').html(received_points);
+                if(textData != null)
+                {
+                    $(".pointsbar li:nth-child(4)").removeClass('before-pro');
+                    $(".pointsbar li:nth-child(4)").addClass('new-pro');
+                }
+                
+            </script>
+            <div class="progress" style="width: 100%;" data-value="10">
+                <ul class="pointsbar">
+                    <li class="active">25</li>
+                    <li class="active">50</li>
+                    <li class="active">75</li>
+                    <li>100</li>
+                    <li>125</li>
+                </ul>
+            </div>
+            <div style="background-color: #F5F5F5;margin-top: 100px;width: 346px;margin-left: -14px;height: 230px;">
+                <p style="text-align: center;padding-top: 20px;">Rewards you can earn with happy paws</p>
+                <table class="reward_details">
+                    <tr>
+                        <td>25</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free bath for your pet.</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Two free walks for the pet.</td>
+                    </tr>
+                    <tr>
+                        <td>75</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>                    
+                        <td>Free haircut for your pet.</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free traning for the pet.</td>
+                    </tr>
+                    <tr>
+                        <td>125</td>
+                        <td class="image-column"><img src="../images/icons8-dog-paw-print-100.png" alt=""></td>
+                        <td>Free spa for a day for your pet.</td>                        
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <p style="text-align: center;font-weight: bold;">Available REWARDS</p>
+                <div style="border: 7px solid white;background-color: #C5F0FC;border-radius: 35px;width: 275px;margin: auto;height: 275px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <p style="text-align: center;font-weight: bold;">FREE BATH</p>
+                    <img src="../images/dog_bath.png" alt="" style="margin: auto;width: 100px;display: block;">
+                    <div style="margin-top: 10px;text-align: center;margin: auto">
+                        <p class="gammification_progress_text" style="color: black !important;">25</p>
+                        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+                    </div>
+                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                </div>
+
+                <div style="border: 7px solid white;background-color: #C5F0FC;border-radius: 35px;width: 275px;margin: auto;height: 275px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 20px;">
+                    <p style="text-align: center;font-weight: bold;">TWO FREE WALKS</p>
+                    <img src="../images/dog_walking.png" alt="" style="margin: auto;width: 180px;display: block;">
+                    <div style="margin-top: 10px;text-align: center;margin: auto">
+                        <p class="gammification_progress_text" style="color: black !important;">50</p>
+                        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+                    </div>
+                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                </div>
+            </div>
+
         </div>
 
     </div>

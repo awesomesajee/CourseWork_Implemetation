@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
+                $('#userContent').enhanceWithin();
+
+            });
+            $('a').click(function (e) {
+                e.preventDefault();
+                $('#content').load($(this).attr('href'));
+                var header_text = e.target.name;
+                $('#headerText').html(header_text);
+            });
+
+            $('#ts1').change(function (e) {
+                e.preventDefault();
+                var myswitch = $(this);
+                var show = myswitch[0].selectedIndex == 1 ? true : false;
+                if (show) {
+                    $('#show-me').show();
+                } else if (!show) {
+                    $('#show-me').hide();
+                }
+            });
+
+
+
+            function loadUserData() {
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+
+                $('.poi-style').find('p.poi_text').html(data.name);
+                $('.poi-style').find('p.poi_address').html(data.address);
+                $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+                $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+                $('.poi-style .price_array').find('p.poi-service').html(data.service);
+                $('.poi-style .price_array').find('p.price_text').html(data.price);
+                $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+                $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+                $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+            }
+
+            setTimeout(loadUserData, 500);
+
+        });
+
+
+         function generateBarCode() {
+                var textData = localStorage.getItem("userData");
+                var orderSummary = JSON.parse(textData);
+
+                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price;
+                    var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
+             $('#barcode').attr('src', url);
+
+
+             var urlProfile = orderSummary.profilepic;
+             $('#profilePic').attr('src', urlProfile);
+             $('.caretaker_rating').html(orderSummary.rating);
+             $('.caretaker_address').html(orderSummary.address);
+             $('.caretaker_name').html(orderSummary.name);
+             $('.caretaker_animal').attr('src',orderSummary.animalImagePath);   
+              $('.caretaker_service').html(orderSummary.price.substring(1));
+            }
+
+    </script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
+                $('#userContent').enhanceWithin();
+
+            });
+            $('a').click(function (e) {
+                e.preventDefault();
+                $('#content').load($(this).attr('href'));
+                var header_text = e.target.name;
+                $('#headerText').html(header_text);
+            });
+
+            $('#ts1').change(function (e) {
+                e.preventDefault();
+                var myswitch = $(this);
+                var show = myswitch[0].selectedIndex == 1 ? true : false;
+                if (show) {
+                    $('#show-me').show();
+                } else if (!show) {
+                    $('#show-me').hide();
+                }
+            });
+
+
+
+            function loadUserData() {
+                var textData = localStorage.getItem("userData");
+                var data = JSON.parse(textData);
+
+                $('.poi-style').find('p.poi_text').html(data.name);
+                $('.poi-style').find('p.poi_address').html(data.address);
+                $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
+                $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
+                $('.poi-style .price_array').find('p.poi-service').html(data.service);
+                $('.poi-style .price_array').find('p.price_text').html(data.price);
+                $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+                $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+                $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+            }
+
+     
+
+            setTimeout(loadUserData, 500);
+
+        });
+
+    </script>
+
+
+
+
+</head>
+<!-- End of head -->
+
+<body>
+  <!-- start of the header section -->
+  <div data-role="header" data-theme="a" data-fullscreen="true">
+      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+      <h1 id="headerText">B O O K</h1>
+      
+  </div>
+  <!-- End of header -->
+
+  
+
+  <!-- start of the content. Dynamically load your component here with footer navigation -->
+  <div role="main" class="ui-content" id="content">
+    <div  class="background-container">
+
+      <div id="userContent" style="margin-top: 10px;"></div>
+
+  
+
+
+  <form id="msform">
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">Booking Details</li>
+      <li>Payment Details</li>
+      <li>Order Completion</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+      <h2 class="fs-title">Booking Details</h2>
+      <h3 class="fs-subtitle">Step 1</h3>
+      <label for="location">Location</label>
+      <input type="text" name="email" placeholder="Select your location" />
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Schedule</legend>
+        <label for="rb4">Once</label>
+        <input type="radio" name="rb" id="rb4" value="rb4"/>
+        <label for="rb5">Recurring</label>
+        <input type="radio" name="rb" id="rb5" value="rb5" checked="checked"/>
+      </div>
+      <label for="speed">Service</label>
+        <select name="speed" id="speed">
+            <option>Dog Walking</option>
+            <option>Dog Grooming</option>
+            <option selected="selected">Cat Walking</option>
+            <option>Cat Grooming</option>
+        </select>
+      <label for="speed">Pick Up Date/Time</label>    
+      <input type="date" name="pass" placeholder="Select Pickup date/time" />
+      <label for="speed">Drop off Date/Time</label>  
+      <input type="date" name="cpass" placeholder="Select Dropoff date/time" />
+      <input class="next" type="button" value="SECURE CHECKOUT" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Payment Details</h2>
+      <h3 class="fs-subtitle">Step 2</h3>
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+        <legend>Select Payment Method</legend>
+        <label for="rb1">CASH</label>
+        <input type="radio" name="rb" id="rb1" value="rb1"/>
+        <label for="rb2">CARD</label>
+        <input type="radio" name="rb" id="rb2" value="rb2" checked="checked"/>
+      </div>
+      <label for="speed">Redeem Happy Paw Points</label>
+      <select name="ts1" id="ts1" data-role="flipswitch">
+        <option value="No" selected="selected">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+      
+      <!--Happy Pow Table-->
+      <div id="show-me" style="margin-left: -15px;" class="hide-class">
+      <table style="width: 330px;border-collapse: collapse;">
+        <tr>
+          <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
+          <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
+            <div style="margin-top: 10px;text-align: center;margin: auto">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;">50</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 30px;height: 30px;margin-bottom: 8px;">
+          </div>
+          </td>
+          <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
+          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
+        </tr>
+      </table>
+    </div>
+      <div>
+          <h1>Booking Summary</h1>
+      </div>
+
+      <input class="previous" type="button" value="PREVIOUS" />
+      <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+    </fieldset>
+    <fieldset>
+        <h2 class="fs-title">Order Completion</h2>
+        <h3 class="fs-subtitle">Step 3</h3>
+        <!--insert QR Code here-->
+
+
+
+
+        <div>
+            <div style="display: block;height: 45%;">
+
+                <div style="display: block;position: relative;">
+
+
+
+                    <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" width="100" height="100" onload="generateBarCode()"
+                         style="display: block; margin-left: auto; margin-right: auto;" />
+
+
+                </div>
+
+            </div>
+
+            <div style="position: absolute;left: 1%;right: 1%;top: 103%;bottom: 50%;background: #C9F1FC;box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);border-radius: 10px;margin-bottom: -300px;">
+
+                <h3 style="position: absolute;left: 12.22%;right: 51.13%;top: 2.13%;bottom: 88.81%;font-family: system-ui;font-style: normal;font-weight: 600;font-size: 15px;line-height: 55px;display: flex;align-items: center;color: #000000;">Booking Details</h3>
+
+                <div style="position: absolute;left: 6.83%;right: 6.56%;top: 23%;bottom: 10%;background: #FFFFFF;border-radius: 10px;">
+
+                    <div style="position: absolute;left: 6.83%;right: 6.56%;top: 18.65%;bottom: 30.2%;background: #FFFFFF;border-radius: 10px;">
+
+                        <p style="display: inline;font-weight: bold;position: relative;top: -2px;left: 230px;font-size: 10px;font-family:system-ui;" class="caretaker_service"></p>
+
+                        <p style="display: inline;font-weight: bold;position: relative;top: -21px;left: -15px;font-size: 13px;font-family:system-ui;" class="caretaker_name"></p>
+
+                        <img id="profilePic" src="../images/icon-map-1.jpg" onload="generateBarCode()" style="position: absolute;left: -15%;right: 81%;top: -64.45%;bottom: 66.79%;border: 10px solid #FFFFFF;border-radius: 60px;height: 65px;width: 65px;">
+
+                        <img id="shareBtn" src="../images/share.png" style="position: absolute;left: 98.45%;right: 8.12%;top: -50.5%;bottom: 75.67%;height:40px;width:40px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));">
+
+                        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 12px;background-color: black;color: white;position: relative;top: -19px;left: 5px;">
+                            <img src="../images/star.png" alt="" style="width: 40px;margin-left: -11px;margin-bottom: 5px;padding: 5px;">
+                            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 9px;top: -3px;margin-right: 2px;" class="caretaker_rating"></p>
+                        </div>
+                        <p style="font-size: 11px;position: relative;top: -30px;left: 20px;font-family: system-ui;" class="caretaker_address"></p>
+                        <p style="font-size: 11px;position: relative;top: -40px;left: 20px;font-family: system-ui;">Available at <b>09/08/2020 1.00 p.m. - 2.00 p.m.</b></p>
+                        <p style="font-size: 11px;position: relative;top: -34px;left: 19px;font-family: system-ui;">
+                            Pet Name: <b class="pet_name">KITTY</b>
+                        </p>
+
+                        <p style="font-size: 11px;position: relative;top: -46px;left: 19px;font-family: system-ui;">
+                            Total: <b class="caretaker_amount">$ 1250 . 00</b>
+                        </p>
+                        <div style="display: inline;position: relative;top: -103px;left: 250px;">
+                            <img class="caretaker_animal" src="" alt="" style="width: 25px;">
+                        </div>
+                        <div style="display: inline;position: relative;top: -148px;left: 188px;">
+                            <img class="dollar" src="../images/dollar_icon.png" alt="" style="width: 13px;">
+                        </div>
+                    </div>
+
+                    <p style="font-size: 11px;position: relative;top: 57px;left: 40px;font-family: system-ui;">
+                        Pet Type: <b class="pet_type">CAT</b>
+                    </p>
+
+
+                </div>
+
+                <div style="position: absolute;left: 70.11%;right: 9.2%;top: 75.57%;bottom: 13.86%;background: #2395F1;box-shadow: 1px px 4px rgba(0, 0, 0, 0.25);border-radius: 5px;">
+                    <p style="font-size: 10px;position: relative;font-family: system-ui;top: -7px;left: 7px;font-weight: bold;color: white;">PET STATUS</p>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+    </fieldset>
+  </form>
+
+  <script>
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    $(document).ready(function() {
+
+    $(document).on('click','.next', function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent().parent();
+        next_fs = current_fs.next();
+//activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+        next_fs.show();
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+        //2. bring next_fs from the right(50%)
+                left = (now * 50)+"%";
+        //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale('+scale+')',
+                    'position': 'absolute'
+                });
+                next_fs.css({'left': left, 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(document).on('click','.previous', function(){
+        if(animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent().parent();
+        previous_fs = current_fs.prev();
+
+//de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+        previous_fs.show(); 
+//hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now, mx) {
+        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+        //2. take current_fs to the right(50%) - from 0%
+                left = ((1-now) * 50)+"%";
+        //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+            }, 
+            duration: 800, 
+            complete: function(){
+                current_fs.hide();
+                animating = false;
+            }, 
+    //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function(){
+            return false;
+        });
+
+        $('#open-pop-up').click(function() {
+          $('#payment-success').popup("open");
+          
+        });
+      });
+
+</script>
+    </div>
+        <div data-role="popup" id="payment-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+          <p style="color: #6DC33A;font-size: 25px;">Payment Successful</p>
+          <img src="../images/right-icon.png" alt="" style="width: 55px;">
+          <button style="width: 160px;margin: auto;margin-top: 15px;background-color: #FF5C00;">VIEW POINTS</button>
+          <div class="pow-number" style="margin: auto;margin-top: 15px;color: #F1C40F;">
+            <p style="display: inline;">You earned</p>
+            <p style="display: inline;" class="happy-pow-earned">4</p>
+            <img src="../images/icons8-dog-paw-print-100.png" alt="" style="width: 25px;">
+            <p style="display: inline;">happy paw points</p>
+          </div>
+        </div>
+
+  </div>
+    <!-- End of content -->
+
+  <!-- start of the footer section -->
+<div data-role="footer" class="footer-style">
+  <nav data-role="navbar" class="tile-container" data-theme="a">
+    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+        <div class="nav_fonts">Search</div>
+      </a>
+      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+        <div class="nav_fonts">Profile</div>
+      </a>
+      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+        <div class="nav_fonts">Pet Status</div>
+      </a>
+      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+        <div class="nav_fonts">Favourites</div>
+      </a>
+      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+        <div class="nav_fonts">Book History</div>
+      </a>
+      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+        <div class="nav_fonts">Help</div>
+      </a>
+</nav>
+</div>
+<!-- End of footer -->
+
+</body>
+
+
+
+</html>

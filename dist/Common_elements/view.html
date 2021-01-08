@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('a').click(function(e) {
+          e.preventDefault();
+          $('#content').load($(this).attr('href'));
+          var header_text = e.target.name;
+          $('#headerText').html(header_text);
+        })
+
+        function loadUserData() {
+          var textData = localStorage.getItem("userData");
+          var data = JSON.parse(textData);
+
+          $('.ui-content .background-container .wrap .style-details').find('p.view-name-poi').html(data.name);
+          $('.ui-content .background-container .wrap .style-details .address-div').find('p.poi-view-address').html(data.address);
+          $('.ui-content .background-container .prof-pic-div .div-prof-small').find('img.prof_pic_view_poi').attr("src", data.profilepic);
+          $('.ui-content .background-container .wrap .style-details .poi-rating').find('p.poi-rating-para').html(data.rating);
+          $('.ui-content .background-container .services-table .price_array').find('p.poi-service').html(data.service);
+          $('.ui-content .background-container .services-table .price_array').find('p.price_text').html(data.price);
+          $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
+          $('.ui-content .background-container .services-table .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
+          
+        }
+
+        setTimeout(loadUserData, 500);
+
+        $('#add-fav-btn').click(function() {
+          $('#add-fav-success').popup("open");
+          
+        });
+
+        $('#view-fav-btn').click(function(e) {
+          e.preventDefault();
+          $('#content').load('https://pet-temp-host.web.app/Common_elements/favourites.html');
+          var header_text = e.target.name;
+          $('#headerText').html(header_text);
+
+        });
+      });
+
+      
+
+    </script>
+
+
+</head>
+<!-- End of head -->
+
+<body>
+  <!-- start of the header section -->
+  <div data-role="header" data-theme="a" data-fullscreen="true">
+      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+      <h1 id="headerText">C A R E T A K E R  P R O F I L E</h1>
+      
+  </div>
+  <!-- End of header -->
+
+  <!-- start of the content. Dynamically load your component here with footer navigation -->
+  <div role="main" class="ui-content" id="content">
+    <div  class="background-container">
+      <div style="background-color: #F4ABBE;width: 365px;height: 200px;display: block;margin-top: -20px;" class="wrap">
+        <div style="position: relative;top: 105px;left: 156px;">
+          <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: 5px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
+          <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: -15px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
+        </div>
+        <div style="position: relative;top: -125px;" class="style-details">
+        <p style="position: relative;left: 200px;top: 55px;font-size: 16px;font-weight: bold;color: white;text-shadow: 1px 1px grey;" class="view-name-poi">Anne Shirly</p>
+        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: 40px;left: 200px;" class="poi-rating">
+          <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+          <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;" class="poi-rating-para">3.5</p>
+        </div>
+        <a href="" style="position: relative;left: 205px;top: 37px;font-size: 9px;text-decoration: underline;color: black;">32 Reviews</a>
+        <div style="position: relative;left: 200px;top: 30px;margin-top: 8px;">
+          <img src="../images/dog_image.png" alt="" style="width: 35px;">
+          <img src="../images/cat_image.png" alt="" style="width: 30px;margin-left: -2px;">
+        </div>
+        <div class="address-div" style="margin-top: 8px;">
+          <img src="../images/location-pin.png" alt="" style="width: 25px;position: relative;left: 200px;top: 25px;">
+          <p style="font-size: 10px;width: 80px;position: relative;left: 230px;top: -10px;color: black;" class="poi-view-address">No: 116,School Lane,California, USA</p>
+        </div>
+      </div>
+      </div>
+      <div style="width: 175px;height: 450px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 8px;position: relative;top: -165px;left: 10px;" class="prof-pic-div">
+        <div style="width: 100%;" class="div-prof-small"><img src="../images/prof_pic.jpg" alt="" style="width: 100%;border-radius: 10px;" class="prof_pic_view_poi"></div>
+        <button id="add-fav-btn" style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
+        <div style="width: 150px;margin: auto;margin-top: -60px;">
+          <p style="font-weight: bold;">ABOUT</p>
+          <p style="font-size: 10px;margin-top: -10px;">I have a beautiful black cat. It needs lots of care and attention. My best friend is my cat the dolly.</p>
+          <a href="" style="font-size: 10px;position: relative;top: -10px;color: red;text-decoration: none;">Read More</a>
+          <div style="margin-top: -10px;">
+            <button style="color: white;background-color: #FF8139 !important;margin-bottom:10px">BOOK</button>
+            <button>VIEW BADGES</button>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 60px;">
+        <div style="width: 160px;border:2px solid #03D13C;position: relative;top: -495px;left: 198px;padding: 3px;border-radius: 5px;">
+          <p style="font-size: 12px;margin-top: 2px;">Documents</p>
+          <hr style="border: 1px solid #03D13C;margin-top: -8px;">
+          <table style="font-size: 10px;margin-top: -13px;">
+            <tr>
+              <td>Identification Certificate</td>
+              <td><img src="../images/right-icon.png" alt="" style="width: 15px;margin-left: 4px;"></td>
+            </tr>
+            <tr>
+              <td>Police Clearance</td>
+              <td><img src="../images/right-icon.png" alt="" style="width: 15px;margin-left: 4px;"></td>
+            </tr>
+            <tr>
+              <td>Phone Number</td>
+              <td><img src="../images/right-icon.png" alt="" style="width: 15px;margin-left: 4px;"></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><img src="../images/right-icon.png" alt="" style="width: 15px;margin-left: 4px;"></td>
+            </tr>
+          </table>
+
+        </div>
+        <div style="width: 160px;height: 129px;margin-top: 14px;border:2px solid #0159A0;position: relative;top: -495px;left: 198px;padding: 3px;border-radius: 5px;" class="services-table">
+          <p style="font-size: 12px;margin-top: 2px;">Services</p>
+          <hr style="border: 1px solid #0159A0;margin-top: -8px;">
+          <div style="top: -16px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;margin-bottom: 7px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;" class="poi-service">Dog Walking</p>
+            <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+            <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
+              <p class="gammification_progress_text" style="color: white !important;font-size: 9px;">10</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
+            </div>
+          </div>
+          <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;" class="price_array">
+            <p style="display: inline;margin-right: 10px;" class="poi-service">Dog Grooming</p>
+            <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+            <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
+              <p class="gammification_progress_text" style="color: white !important;font-size: 9px;">10</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
+            </div>
+          </div>
+
+        </div>
+        <div data-role="controlgroup" data-type="horizontal" style="margin-top: -10px;margin-left: 10px;">
+          <a href="#Page2" data-transition="flip" class="ui-btn" id="name_btn">REVIEWS</a>
+          <a href="#Page2" data-transition="flip" class="ui-btn" id="price_btn">SERVICES</a>
+        </div>
+
+      </div>
+
+      
+
+    </div>
+    <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+      <p style="color:#FF2548;font-size: 25px;">Added to favourites</p>
+      <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">
+      <button id="view-fav-btn" style="width: 230px;margin: auto;margin-top: 25px;background-color: #FF2548;" name="Favourites">
+        <img src="../images/heart icon.png" alt="" style="width: 30px;
+        position: relative;
+        top: -2px;
+        left: -5px;">
+        VIEW FAVOURITES</button>
+    </div>
+      
+     
+  </div>
+    <!-- End of content -->
+
+  <!-- start of the footer section -->
+<div data-role="footer" class="footer-style">
+  <nav data-role="navbar" class="tile-container" data-theme="a">
+    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+        <div class="nav_fonts">Search</div>
+      </a>
+      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+        <div class="nav_fonts">Profile</div>
+      </a>
+      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+        <div class="nav_fonts">Pet Status</div>
+      </a>
+      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+        <div class="nav_fonts">Favourites</div>
+      </a>
+      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+        <div class="nav_fonts">Book History</div>
+      </a>
+      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+        <div class="nav_fonts">Help</div>
+      </a>
+</nav>
+</div>
+<!-- End of footer -->
+
+</body>
+
+
+
+</html>

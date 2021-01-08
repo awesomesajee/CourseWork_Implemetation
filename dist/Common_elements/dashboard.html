@@ -1,27 +1,452 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgqhqtYHkqBSzCxVyOOGhLxEWMO2xILDQ&callback=initMap&libraries=places" defer></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+  $(document).ready(function () {
+    for (var i = 0; i < 5; i++) {
+      var id = "poi_" + i;
+      var divs = document.createElement('div');
+      divs.id = id;
+      divs.className = "sort-style";
+      $('#test123').append(divs);
+      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+      });
+    }
+  });
+</script>
 
-<div class="gamification_progress_bar">
-  <div style="display: inline;float: left;margin-top: 10px">
-    <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
-    <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
-  </div>
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .card-map{
+    height: 65px !important;
+    width: 155px;
+    background-color: #F1C40F;
+    border-radius: 50px 0px 0px 50px;
+  }
+
+  .img-map{
+    width: 120px;
+    height: 55px;
+    border-radius: 50px 50px 50px 50px;
+    padding: auto;
+    /* width: 65px; */
+    margin-top: 0px;
+  }
+
+  .gm-style .gm-style-iw-c{
+    border-radius: 50px 10px 10px 50px;
+    padding-right: auto;
+    padding-bottom: auto;
+    background-color:#FAE2DB;
+    overflow:hidden;
+    font-weight: 600;
+    /* font-size: 14px; */
+    color: #89ABE3FF;
+    padding: 5px !important;
+    width: auto;
+    height: 55px;
+  }
+
+  .gm-style-iw .gm-style-iw-c{
+    width: auto;
+    height: 85px;
+    padding: 10px !important;
+  }
+  .gm-style-iw-d {
+    overflow:hidden !important;
+    padding-right: auto;
+    padding-bottom: auto;
+  }
+
+  .gm-style-iw-d {
+    padding-right: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .gm-style-iw-t::after{
+    /* visibility: hidden;*/
+    background: #FAE2DB !important;
+  } 
+
+</style>
+<div  class="background-container">
+  <div class="gamification_progress_bar">
+    <div style="display: inline;float: left;margin-top: 10px" class="before-text">
+      <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
+      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
+    </div>
+    
+    <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
+      <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
+      <div style="display: block;text-align: center;">
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
+        <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
+        <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+      </div>
+    </div>
+    <div style="display: inline;float: left;">
+      <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
+    </div>
+    <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;" class="meter">
+      <span class="gamification_progress_bar_full"><span class="progress"></span></span>
+    </div> 
   
-  <div style="display: inline; float: left;margin-left: 25px; margin-top: 5px;">
-    <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
-    <div style="display: block;text-align: center;">
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
-      <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
-      <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
+  </div>
+  <!--Search text box for map-->
+  <div style="width: 320px;margin-left: 25px;margin-top: 20px;">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="height: 40px;"/>
+  </div>
+    
+
+  <hr>
+  
+
+  <!--start of the map-->
+  
+    <div id="map"></div>
+  
+    <!-- <div class="card-map" id="marker-tag">
+      <div class="" style="margin-left: 60px; margin-top: 15px;">
+        ho
+      </div>
+    </div>
+     -->
+
+ <script>
+    let map;
+
+  function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: new google.maps.LatLng(-33.91722, 151.23064),
+    zoom: 16,
+  });
+
+
+  const iconBase =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
+  const icons = {
+    info: {
+      icon: iconBase + "info-i_maps.png",
+    },
+  };
+  const features = [
+    {
+      name: "Annie Shirly",
+      position: new google.maps.LatLng(-33.91721, 151.2263),
+      type: "info",
+      colour: "lightblue",
+      time: 3.1,
+      profilepic: "../images/icon-map-1.jpg",
+    },
+    {
+      name: "Anne Marie",
+      position: new google.maps.LatLng(-33.91539, 151.2282),
+      type: "info",
+      colour: "lightseagreen",
+      time: 2.5,
+      profilepic: "../images/marin.jpg",
+    },
+    {
+      name: "Chris Brown",
+      position: new google.maps.LatLng(-33.91747, 151.22912),
+      type: "info",
+      colour: "violet",
+      time: 1.2,
+      profilepic: "../images/prof_pic2.jpg",
+    },
+    {
+      name: "Kirti Sanon",
+      position: new google.maps.LatLng(-33.9191, 151.22907),
+      type: "info",
+      colour: "lightcoral",
+      time: 2.6,
+      profilepic: "../images/prof_pic.jpg",
+    },
+    {
+      name: "Devon Dipp",
+      position: new google.maps.LatLng(-33.91725, 151.23011),
+      type: "info",
+      colour: "grey",
+      time: 4.1,
+      profilepic: "../images/prof_pic3.jpg",
+    },
+  ];
+
+  // Create markers.
+  for (let i = 0; i < features.length; i++) {
+    const marker = new google.maps.Marker({
+      position: features[i].position,
+      //icon: icons[features[i].type].icon,
+      map: map,
+    });
+
+    //$('.gm-style-iw .gm-style-iw-c').css('background-color', features[i].colour);
+   // $('.gm-style-iw-c').css('background-color', features[i].colour);
+  //  $('.gm-style-iw').css({"background-color":features[i].colour});
+  //  $('.gm-style-iw-c').css({"background-color":features[i].colour});
+   
+    var infowindow = new google.maps.InfoWindow({
+        content: 
+        '<div class="img-map"><img style="border-radius:50%; height: 45px; width: 45px; padding: 0;" src='+features[i].profilepic+'><div style="padding: 0px; float:left; backgroud-color:black; float: right">'+features[i].name+'<br/><i class="fa fa-star" aria-hidden="true"></i> 5<br/><i class="fa fa-home" aria-hidden="true"></i> '+features[i].time+'h</div></div>'
+      });
+    //   height: 45px;
+    // width: 45px;
+    // padding: 0;
+    // margin: 0;
+      infowindow.open(map,marker);
+  }
+  //width:65px;
+  //map searchbox
+  var input = document.getElementById("pac-input");
+      var searchBox = new google.maps.places.SearchBox(input);
+      //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach(function(marker) {
+        marker.setMap(null);
+      });
+      markers = [];
+      // For each place, get the icon, name and location.
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function(place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+         // Create a marker for each place.
+         markers.push(new google.maps.Marker({
+          map: map,
+          title: place.name,
+          position: place.geometry.location
+        }));
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+
+
+}
+
+  </script> 
+ 
+
+
+  <hr>
+
+  <!--Start of the Sorting Panel-->
+  <div>
+    <p style="margin-left:12px">Sort:</p>
+    <div data-role="controlgroup" data-type="horizontal" style="margin-top: -10px;margin-left: -30px; font-size: 13px;">
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="name_btn" style="width: 100px;border-right: 1px solid white;">NAME</a>
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="price_btn" style="width: 100px;border-right: 1px solid white;">PRICE</a>
+      <a href="#Page2" data-transition="flip" class="ui-btn" id="rating_btn" style="width: 100px">RATING</a>
     </div>
   </div>
-  <div style="display: inline;float: left;">
-    <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
+
+
+  <div id="test123">
+
   </div>
-  <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
-    <div class="gamification_progress_bar_full"></div>
+
+  <script>
+    $(document).ready(function() {
+      function setAttributes() {
+        var data = [
+          {
+            name: "Annie Shirly",
+            address: "No: 116, School Lane, California, USA",
+            rating: "3.7",
+            profilepic: "../images/icon-map-1.jpg",
+            animalImagePath: "../images/dog_image.png",
+            service: "Dog Walking",
+            price: "$ 10.00/hr",
+            points: "1"
+          },
+          {
+            name: "Anne Marie",
+            address: "No: 117, Mary's street, California, USA",
+            rating: "3.5",
+            profilepic: "../images/marin.jpg",
+            animalImagePath: "../images/cat_image.png",
+            service: "Cat Grooming",
+            price: "$ 15.00/hr",
+            points: "1.5"
+          },
+          {
+            name: "Chris Brown",
+            address: "No: 119, Sanonie Street, California, USA",
+            rating: "4.0",
+            profilepic: "../images/prof_pic2.jpg",
+            animalImagePath: "../images/dog_image.png",
+            service: "Dog Walking",
+            price: "$ 10.00/hr",
+            points: "1"
+          },
+          {
+            name: "Kirti Sanon",
+            address: "No: 115, Amsterdam Street, California, USA",
+            rating: "2.5",
+            profilepic: "../images/prof_pic.jpg",
+            animalImagePath: "../images/dog_image.png",
+            service: "Dog Training",
+            price: "$ 20.00/hr",
+            points: "2"
+          },
+          {
+            name: "Devon Dipp",
+            address: "No: 200, Calinbury Street, California, USA",
+            rating: "1.5",
+            profilepic: "../images/prof_pic3.jpg",
+            animalImagePath: "../images/cat_image.png",
+            service: "Cat Walking",
+            price: "$ 8.00/hr",
+            points: "0.8"
+          }
+        ];
+        function createCallback( i ){
+          return function(){
+            localStorage.setItem("userData", JSON.stringify(data[i]));
+            window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';
+          }
+        }
+
+        function viewPagetransfer( i ){
+          return function(){
+            localStorage.setItem("userData", JSON.stringify(data[i]));
+            window.location.href = 'https://pet-temp-host.web.app/Common_elements/view.html';
+          }
+        }
+
+        for (var i = 0; i < 5; i++) {
+          var id = "poi_"+i;
+          $('#'+id+' .poi-style').find('p.poi_text').html(data[i].name);
+          $('#'+id+' .poi-style').find('p.poi_address').html(data[i].address);
+          $('#'+id+' .poi-style').find('img.poi-image').attr("src", data[i].profilepic);
+          $('#'+id+' .poi-style .poi-rating').find('p.poi-rating-para').html(data[i].rating);
+          $('#'+id+' .poi-style .price_array').find('p.poi-service').html(data[i].service);
+          $('#'+id+' .poi-style .price_array').find('p.price_text').html(data[i].price);
+          $('#'+id+' .poi-style .poi-animal').find('img.animal').attr("src", data[i].animalImagePath);
+          $('#'+id+' .poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data[i].points);
+          $('#'+id+' .poi-style .btn-panel .book-button').click(createCallback( i ));
+          $('#'+id+' .poi-style .btn-panel .view-button').click(viewPagetransfer( i ));
+        }
+      }
+      
+      setTimeout(setAttributes, 1000);
+    
+    var ascendingname = false;
+    
+    var $divs = $("div.sort-style");
+    $('#name_btn').on("click", function() {
+      var alphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+        return (ascendingname == $(a).find("p.poi_text").text().toLowerCase() < $(b).find("p.poi_text").text().toLowerCase()) ? 1 : -1;
+      });
+      ascendingname = ascendingname ? false : true;
+      if(!ascendingname)
+      {
+        $('#name_btn').removeClass('ui-btn ui-btn-icon-right sorting-down');
+        $('#name_btn').addClass('ui-btn ui-btn-icon-right sorting-up');
+      }
+      else if(ascendingname)
+      {
+        $('#name_btn').removeClass('ui-btn ui-btn-icon-right sorting-up')
+        $('#name_btn').addClass('ui-btn ui-btn-icon-right sorting-down');
+      }
+      else{
+        $('#name_btn').addClass('ui-btn');
+      }
+      $("#test123").html(alphabeticallyOrderedDivs);
+    });
+
+    var ascendingprice = false;
+    $('#price_btn').on("click", function() {      
+      var pricealphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+        var id_of_div = $(b).find("p.price_text").text();
+        var id_number = parseInt(id_of_div.replace(/[^0-9.]/g, ""));
+        return (ascendingprice == parseInt($(b).find("p.price_text").text().replace(/[^0-9.]/g, "")) > parseInt($(a).find("p.price_text").text().replace(/[^0-9.]/g, ""))) ? 1 : -1;
+      });
+      ascendingprice = ascendingprice ? false : true;
+      if(!ascendingprice)
+      {
+        $('#price_btn').removeClass('ui-btn ui-btn-icon-right sorting-down');
+        $('#price_btn').addClass('ui-btn ui-btn-icon-right sorting-up');
+      }
+      else if(ascendingprice)
+      {
+        $('#price_btn').removeClass('ui-btn ui-btn-icon-right sorting-up')
+        $('#price_btn').addClass('ui-btn ui-btn-icon-right sorting-down');
+      }
+      else{
+        $('#price_btn').addClass('ui-btn');
+      }
+      $("#test123").html(pricealphabeticallyOrderedDivs);
+    });
+
+    var ascendingrate = false;
+    $('#rating_btn').on("click", function() {
+      var alphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+        return (ascendingrate == parseFloat($(a).find("p.poi-rating-para").text()) > parseFloat($(b).find("p.poi-rating-para").text())) ? 1 : -1;
+      });
+      ascendingrate = ascendingrate ? false : true;
+      if(!ascendingrate)
+      {
+        $('#rating_btn').removeClass('ui-btn ui-btn-icon-right sorting-up')
+        $('#rating_btn').addClass('ui-btn ui-btn-icon-right sorting-down');        
+      }
+      else if(ascendingrate)
+      {
+        $('#rating_btn').removeClass('ui-btn ui-btn-icon-right sorting-down');
+        $('#rating_btn').addClass('ui-btn ui-btn-icon-right sorting-up');
+      }
+      else{
+        $('#price_btn').addClass('ui-btn');
+      }
+      $("#test123").html(alphabeticallyOrderedDivs);
+    });
+
+    });
+    var textData = localStorage.getItem("userData");
+    var data = JSON.parse(textData);
+
+    var progress_width = $('.gamification_progress_bar_full').width();
+
+    progress_width =  progress_width + (parseFloat(data.points)*12);
+    var new_width = progress_width.toString();
+    $(".gamification_progress_bar_full").css("width", new_width);
+    var updated_points = parseFloat($('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').text().substring(0, 2)) + parseFloat(data.points);
+    $('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').html(updated_points.toString()+"/25");
+  </script>
+
   </div>
-</div>
+  
+
+
     
-    
+
 

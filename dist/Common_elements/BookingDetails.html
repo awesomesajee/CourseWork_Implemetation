@@ -1,0 +1,28 @@
+
+<div>
+    <div style="display: block;height: 45%;">
+
+        <div style="display: block;position: relative;">
+
+
+            <img id='barcode' src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" alt="" title="HELLO" width="140" height="140" onload="generateBarCode()" />
+        </div>
+
+    </div>
+    <script>
+        function generateBarCode() {
+            var nric = 'Anne Marie;CAT;Kitty';
+            var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
+            $('#barcode').attr('src', url);
+        }
+
+
+
+    </script>
+</div>
+
+
+
+
+
+

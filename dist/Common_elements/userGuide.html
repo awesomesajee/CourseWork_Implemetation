@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
+</head>
+
+<script>
+    $(document).ready(function() {
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        $('#prev-btn').click(function() {
+            plusSlides(-1);       
+        });
+        $('#next-btn').click(function() {
+            plusSlides(1);
+        });
+        $('#dot-1').click(function() {
+            currentSlide(1);
+        });
+        $('#dot-2').click(function() {
+            currentSlide(2);
+        });
+        $('#dot-3').click(function() {
+            currentSlide(3);
+        });
+        $('#dot-4').click(function() {
+            currentSlide(4);
+        });
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("slideshow-dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active-style", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active-style";
+}
+    $('#login-selection').click(function() {
+        $('#payment-success').popup("open");
+          
+    });
+
+    $(document).on('click', '#pet-owner-btn', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/login.html';
+    });
+    
+    $(document).on('click', '#signup-selection', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/signup-selection.html';
+    });
+});
+</script>
+
+<body>
+    
+     <!-- start of the header section -->
+  <div data-role="header" data-theme="a" data-fullscreen="true">
+    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+    <h1 id="headerText">WHAT WE OFFER</h1>    
+</div>
+<!-- End of header -->
+<div>
+    <div style="width: 100px;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;margin-top: 50px;margin-left: 20px;">
+        <p style="font-size: 22px;position: relative;top: -14px;">100%</p>
+        <p style="font-size: 12px;margin-top: -40px;color: #808080;">Happy</p>
+        <p style="font-size: 12px;margin-top: -14px;color: #808080;">Pets Everday</p>
+    </div>
+    <div style="width: 100px;background-color: #C9F1FC;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;margin-top: -130px;margin-left: 140px;">
+        <img src="../images/pet-logo-1.png" alt="" style="width:40px;margin-top: 10px;">
+        <p style="margin-top: -2px;color: #808080;">LIFETIME</p>
+        <P style="font-size: 9px;margin-top: -15px;color: #808080;">Friendships BFF</P>
+    </div>
+    <div style="width: 100px;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;margin-top: -70px;margin-left: 255px;">
+        <img src="../images/crown-images.png" alt="" style="width: 45px;">
+        <p style="font-size: 9px;margin-top: 2px;color: #808080;">Largest Provider of</p>
+        <p style="font-size: 11px;margin-top: -10px;color: #808080;">PET HOSTERS</p>
+    </div>
+</div>
+<div style="text-align:center">
+    <span class="slideshow-dot" id="dot-1"></span> 
+    <span class="slideshow-dot" id="dot-2"></span> 
+    <span class="slideshow-dot" id="dot-3"></span> 
+    <span class="slideshow-dot" id="dot-4"></span> 
+</div>
+<div class="slideshow-container">
+
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 4</div>
+      <img src="../images/guide-1.jpg" style="width:100%">
+      <div class="text">Book a trusted pet caretaker</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 4</div>
+      <img src="../images/guide-2.jpg" style="width:100%">
+      <div class="text">Be a trusted & a loving pet caretaker</div>
+    </div>
+    
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 4</div>
+      <img src="../images/guide-3.jpg" style="width:100%">
+      <div class="text">Earn points and win REWARDS</div>
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 4</div>
+        <img src="../images/guide-3.jpg" style="width:100%">
+        <div class="text">Earn points and win REWARDS</div>
+      </div>
+    <a class="prev" id="prev-btn">&#10094;</a>
+    <a class="next" id="next-btn">&#10095;</a>
+</div>
+<div style="text-align: center;">
+    <button id="login-selection" style="display: inline;background-color: transparent;width: 180px;color: #5BD4F6;border: 2px solid #5BD4F6;">LOGIN</button>
+    <button id="signup-selection" style="display: inline;width: 180px;background-color: #FF8139;border: 3px solid #FF8139;">SIGN UP</button>
+</div>
+
+<!--Login selection pop-up-->
+<div data-role="popup" id="payment-success" style="width: 300px;height: 260px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+   <div style="color:white;background-color: #5BD4F6;height: 35px;text-align: left;padding: 5px;">Select the type of login</div>
+    <div>
+        <button style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: transparent;
+        border: none;
+        width: 120px;
+        height: 120px;
+        display: inline;
+        margin-top: 20px;
+        margin-right: 15px;"><img src="../images/pet-caretaker.png" alt="Caretaker Login" style="width: 100px;"></button>
+        <button id="pet-owner-btn" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: transparent;
+        border: none;
+        width: 120px;
+        height: 120px;
+        display: inline;
+        position: relative;">
+        <img src="../images/dog-training.png" alt="Pet Owner Login" style="width: 100px;margin-top: 17px;"></button>
+    </div>
+    <button style="margin: auto;width: 180px;margin-top: 10px;">LOGIN</button>
+  </div>
+
+</body>
+</html>
