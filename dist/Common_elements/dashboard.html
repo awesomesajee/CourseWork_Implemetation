@@ -11,7 +11,6 @@
       divs.className = "sort-style";
       $('#test123').append(divs);
       $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
-        $('#' + id).enhanceWithin();
       });
     }
   });
@@ -80,7 +79,7 @@
 </style>
 <div  class="background-container">
   <div class="gamification_progress_bar">
-    <div style="display: inline;float: left;margin-top: 10px">
+    <div style="display: inline;float: left;margin-top: 10px" class="before-text">
       <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
       <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
     </div>
@@ -123,96 +122,6 @@
 
  <script>
     let map;
-
-  //   // Initialize and add the map
-  //   function initMap() {
-  //     // The location of Uluru
-  //     const uluru = { lat: 51.520919, lng: -0.160126 };
-  //     const uluru1 = { lat: 52.520919, lng: -0.240126 };
-  //     const uluru2 = { lat: 50.520919, lng: -0.140126 };
-  //     const uluru3 = { lat: 54.520919, lng: -0.340126 };
-
-  //     // The map, centered at Uluru
-  //      map = new google.maps.Map(document.getElementById("map"), {
-  //       zoom: 14,
-  //       center: uluru
-  //     });
-
-
-  //     //map searchbox
-  //     var input = document.getElementById("pac-input");
-  //     var searchBox = new google.maps.places.SearchBox(input);
-  //     //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-  //     // Bias the SearchBox results towards current map's viewport.
-  //     map.addListener('bounds_changed', function() {
-  //     searchBox.setBounds(map.getBounds());
-  //     });
-
-  //     var markers = [];
-  //     searchBox.addListener('places_changed', function() {
-  //     var places = searchBox.getPlaces();
-
-  //     if (places.length == 0) {
-  //       return;
-  //     }
-
-  //     // Clear out the old markers.
-  //     markers.forEach(function(marker) {
-  //       marker.setMap(null);
-  //     });
-  //     markers = [];
-  //     // For each place, get the icon, name and location.
-  //     var bounds = new google.maps.LatLngBounds();
-  //     places.forEach(function(place) {
-  //       if (!place.geometry) {
-  //         console.log("Returned place contains no geometry");
-  //         return;
-  //       }
-  //        // Create a marker for each place.
-  //        markers.push(new google.maps.Marker({
-  //         map: map,
-  //         title: place.name,
-  //         position: place.geometry.location
-  //       }));
-  //       if (place.geometry.viewport) {
-  //         // Only geocodes have viewport.
-  //         bounds.union(place.geometry.viewport);
-  //       } else {
-  //         bounds.extend(place.geometry.location);
-  //       }
-  //     });
-  //     map.fitBounds(bounds);
-  //   });
- 
-
-  //   // Create markers.
-  // for (let i = 1; i < 4; i++) {
-  //   // The marker, positioned at Uluru
-  //   const marker = new google.maps.Marker({
-  //        position: uluru+i,
-  //        map: map,
-  //        title: "University of Westminster"
-  //      });
-  // }
-
-  //     // // The marker, positioned at Uluru
-  //     //  const marker = new google.maps.Marker({
-  //     //    position: uluru,
-  //     //    map: map,
-  //     //    title: "University of Westminster"
-  //     //  });
-       
-  //      var infowindow = new google.maps.InfoWindow({
-  //       content: 
-  //       '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
-  //     });
-  
-  //     infowindow.open(map,marker);
-  
-  //   }
-
-
 
   function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -343,41 +252,9 @@
 
 
 }
+
   </script> 
- <!-- 
-<script>
-
-let map;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 2,
-    center: new google.maps.LatLng(2.8, -187.3),
-    mapTypeId: "terrain",
-  });
-  // Create a <script> tag and set the USGS URL as the source.
-  const script = document.createElement("script");
-  // This example uses a local copy of the GeoJSON stored at
-  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-  script.src =
-    "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
-  document.getElementsByTagName("head")[0].appendChild(script);
-}
-
-// Loop through the results array and place a marker for each
-// set of coordinates.
-const eqfeed_callback = function (results) {
-  for (let i = 0; i < results.features.length; i++) {
-    const coords = results.features[i].geometry.coordinates;
-    const latLng = new google.maps.LatLng(coords[1], coords[0]);
-    new google.maps.Marker({
-      position: latLng,
-      map: map,
-    });
-  }
-};
-</script>
--->
+ 
 
 
   <hr>
@@ -554,6 +431,16 @@ const eqfeed_callback = function (results) {
     });
 
     });
+    var textData = localStorage.getItem("userData");
+    var data = JSON.parse(textData);
+
+    var progress_width = $('.gamification_progress_bar_full').width();
+
+    progress_width =  progress_width + (parseFloat(data.points)*12);
+    var new_width = progress_width.toString();
+    $(".gamification_progress_bar_full").css("width", new_width);
+    var updated_points = parseFloat($('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').text().substring(0, 2)) + parseFloat(data.points);
+    $('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').html(updated_points.toString()+"/25");
   </script>
 
   </div>
