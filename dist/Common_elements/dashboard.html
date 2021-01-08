@@ -1,7 +1,7 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgqhqtYHkqBSzCxVyOOGhLxEWMO2xILDQ&callback=initMap&libraries=places" defer></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
   $(document).ready(function () {
     for (var i = 0; i < 5; i++) {
@@ -11,7 +11,6 @@
       divs.className = "sort-style";
       $('#test123').append(divs);
       $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
-        $('#' + id).enhanceWithin();
       });
     }
   });
@@ -34,20 +33,32 @@
   }
 
   .img-map{
-    height: 65px !important;
-    width: 155px;
+    width: 120px;
+    height: 55px;
     border-radius: 50px 50px 50px 50px;
     padding: auto;
+    /* width: 65px; */
+    margin-top: 0px;
   }
 
   .gm-style .gm-style-iw-c{
     border-radius: 50px 10px 10px 50px;
     padding-right: auto;
     padding-bottom: auto;
-    background-color: aquamarine;
+    background-color:#FAE2DB;
     overflow:hidden;
     font-weight: 600;
-    font-size: 16px;
+    /* font-size: 14px; */
+    color: #89ABE3FF;
+    padding: 5px !important;
+    width: auto;
+    height: 55px;
+  }
+
+  .gm-style-iw .gm-style-iw-c{
+    width: auto;
+    height: 85px;
+    padding: 10px !important;
   }
   .gm-style-iw-d {
     overflow:hidden !important;
@@ -61,13 +72,14 @@
   }
 
   .gm-style-iw-t::after{
-    visibility: hidden;
-  }
+    /* visibility: hidden;*/
+    background: #FAE2DB !important;
+  } 
 
 </style>
 <div  class="background-container">
   <div class="gamification_progress_bar">
-    <div style="display: inline;float: left;margin-top: 10px">
+    <div style="display: inline;float: left;margin-top: 10px" class="before-text">
       <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
       <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
     </div>
@@ -83,8 +95,8 @@
     <div style="display: inline;float: left;">
       <button style="color:#5BD4F6; font-size: 8px;margin-top: 8px;margin-left: 6px;width: 90px;background-color: transparent;height: 25px;border-radius: 5px;border-color: #5BD4F6;">VIEW REWARDS</button>
     </div>
-    <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;">
-      <div class="gamification_progress_bar_full"></div>
+    <div style="border-radius: 50px;background-color: #E5E5E5;display: flex;height: 15px;width: 94%;margin: auto;" class="meter">
+      <span class="gamification_progress_bar_full"><span class="progress"></span></span>
     </div> 
   
   </div>
@@ -108,21 +120,92 @@
     </div>
      -->
 
-  <script>
-    
+ <script>
+    let map;
 
-    // Initialize and add the map
-    function initMap() {
-      // The location of Uluru
-      const uluru = { lat: 51.520919, lng: -0.140126 };
-      // The map, centered at Uluru
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 14,
-        center: uluru,
+  function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: new google.maps.LatLng(-33.91722, 151.23064),
+    zoom: 16,
+  });
+
+
+  const iconBase =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
+  const icons = {
+    info: {
+      icon: iconBase + "info-i_maps.png",
+    },
+  };
+  const features = [
+    {
+      name: "Annie Shirly",
+      position: new google.maps.LatLng(-33.91721, 151.2263),
+      type: "info",
+      colour: "lightblue",
+      time: 3.1,
+      profilepic: "../images/icon-map-1.jpg",
+    },
+    {
+      name: "Anne Marie",
+      position: new google.maps.LatLng(-33.91539, 151.2282),
+      type: "info",
+      colour: "lightseagreen",
+      time: 2.5,
+      profilepic: "../images/marin.jpg",
+    },
+    {
+      name: "Chris Brown",
+      position: new google.maps.LatLng(-33.91747, 151.22912),
+      type: "info",
+      colour: "violet",
+      time: 1.2,
+      profilepic: "../images/prof_pic2.jpg",
+    },
+    {
+      name: "Kirti Sanon",
+      position: new google.maps.LatLng(-33.9191, 151.22907),
+      type: "info",
+      colour: "lightcoral",
+      time: 2.6,
+      profilepic: "../images/prof_pic.jpg",
+    },
+    {
+      name: "Devon Dipp",
+      position: new google.maps.LatLng(-33.91725, 151.23011),
+      type: "info",
+      colour: "grey",
+      time: 4.1,
+      profilepic: "../images/prof_pic3.jpg",
+    },
+  ];
+
+  // Create markers.
+  for (let i = 0; i < features.length; i++) {
+    const marker = new google.maps.Marker({
+      position: features[i].position,
+      //icon: icons[features[i].type].icon,
+      map: map,
+    });
+
+    //$('.gm-style-iw .gm-style-iw-c').css('background-color', features[i].colour);
+   // $('.gm-style-iw-c').css('background-color', features[i].colour);
+  //  $('.gm-style-iw').css({"background-color":features[i].colour});
+  //  $('.gm-style-iw-c').css({"background-color":features[i].colour});
+   
+    var infowindow = new google.maps.InfoWindow({
+        content: 
+        '<div class="img-map"><img style="border-radius:50%; height: 45px; width: 45px; padding: 0;" src='+features[i].profilepic+'><div style="padding: 0px; float:left; backgroud-color:black; float: right">'+features[i].name+'<br/><i class="fa fa-star" aria-hidden="true"></i> 5<br/><i class="fa fa-home" aria-hidden="true"></i> '+features[i].time+'h</div></div>'
       });
-
-      //map searchbox
-      var input = document.getElementById("pac-input");
+    //   height: 45px;
+    // width: 45px;
+    // padding: 0;
+    // margin: 0;
+      infowindow.open(map,marker);
+  }
+  //width:65px;
+  //map searchbox
+  var input = document.getElementById("pac-input");
       var searchBox = new google.maps.places.SearchBox(input);
       //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -166,24 +249,13 @@
       });
       map.fitBounds(bounds);
     });
+
+
+}
+
+  </script> 
  
 
-      // The marker, positioned at Uluru
-       const marker = new google.maps.Marker({
-         position: uluru,
-         map: map,
-         title: "University of Westminster"
-       });
-       
-       var infowindow = new google.maps.InfoWindow({
-        content: 
-        '<div class="img-map"><img style="border-radius:50%; height:auto; width: 65px;" src="../images/icon-map-1.jpg"><div style="width:65px; float:left; backgroud-color:black; float: right">Anne<br/><br/><img src="../images/icon-map-house.png" width="20px" height="20px"> 2.5h</div></div>'
-      });
-  
-      infowindow.open(map,marker);
-  
-    }
-  </script>
 
   <hr>
 
@@ -359,6 +431,16 @@
     });
 
     });
+    var textData = localStorage.getItem("userData");
+    var data = JSON.parse(textData);
+
+    var progress_width = $('.gamification_progress_bar_full').width();
+
+    progress_width =  progress_width + (parseFloat(data.points)*12);
+    var new_width = progress_width.toString();
+    $(".gamification_progress_bar_full").css("width", new_width);
+    var updated_points = parseFloat($('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').text().substring(0, 2)) + parseFloat(data.points);
+    $('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').html(updated_points.toString()+"/25");
   </script>
 
   </div>

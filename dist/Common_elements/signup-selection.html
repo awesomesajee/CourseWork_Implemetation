@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
+</head>
+<script>
+    $(document).on('click', '#owner-signup-btn', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/signup.html';
+    });
+</script>
+<body>
+     <!-- start of the header section -->
+  <div data-role="header" data-theme="a" data-fullscreen="true">
+    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+    <h1 id="headerText">REGISTRATION</h1>    
+</div>
+<!-- End of header -->
+
+<div>
+    <div>
+        <img src="" alt="">
+        <div style="width: 200px;
+        border: 1px solid #C9F1FC;
+        height: 280px;
+        background-color: #C9F1FC;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 20px;
+        position: relative;
+        left: 25px;">
+            <p style="font-weight: bold;">CARETAKER</p>
+            <BUtton style="    width: 150px;
+            font-size: 12px;
+            margin: auto;">CARETAKER SIGNUP</BUtton>
+            <P>The Job of the caretaker is to take care of the dog/cat owner gives you</P>
+            <img src="../images/pet-caretaker.png" alt="" style="width: 100px;">
+        </div>
+
+    </div>
+   
+
+    <div>
+        <img src="" alt="">
+        <div style="width: 200px;
+        border: 1px solid #C9F1FC;
+        height: 280px;
+        background-color: #C9F1FC;
+        font-size: 12px;
+        text-align: center;
+        border-radius: 20px;
+        position: relative;
+        left: 150px;">
+            <p style="font-weight: bold;">OWNER</p>
+            <BUtton id="owner-signup-btn" style="width: 150px;
+            font-size: 12px;
+            margin: auto;
+            background-color: #FF8139;">OWNER SIGNUP</BUtton>
+            <P>The Job of the owner is to deliver your dog/cat to the caretaker safely</P>
+            <img src="../images/dog-training.png" alt="" style="width: 100px;">
+        </div>
+
+    </div>
+</div>
+    
+</body>
+</html>
