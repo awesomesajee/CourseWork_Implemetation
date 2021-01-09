@@ -62,25 +62,6 @@
             setTimeout(loadUserData, 500);
 
         });
-        $('a').click(function(e) {
-          e.preventDefault();
-          $('#content').load($(this).attr('href'));
-          var header_text = e.target.name;
-          $('#headerText').html(header_text);
-        });  
-
-        $('#ts1').change(function(e) {
-          e.preventDefault();
-          var myswitch = $(this);
-          var show = myswitch[0].selectedIndex == 1 ? true:false;
-          if(show)
-          {
-            $('#show-me').show();
-          } else if(!show)
-          {
-            $('#show-me').hide();
-          }
-          
 
 
          function generateBarCode() {
@@ -223,7 +204,7 @@
     <fieldset id="fieldset2">
       <h2 class="fs-title">Payment Details</h2>
       <h3 class="fs-subtitle">Step 2</h3>
-      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;left: 140px;">
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
         <legend>Select Payment Method</legend>
         <label for="rb1">CASH</label>
         <input type="radio" name="paymentM" id="rb1" value="cash"/>
@@ -237,7 +218,7 @@
       </select>
       
       <!--Happy Pow Table-->
-      <div id="show-me" style="margin-left: -15px; margin-bottom: 14px" class="hide-class">
+      <div id="show-me" style="margin-left: -15px;" class="hide-class">
       <table style="width: 330px;border-collapse: collapse;">
         <tr>
           <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
@@ -422,99 +403,16 @@
             }, 
     //this comes from the custom easing plugin
             easing: 'easeInOutBack'
+            });
         });
-      });
 
         $(".submit").click(function(){
             return false;
         });
 
-        $('#checkout-btn').on("click", function() {
-            var formvalues = $('#fieldset1').serializeArray();
-            console.log(formvalues);
-            $( "#summary" ).empty();
-            /*jQuery.each( formvalues, function( i, field ) {
-              $( "#summary" ).append("<p>"+field.value+"</p> ");
-  
-            });*/
-            var price=0;
-            if(formvalues[2].value==('Dog Walking')){
-              price=150;
-            }
-            else if(formvalues[2].value==('Dog Grooming')){
-              price=200;
-            }
-            else if(formvalues[2].value==('Cat Walking')){
-              price=180;
-            }
-            else{
-              price=260;
-            }
-
-            $( "#summary" ).append("<h6><b>"+formvalues[3].value+" - "+formvalues[4].value+"</b></h6>");
-            $( "#summary" ).append("<h6><b>"+formvalues[0].value+"</b></h6>");
-            $( "#summary" ).append("<h6><b>"+formvalues[2].value+"<span style='float:right'>$"+price+"</span></b></h6>");
-            displayTotalPrice(price);
-        });
-        function displayTotalPrice(totprice){
-          $('#ts1').change(function(e) {
-            e.preventDefault();
-            var myswitch = $(this);
-            var switchValue = myswitch.children("option:selected").val();
-            console.log(switchValue); 
-
-            if(switchValue=="Yes"){
-              totprice = totprice - 10;
-              $( "#span-total" ).text(totprice);
-            }
-            console.log(totprice);
-          });
-          $( "#span-total" ).text(totprice);
-          console.log(totprice);
+        $('#open-pop-up').click(function() {
+          $('#payment-success').popup("open");
           
-        }
-
-          var $form = $('#msform');
-          var handler = StripeCheckout.configure({
-            key: 'pk_test_cp21BcECf4kMMUbSlRlZlsMo',
-            token: function(token) {
-              // Use the token to create the charge with a server-side script.
-              // You can access the token ID with `token.id`
-              console.log("Suceess");
-              //This will be printed when the transaction is successful. To charge, server side scripting is required.
-              if(token.id){
-                        //$("#thankyouPayment").html("Thank you, your payment was successful!");
-                        $('#payment-success').popup("open");
-                        //You can also use the following code to re-submit the form content to another file for further processing.
-                        //Don't forget to add action to your form
-                        //$form.get(0).submit();
-
-                        //Or save form data locally, using local storage.
-              }
-            }
-          });
-	  
-
-        $('#open-pop-up').on('click', function(e) {
-
-          //get value card or cash
-          var radioValue = $("input[name='paymentM']:checked").val();
-
-          if(radioValue=="card"){
-            // Code Section B  Open Checkout with further options
-            handler.open({
-            name: 'PAYMENT DETAILS',
-            currency: 'usd',
-            description: $('#summary h6 b:last').text(),
-            amount: $( "#span-total" ).text() * 100
-            
-            });
-          }
-          else{
-            $('#payment-success').popup("open");
-          }
- 
-          e.preventDefault();
         });
         $('#checkout-btn').on("click", function() {
             var formvalues = $('#fieldset1').serializeArray();
@@ -612,13 +510,6 @@
       });
    
 
-        // Code Section C  Close Checkout on page navigation
-        $(window).on('popstate', function() {
-          handler.close();
-        });
-        
-      
-    });    
 </script>
     </div>
         <div data-role="popup" id="payment-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
@@ -639,7 +530,7 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-      <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
         <div class="nav_fonts">Search</div>
       </a>
       <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
@@ -657,10 +548,10 @@
       <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
         <div class="nav_fonts">Help</div>
       </a>
-  </nav>
+</nav>
 </div>
 <!-- End of footer -->
-        
+
 </body>
 
 
