@@ -24,24 +24,15 @@
           $('#headerText').html(header_text);
         })
         
-        var arr = [];
+        var favarr = [];
         $('#addFav-btn').on("click", function() {
-          //localStorage.setItem("favData", localStorage.getItem("favData") + localStorage.getItem("userData"));
-          var textData = localStorage.getItem("userData");
-          var data = JSON.parse(textData);
-          console.log(data);
-          arr.push(data);
-          console.log(arr);
-          updateFavoriteData(arr);
-          
+          var newitem = JSON.parse(localStorage.getItem("userData"));
+          favarr.push(newitem);
+          console.log(favarr);
+          var jsonarray = JSON.parse(favarr);
+          localStorage.setItem("favData",JSON.stringify(jsonarray));
         });
 
-        
-        function updateFavoriteData(arr){
-          var jsonstring = JSON.stringify(arr);
-          localStorage.setItem("favData", jsonstring);
-        }
-        
         function loadUserData() {
           var textData = localStorage.getItem("userData");
           var data = JSON.parse(textData);

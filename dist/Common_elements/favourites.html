@@ -1,4 +1,5 @@
-
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <style>
 .search-design{
@@ -25,7 +26,6 @@
 </style>
 
 <div  class="background-container">
-    <!--Search text box for map-->
   <!--<div class="search-bar">
     <form>
           <input data-type="search" id="divOfPs-input" placeholder="Search your favourite">
@@ -127,16 +127,6 @@
 </div>
 
 <script>
-    /*$("input[name='poichckboxes']").on('change', function() {
-        console.log($("input[name='poichckboxes']:checked").length)
-        if($("input[name='poichckboxes']:checked").length>0){           
-            $("#del-btn").removeProp('disabled');
-        }
-        else{
-            $("#del-btn").prop('disabled');
-        }
-    })*/
-
     $(function () {
             $("input[name='poichckboxes']").change(function () {
                 if ($(this).is(":checked")) {
@@ -185,11 +175,5 @@
             setTimeout(loadUserData, 500);
         });
 </script>
-
-<!--<script>
-    $('#del-btn').on("click", function() {
-        console.log("ATleast nw work willl u")
-    });
-</script>-->
 
 
