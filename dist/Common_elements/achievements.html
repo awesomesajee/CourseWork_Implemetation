@@ -1,0 +1,175 @@
+<style>
+     #outer {
+   float: left;
+   width: 250px;
+   overflow: hidden;
+   white-space: nowrap;
+   display: inline-block;
+ }
+ 
+ #left-button {
+    float: left;
+    width: 30px;
+    margin-left: 10px;
+    text-align: center;
+    margin-top: 30px;
+ }
+ 
+ #right-button {
+    float: left;
+    margin-top: 33px;
+    position: relative;
+    width: 30px;
+    text-align: center;
+    left: -12px;
+ }
+ 
+
+ 
+ #inner:first-child {
+   margin-left: 0;
+ }
+ 
+ 
+ 
+ .hide {
+   display: none;
+ }
+
+</style>
+<div class="background-container">
+<p style="width: 375px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;">LEVEL 2</p>
+<div class="xpprogress">
+    <P style="    position: relative;
+    font-size: 18px;
+    width: 150px;
+    top: 130px;
+    z-index: 1;
+    left: 120px;
+    font-weight: bold;
+    text-align: center;
+    color: #035F65;">Dog Walking Novice</P>
+    <div class="circular">
+        <div class="inner"></div>
+        <div class="numb">            
+            <img src="../images/dog badge.png" alt="" style="width: 73px;
+    position: relative;
+    top: 3px;">
+        </div>
+        <div class="circle">
+            <div class="bar left">
+                <div class="progresss"></div>
+            </div>
+            <div class="bar right">
+                <div class="progress-circle"></div>
+            </div>
+        </div>
+    </div>
+    <p class="xpAchieved" style="position: relative;
+    top: 84px;
+    height: 45px;
+    left: 110px;
+    width: 149px;
+    background-color: white;
+    padding: 6px;
+    padding-top: 0px;
+    padding-left: 14px;
+    font-size: 22px;
+    font-weight: bold;"><small>0xp /</small> 20xp</p>
+</div>
+<p style="font-weight: bold;
+font-size: 20px;
+position: relative;
+left: 150px;
+top: 60px;">10 xp</p> 
+<p style="position: relative;
+top: 40px;
+left: 60px;
+font-size: 16px;">to achieve Dog Walking Novice</p>
+
+<div id="elem" style="position: relative;
+top: 40px;
+left: 25px;">
+    <img src="../images/badge 1.png" alt="" style="margin-right: 10px;">
+    <img src="../images/badge 2.png" alt="" style="margin-right: 10px;">
+    <img src="../images/badge 3.png" alt="" style="margin-right: 10px;">
+    <img src="../images/badge 4.png" alt="">
+</div>
+<script>
+    $(function() {
+     var setInvisible = function(elem) {
+         elem.css('visibility', 'hidden');
+       };
+       var setVisible = function(elem) {
+         elem.css('visibility', 'visible');
+       };
+       var elem = $("#elem");
+       var items = elem.children();
+
+       // Inserting Buttons
+       elem.prepend('<div id="right-button" style="visibility: hidden;"><a href="#"><img src="../images/arrow game left.png" alt=""></a></div>');
+       elem.append('  <div id="left-button"><a href="#"><img src="../images/arrow_game.png" alt=""></a></div>');
+
+       // Inserting Inner
+       items.wrapAll('<div id="inner" />');
+
+       // Inserting Outer
+       elem.find('#inner').wrap('<div id="outer"/>');
+
+       var outer = $('#outer');
+
+       var updateUI = function() {
+         var maxWidth = outer.outerWidth(true);
+         var actualWidth = 0;
+         $.each($('#inner >'), function(i, item) {
+           actualWidth += $(item).outerWidth(true);
+         });
+
+         if (actualWidth <= maxWidth) {
+           setVisible($('#left-button'));
+         }
+       };
+       updateUI();
+
+
+
+       $('#right-button').click(function() {
+         var leftPos = outer.scrollLeft();
+         outer.animate({
+           scrollLeft: leftPos - 200
+         }, 800, function() {
+           if ($('#outer').scrollLeft() <= 0) {
+             setInvisible($('#right-button'));
+           }
+         });
+       });
+
+       $('#left-button').click(function() {
+         setVisible($('#right-button'));
+         var leftPos = outer.scrollLeft();
+         outer.animate({
+           scrollLeft: leftPos + 200
+         }, 800);
+       });
+
+       $(window).resize(function() {
+         updateUI();
+       });
+    });
+
+    const xpPoints = parseInt($('.background-container .xpprogress').find('p.xpAchieved').text().substr(0,2));
+    let counter = 0;
+    setInterval(()=>{
+        if(counter == 10){
+            clearInterval();
+        }else{
+            counter+=1;
+            $('.background-container .xpprogress').find('p.xpAchieved').html("<small>"+counter+"xp/</small>20xp");
+        }
+    }, 432);
+</script>
+
+</div>

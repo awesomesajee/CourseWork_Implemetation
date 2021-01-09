@@ -157,4 +157,70 @@
 	color: #666;
 	margin-bottom: 20px;
 }
+.circular{
+    height: 100px;
+    width: 100px;
+    position: relative;
+    transform: scale(3);
+    left: 133px;
+    top: 50px;
+}
+.circular .inner{
+    position: absolute;
+    z-index: 6;
+    top: 45%;
+    left: 45%;
+    height: 90px;
+    width: 90px;
+    margin: -40px 0 0 -40px;
+    background: white;
+    border-radius: 100%;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.circular .numb{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.circular .bar{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #C5F2FF;
+    -webkit-border-radius: 100%;
+    clip: rect(0px, 100px, 100px, 50px);
+}
+.circular .bar .progress-circle{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-border-radius: 100%;
+    clip: rect(0px, 50px, 100px, 0px);
+    background: #2AD0FE;
 
+}
+.circle .left .progress-circle{
+    z-index: 1;
+    animation: left 4s linear both;
+}
+@keyframes left{
+    100%{
+        transform: rotate(180deg);
+    }
+}
+.circle .right{
+    z-index: 3;
+    transform: rotate(180deg);
+}
+.circle .right .progress-circle{
+    animation: right 4s linear both;
+    animation-delay: 0s;
+
+}
+@keyframes right{
+    100%{
+        transform: rotate(180deg);
+    }
+}

@@ -71,6 +71,10 @@ function showSlides(n) {
     $(document).on('click', '#pet-owner-btn', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/login.html';
     });
+
+    $(document).on('click', '#pet-caretaker-btn', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/caretaker_login.html';
+    });
     
     $(document).on('click', '#signup-selection', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/signup-selection.html';
@@ -146,7 +150,7 @@ function showSlides(n) {
 <div data-role="popup" id="payment-success" style="width: 300px;height: 260px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
    <div style="color:white;background-color: #5BD4F6;height: 35px;text-align: left;padding: 5px;">Select the type of login</div>
     <div>
-        <button style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        <button id="pet-caretaker-btn" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: transparent;
         border: none;
         width: 120px;
