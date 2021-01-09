@@ -21,6 +21,14 @@
         $(document).ready(function () {
             $('#open-pop-up').click(function () {
                 $('#payment-success').popup("open");
+                $('textarea').removeClass("ui-input-text");
+        $('textarea').removeClass("ui-shadow-inset");
+        $('textarea').removeClass("ui-body-inherit");
+        $('textarea').removeClass("ui-corner-all");
+        $('textarea').removeClass("ui-textinput-autogrow");
+        $('button').removeClass("ui-btn");
+        $('button').removeClass("ui-shadow");
+        $('button').removeClass("ui-corner-all");
 
             });
         });
@@ -32,14 +40,7 @@
             $('.stars span').addClass('active');
         });
 
-        $('textarea').removeClass("ui-input-text");
-        $('textarea').removeClass("ui-shadow-inset");
-        $('textarea').removeClass("ui-body-inherit");
-        $('textarea').removeClass("ui-corner-all");
-        $('textarea').removeClass("ui-textinput-autogrow");
-        $('button').removeClass("ui-btn");
-        $('button').removeClass("ui-shadow");
-        $('button').removeClass("ui-corner-all");
+        
 
         var rating = $('.active').length;
     </script>
