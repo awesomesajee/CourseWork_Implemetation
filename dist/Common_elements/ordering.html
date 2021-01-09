@@ -179,6 +179,7 @@
   .ui-controlgroup-label{
     margin-top: 30px;
   }
+  
 </style>
 
 
@@ -243,13 +244,18 @@
       <h2 class="fs-title">Payment Details</h2>
       <h3 class="fs-subtitle">Step 2</h3>
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
-        <legend>Select Payment Method</legend>
-        <label for="rb1">CASH</label>
+        <legend style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Select Payment Method</legend>
+        <label for="rb1" style="width: 92px;">CASH
+          <img src="../images/cash.png" alt="cash" style="display: inline;position: absolute;top: 12px;left: 66px;">
+        </label>
+        <img src="../images/cash.png" alt="cash" style="display: inline;">
         <input type="radio" name="paymentM" id="rb1" value="cash"/>
-        <label for="rb2">CARD</label>
+        <label for="rb2" style="width: 93px;">CARD
+          <img src="../images/creditcard.png" alt="cash" style="display: inline;position: absolute;top: 14px;left: 66px;">
+        </label>
         <input type="radio" name="paymentM" id="rb2" value="card" checked="checked"/>
       </div>
-      <label for="speed">Redeem Happy Paw Points</label>
+      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Redeem Happy Paw Points</label>
       <select name="ts1" id="ts1" data-role="flipswitch">
         <option value="No" selected="selected">No</option>
         <option value="Yes">Yes</option>
@@ -257,22 +263,22 @@
       
       <!--Happy Pow Table-->
       <div id="show-me" style="margin-left: -15px; margin-bottom: 16px" class="hide-class">
-      <table style="width: 330px;border-collapse: collapse;">
+      <table style="margin-left: 15px;border-collapse: collapse; font-size: 14px; font-family: 'Roboto';">
         <tr>
           <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
           <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
             <div style="margin-top: 10px;text-align: center;margin: auto">
-              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;">50</p>
-              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 30px;height: 30px;margin-bottom: 8px;">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;font-size: 16px;">50</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 8px; margin-top: 5px;">
           </div>
           </td>
           <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
-          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
+          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 18px;font-weight: bold;">10</td>
         </tr>
       </table>
     </div>
       <div class="ui-body ui-body-a ui-corner-all" style="padding: 8px; background-color:#5bd4f6">
-          <h6>Booking Summary</h6>
+          <h6 style="color: #FFFFFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Roboto;font-weight: bold;font-size: 18px;line-height: 18px;">Booking Summary</h6>
           <div id="summary"></div>
           <hr style="margin: 10px 0">
           <div id="totalVal"><h6><b>Total<span style='float:right'>$<span id="span-total">0</span></span></b></h6></div>
