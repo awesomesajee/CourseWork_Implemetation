@@ -42,6 +42,27 @@
     background-color: transparent;
 }
 
+.ui-icon-schedule:after {
+    background-image: url("../images/icons8-schedule-100.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-leaderboard:after {
+    background-image: url("../images/icons8-leaderboard-100.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.ui-icon-trophy:after {
+    background-image: url("../images/icons8-trophy-60.png");
+    background-size: 20px 20px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
 .tile-container{
     display: flex;
     position: relative;

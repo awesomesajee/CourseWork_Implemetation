@@ -20,13 +20,27 @@ body{
     display: block;
 }
 .gamification_progress_bar_full{
-    background-color: #F1C40F !important;
     width: 50%;
     height: 15px;
     box-align: center;
     border-radius: 50px;
     display: flex;
 }
+.meter span {
+  display: block;
+  height: 100%;
+}
+.progress {
+  background-color: #F1C40F;
+  animation: progressBar 3s ease-in-out;
+  animation-fill-mode:both; 
+  border-radius: 50px;
+}
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
 .ui-content{
     padding: 0px !important;
     display: flex !important;
@@ -63,7 +77,8 @@ body{
     margin: -5px 13px !important;
     border-right-width: 1px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-    height: 1400px !important;
+    height: fit-content !important;
+    padding: 10px !important;
 }
 
 .footer-style{
@@ -184,7 +199,7 @@ img {vertical-align: middle;}
 }
 
 /* The dots/bullets/indicators */
-.dot {
+.slideshow-dot {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -195,7 +210,7 @@ img {vertical-align: middle;}
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active-style, .slideshow-dot:hover {
   background-color: #717171;
 }
 
@@ -223,4 +238,20 @@ img {vertical-align: middle;}
 }
 .new-style{
     display: block;
+}
+.label-basic-info{
+  font-weight: bold;
+}
+.disable-style {
+  border: 1px solid grey;
+  background-color: grey;
+}
+.poi-style-caretaker{
+  display: block;
+  width: 355px;
+  border-radius: 50px 10px 10px 50px;
+  height: 105px;
+  margin-bottom: 10px;
+  margin: auto;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
 }
