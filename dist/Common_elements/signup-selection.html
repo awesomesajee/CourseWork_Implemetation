@@ -19,6 +19,10 @@
     $(document).on('click', '#owner-signup-btn', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/signup.html';
     });
+
+    $(document).on('click', '#caretaker-signup-btn', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/caretaker_signup.html';
+    });
 </script>
 <body>
      <!-- start of the header section -->
@@ -41,9 +45,9 @@
         position: relative;
         left: 25px;">
             <p style="font-weight: bold;">CARETAKER</p>
-            <BUtton style="    width: 150px;
+            <button id="caretaker-signup-btn" style="width: 150px;
             font-size: 12px;
-            margin: auto;">CARETAKER SIGNUP</BUtton>
+            margin: auto;">CARETAKER SIGNUP</button>
             <P>The Job of the caretaker is to take care of the dog/cat owner gives you</P>
             <img src="../images/pet-caretaker.png" alt="" style="width: 100px;">
         </div>
