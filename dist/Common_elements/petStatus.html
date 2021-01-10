@@ -1,6 +1,185 @@
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+﻿<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div  class="background-container">
-    <h1 id="headerTitle">Pet Status</h1>
-</div>
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+
+        $(document).ready(function () {
+            $('#open-pop-up').click(function () {
+                $('#payment-success').popup("open");
+                $('textarea').removeClass("ui-input-text");
+        $('textarea').removeClass("ui-shadow-inset");
+        $('textarea').removeClass("ui-body-inherit");
+        $('textarea').removeClass("ui-corner-all");
+        $('textarea').removeClass("ui-textinput-autogrow");
+        $('button').removeClass("ui-btn");
+        $('button').removeClass("ui-shadow");
+        $('button').removeClass("ui-corner-all");
+
+            });
+
+             $('#close_popup').click(function () {
+                $('#payment-success').popup("close");
+             });
+
+            $('#close_popup').click(function () {
+                $('#payment-success').popup("close");
+            });
+
+             $('#skip').click(function () {
+                $('#payment-success').popup("close");
+             });
+
+             $('#submit').click(function () {
+                 var rating = $('#rating a.active').text();
+                 var comment = $('textarea').val();
+
+                 const rateData = {
+                     rating: rating,
+                     comment: comment,
+                 }
+
+                 window.localStorage.setItem('rateData', JSON.stringify(rateData));
+            });
+
+        });
+
+        $('.stars a').on('click', function () {
+            $('.stars span, .stars a').removeClass('active');
+
+            $(this).addClass('active');
+            $('.stars span').addClass('active');
+        });
+
+        
+
+        
+    </script>
+
+    <style>
+        textarea:placeholder-shown {
+            color: rgba(100, 99, 99, 0.59);
+            font-size: 12px;
+        }
+
+        .stars input {
+            position: absolute;
+            left: -999999px;
+        }
+
+        .stars a {
+            display: inline-block;
+            padding-right: 4px;
+            text-decoration: none;
+            margin: 0;
+        }
+
+            .stars a:after {
+                position: relative;
+                font-size: 18px;
+                font-family: 'FontAwesome', serif;
+                display: block;
+                content: "\f005";
+                color: #9e9e9e;
+            }
+
+
+        span {
+            font-size: 0; /* trick to remove inline-element's margin */
+        }
+
+        .stars a:hover ~ a:after {
+            color: #9e9e9e !important;
+        }
+
+        span.active a.active ~ a:after {
+            color: #9e9e9e;
+        }
+
+        span:hover a:after {
+            color: #FFFF66 !important;
+        }
+
+        span.active a:after,
+        .stars a.active:after {
+            color: #FFFF66;
+        }
+
+        .active, .dot:hover {
+    background-color: transparent;
+    }
+
+       
+    </style>
+
+
+
+</head>
+
+
+<body>
+
+    <!-- start of the header section -->
+    <div data-role="popup" id="payment-success" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;" class="succes-pop-up ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
+
+        <div style="position: absolute;width: 300px;height: 25px;left: -1px;top: -1px;background: #14C2F3;border-radius: 0px;">
+            <img id="close_popup" src="../images/close_btn.png" alt="" style="width: 20px;position: absolute;left: 92%;top: 10%;">
+        </div>
+        <p style="color: #6DC33A;font-size: 16px;position: absolute;left: 14.45%;top: 6%;">Booking Completed</p>
+        <img src="../images/right-icon.png" alt="" style="width: 20px;position: absolute;margin-bottom: 80%;bottom: 26.5%;left: 70.9%;">
+        <div style="position: absolute;width: 270.5px;height: 276.01px;left: 14px;top: 98px;background: #F5F4F4;border-radius: 10px;">
+            <img src="../images/icon-map-1.jpg" style="position:absolute;width: 50px;height: 50px;left: 110px;top: -8%;border: 10px solid #F5F4F4;border-radius: 60px;">
+
+            <p class="stars" style="top: 8%;position:absolute;left: 90px;">
+                <span id="rating">
+                    <a class="star-1" href="#">1</a>
+                    <a class="star-2" href="#">2</a>
+                    <a class="star-3" href="#">3</a>
+                    <a class="star-4" href="#">4</a>
+                    <a class="star-5" href="#">5</a>
+                </span>
+            </p>
+
+            <div style="position: absolute;width: 210px;left: 6%;top: 29%;font-size: 12px;color: #838383;">What did you love about Anne Marie?</div>
+            <textarea style="position: absolute;width: 218.46px;left: 25px;top: 120px;background: rgb(201, 241, 252);box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;border-radius: 10px;border: none;color: rgba(40, 40, 40, 0.59);font-size: 12px;" rows="3" placeholder="Comment your experience"></textarea>
+            <button id="submit" type="button" style="position: absolute;width: 110px;height: 30px;left: 76.24px;top: 210.1px;background: #FF5C00;border: 1px solid #FFFFFF;box-sizing: border-box;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-radius: 8px;">
+                <h3 style="position: absolute;left: 2px;top: -3.65px;font-size: 10px;width: 100px;color:white;">POST COMMENT</h3>
+            </button>
+            <p id="skip" style="position: absolute;width: 173.57px;height: 80px;left: 42px;top: 235px;font-size: 11px;color: #767676;"><u>SKIP</u></p>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div role="main" class="ui-content" id="content">
+        <div class="background-container">
+
+            <div id="userContent" style="margin-top: 10px;">
+
+                <input id="open-pop-up" class="next" type="button" value="CONFIRM AND PAY" />
+
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
