@@ -176,10 +176,19 @@
     border-radius: 30px;
     margin-bottom: 20px;
   }
-  .ui-controlgroup-label{
+  #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-label{
+    margin-top: 4px;
+  }
+  #fieldset1 .ui-controlgroup-horizontal .ui-controlgroup-label{
     margin-top: 30px;
   }
-  
+  #fieldset2 .ui-controlgroup-horizontal{
+    margin-bottom: -6px!important;
+  }
+  #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-controls{
+    top: -6px !important;
+    left: 0px !important;
+  }
 </style>
 
 
@@ -227,14 +236,14 @@
         <label for="rb5">Recurring</label>
         <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Service</label>
+      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 11px;">Service</label>
         <select name="speed" id="speed">
           <option value="Dog Walking">Dog Walking</option>
           <option value="Dog Grooming">Dog Grooming</option>
           <option value="Cat Walking" selected="selected">Cat Walking</option>
           <option value="Cat Grooming">Cat Grooming</option>
         </select>
-        <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Pick Up Date/Time</label>    
+        <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
         <input type="date" name="pickup" placeholder="Select Pickup date/time" />
         <label for="dropoff" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
         <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
