@@ -50,10 +50,41 @@
 
         setTimeout(loadUserData, 500);
 
+        
+        var poi_details = {};
+        var favList = [];
+        
+        function addFavList() {
+          var nameUser = $('.ui-content .background-container .wrap .style-details').find('p.view-name-poi').text();
+          var useraddress = $('.ui-content .background-container .wrap .style-details .address-div').find('p.poi-view-address').text();
+          var userpicture = $('.ui-content .background-container .prof-pic-div .div-prof-small').find('img.prof_pic_view_poi').attr("src");
+          var userRating = $('.ui-content .background-container .wrap .style-details .poi-rating').find('p.poi-rating-para').text();
+          var userservice = $('.ui-content .background-container .services-table .price_array').find('p.poi-service').text();
+          var price = $('.ui-content .background-container .services-table .price_array').find('p.price_text').text();
+          var animal = $('.poi-style .poi-animal').find('img.animal').attr("src");
+          var userpoints = $('.ui-content .background-container .services-table .price_array .happy-pow').find('p.gammification_progress_text').text();
+          poi_details = {
+            _nameUser: nameUser,
+            _useraddress: useraddress,
+            _userpicture: userpicture,
+            _userRating: userRating,
+            _userservice: userservice,
+            _price: price,
+            _animal: animal,
+            _userpoints: userpoints
+          }
+          console.log(poi_details);
+          console.log(favList);
+          favList = JSON.parse(localStorage.getItem("favList") || '[]');
+          favList.push(poi_details);
+          localStorage.setItem("favList", JSON.stringify(favList));
+        }
+        
         $('#add-fav-btn').click(function() {
-          $('#add-fav-success').popup("open");
-          
+          $('#add-fav-success').popup("open");         
         });
+        $('#add-fav-btn').click(addFavList);
+        
 
         $('#view-fav-btn').click(function(e) {
           e.preventDefault();
@@ -84,7 +115,7 @@
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
     <div  class="background-container">
-      <div style="background-color: #F4ABBE;width: 365px;height: 200px;display: block;margin-top: -20px;" class="wrap">
+      <div style="background-color: #9e9e9e;width: 365px;height: 200px;display: block;margin-top: -20px;" class="wrap">
         <div style="position: relative;top: 105px;left: 156px;">
           <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: 5px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
           <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: -15px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
@@ -155,10 +186,10 @@
             </div>
           </div>
           <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;" class="price_array">
-            <p style="display: inline;margin-right: 10px;" class="poi-service">Dog Grooming</p>
-            <p style="display: inline;" class="price_text">$ 10.00/hr</p>
+            <p style="display: inline;margin-right: 10px;">Dog Grooming</p>
+            <p style="display: inline;">$ 10.00/hr</p>
             <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
-              <p class="gammification_progress_text" style="color: white !important;font-size: 9px;">10</p>
+              <p style="color: white !important;font-size: 9px;">10</p>
               <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
             </div>
           </div>
@@ -174,6 +205,7 @@
       
 
     </div>
+    <!--favourites pop up-->
     <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
       <p style="color:#FF2548;font-size: 25px;">Added to favourites</p>
       <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">

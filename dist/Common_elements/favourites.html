@@ -1,179 +1,148 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
 <style>
-.search-design{
+  .search-design{
     width: 330px;
     margin-left: 20px;
     margin-top: 20px;
     margin-right: 20px;
 }
-
-.poi-style{
-    width: 343px;
-}
-
-.bookBtn-des{
-    left: 280px;
-    width: 58px;
-}
-
-.contact-icons{
-    left: 182px;
-    width: 200px;
-    height: 60px;
-}
 </style>
-
-<div  class="background-container">
-  <!--<div class="search-bar">
-    <form>
-          <input data-type="search" id="divOfPs-input" placeholder="Search your favourite">
-    </form>
-   </div>-->
-    <div class="search-design">
-        <input id="fav-input" class="controls" type="text" placeholder="Search your favourite" style="height: 40px;"/>
-    </div>
-    
-    <hr class="search-design" style="margin-bottom: 4px;">
-    <p class="search-design" style="margin-top: 0px; font-size: xx-small;">Select your favourite caretakers and click on the email button to email.</p>
-
-    <div class="search-design" style="margin-top: 0px">
-        <button class="delete-btn" id="del-btn" disabled="disabled">DELETE</button>
-        <button class="sendemail-btn" id="email-btn" disabled="disabled">EMAIL SELECTED(2)</button>
-    </div>
-
-    <div class="search-design" data-filter="true" data-input="#fav-input" id="favlist" style="margin-top: 12px; margin-left: 12px;">
-        
-        <!--Start of POI 1-->
-        <!--<label for="poi1" style="margin:0px 0px 0px 0px; padding-left:0px">
-            <div class="poi-style" data-name="1" id="poi1" name="poi1">
-                <input type="checkbox" name="poichckboxesdvdv" id="poi1chckbox" class="custom" style="display: none">
-                <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/icon-map-1.jpg">
-                <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Shirly</p>
-                <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
-                <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
-                <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
-                </div>
-                <div style="position: relative;top: -85px;" class="bookBtn-des">
-                    <button class="book-button">BOOK</button>
-                </div>
-                <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 116, School Lane, California, USA</p>
-                <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
-                <p style="display: inline;margin-right: 10px;">Dog Walking</p>
-                <p style="display: inline;" class="price_text">$ 10.00/hr</p>
-                </div>
-                <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/dog_image.png" alt="" style="width: 25px;"></div>
-                <div style="position: relative;top: -165px;" class="contact-icons">
-                <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
-                <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
-                </div>
-            </div>
-        </label>
-        <End of POI 1-->
-
-        <!--Start of POI 2-->
-       <!-- <div class="poi-style" data-name="2">
-            <input type="checkbox" name="poichckboxes" id="poi2chckbox" class="custom">
-            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/marin.jpg">
-            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Anne Marie</p>
-            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
-            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
-            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
-            </div>
-            <div style="position: relative;top: -85px;" class="bookBtn-des">
-                <button class="book-button">BOOK</button>
-            </div>
-            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 117, Mary's street, California, USA</p>
-            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
-            <p style="display: inline;margin-right: 10px;">Cat Grooming</p>
-            <p style="display: inline;" class="price_text">$ 15.00/hr</p>
-            </div>
-            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
-            <div style="position: relative;top: -165px;" class="contact-icons">
-            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
-            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
-            </div>
-        </div>-->
-        <!--End of POI 2-->
-
-        <!--Start of POI 3-->
-        <!--<div class="poi-style" data-name="2">
-            <input type="checkbox" name="poichckboxes" id="poi3chckbox" class="custom">
-            <img style="border-radius:60%; height:70px; width: 70px;margin-top: 15px;margin-left: 10px;" src="../images/prof_pic2.jpg">
-            <p style="display: inline; font-weight: bold;position: relative;top: -15px;left: 3px;font-size: 14px;" class="poi_text">Chris Brown</p>
-            <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -16px;left: 4px;">
-            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
-            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">4.5</p>
-            </div>
-            <div style="position: relative;top: -85px;" class="bookBtn-des">
-                <button class="book-button">BOOK</button>
-            </div>
-            <p style="font-size: 11px;position: relative;top: -95px;left: 89px;">No: 119, Sanonie Street, California, USA</p>
-            <div style="top: -95px;position: relative;background-color: #0159A0;color: white;font-size: 7px;border: 1px solid #0159A0;width: 110px;text-align: center;left: 89px;padding: 3px;" class="price_array">
-            <p style="display: inline;margin-right: 10px;">Dog Walking</p>
-            <p style="display: inline;" class="price_text">$ 10.00/hr</p>
-            </div>
-            <div style="display: inline;position: relative;top: -118px;left: 205px;"><img src="../images/cat_image.png" alt="" style="width: 25px;"></div>
-            <div style="position: relative;top: -165px;" class="contact-icons">
-            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: 2px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
-            <button style="background-color: transparent;border: none;box-shadow: none;display: inline;position: relative;top: -65px;left: 38px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
-            </div>
-        </div>-->
-        <!--End of POI 3-->
-
-    </div>
-
-</div>
-
 <script>
-    $(function () {
-            $("input[name='poichckboxes']").change(function () {
-                if ($(this).is(":checked")) {
-                    $('#del-btn').removeAttr('disabled');
-                    $('#email-btn').removeAttr('disabled');
-                }
-                else {
-                    var isChecked = false;
-                    $("input[name='poichckboxes']").each(function () {
-                        if ($(this).is(":checked")) {
-                            $('#del-btn').removeAttr('disabled');
-                            $('#email-btn').removeAttr('disabled');
-                            isChecked = true;
-                        }
-                    });
-                    if (!isChecked) {
-                        $('#del-btn').attr('disabled', 'disabled');
-                        $('#email-btn').attr('disabled', 'disabled');
-                    }
-                }
- 
- 
-            });
-            $('#favlist').load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
-                $('#favlist').enhanceWithin();
+    var textData = localStorage.getItem("favList");
+    var data = JSON.parse(textData);
+   $(document).ready(function () {
+    for (var i = 0; i < data.length; i++) {
+      var id = "poi_" + i;
+      var divs = document.createElement('div');
+      divs.id = id;
+      divs.className = "sort-style";
+      $('#userContent').append(divs);
+      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+        $('.sort-style').enhanceWithin();
+      });
+    }
+   
+  });
 
-            });
-
-            function loadUserData() {
-                var textData = localStorage.getItem("favData");
-                var data = JSON.parse(textData);
-                
-                $('.poi-style').find('p.poi_text').html(data.name);
-                $('.poi-style').find('p.poi_address').html(data.address);
-                $('.poi-style').find('img.poi-image').attr("src", data.profilepic);
-                $('.poi-style .poi-rating').find('p.poi-rating-para').html(data.rating);
-                $('.poi-style .price_array').find('p.poi-service').html(data.service);
-                $('.poi-style .price_array').find('p.price_text').html(data.price);
-                $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
-                $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
-                $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
-
-                //$('#favlist').append($('.poi-style'));
-            }
-
-            setTimeout(loadUserData, 500);
-        });
 </script>
 
+<div  class="background-container">
+     <!--Search text box for favourites-->
+  <div class="search-design">
+      <input id="fav-input" class="controls" type="text" placeholder="Search your favourite" style="height: 40px;"/>
+  </div>
+  <hr>
+  <p style="text-align: center;">Select your favourite caretakers and click on the email button to email.</p>
+  <div style="text-align: center;
+  font-size: 12px;">
+      <button id="delete-fav-btn" style="display: inline;
+      height: 45px;
+      width: 150px;
+      background-color: #FF2548;" disabled>DELETE</button>
+      <button id="email-btn" style="width: 200px;
+      display: inline;
+      height: 45px;
+      position: relative;
+      top: 2px;" disabled><img src="../images/email fav.png" alt="" style="margin-right: 5px;
+    margin-top: 3px;" >EMAIL SELECTED</button>
+  </div>
+
+    <script>
+        $(document).ready(function() {
+            function loadUserData() {
+                console.log(data);
+
+                for (var i = 0; i < data.length; i++) {
+                var id = "poi_"+i;
+                $('#'+id+' .poi-style').find('p.poi_text').html(data[i]._nameUser);
+                $('#'+id+' .poi-style').find('p.poi_address').html(data[i]._useraddress);
+                $('#'+id+' .poi-style').find('img.poi-image').attr("src", data[i]._userpicture);
+                $('#'+id+' .poi-style .poi-rating').find('p.poi-rating-para').html(data[i]._userRating);
+                $('#'+id+' .poi-style .price_array').find('p.poi-service').html(data[i]._userservice);
+                $('#'+id+' .poi-style .price_array').find('p.price_text').html(data[i]._price);
+                $('#'+id+' .poi-style .poi-animal').find('img.animal').attr("src", data[i].animalImagePath);
+                $('#'+id+' .poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data[i]._userpoints);
+                $('#'+id).append('<input type="checkbox" name="myCheckbox" class="myCheckbox"/>');
+                }
+
+       
+        }
+
+        setTimeout(loadUserData, 500);  
+
+        $('#delete-fav-btn').click(function() {
+          $('#add-fav-success').popup("open");         
+        });
+
+        var favList = [];
+        var obj = null
+        var namesList = [];
+        $('#delete-confirm-btn').on('click',function() {
+            console.log("test");
+            $("input:checkbox[name=myCheckbox]:checked").each(function(){
+                namesList.push($(this).parent("div").find('p.poi_text').text());
+                for (var i = 0; i < data.length; i++) {
+                    if(data[i]._nameUser === $(this).parent("div").find('p.poi_text').text()){
+                        favList = JSON.parse(localStorage.getItem("favList") || '[]');
+                        obj = data[i];
+                        favList = favList.filter(function( obj ) {
+                            return obj._nameUser !== data[i]._nameUser;
+                        });
+                        localStorage.setItem("favList", JSON.stringify(favList));
+                    }
+                }
+                        
+            });
+            
+            $('#content').load('https://pet-temp-host.web.app/Common_elements/favourites.html');
+            //var header_text = e.target.name;
+            //$('#headerText').html(header_text);
+
+        });
+
+        function removeAllElements(array, elem) {
+            var index = array.indexOf(elem);
+            while (index > -1) {
+                array.splice(index, 1);
+                index = array.indexOf(elem);
+                }
+        }
+
+        $(function () {
+            $(document).on('change','.myCheckbox', function () {
+            $('#delete-fav-btn').prop('disabled', !$('.myCheckbox:checked').length);
+            $('#email-btn').prop('disabled', !$('.myCheckbox:checked').length); 
+            $(this).hide();
+            var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);         
+        });
+});
+        
+    });    
+      
+    </script>
+    <div id="userContent" data-filter="true" data-input="#fav-input">
+
+    </div>
+    <!--favourites confirmation pop up-->
+    <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+        <p style="color:#FF2548;font-size: 16px;">Are you sure you want to remove from favourites?</p>
+        <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;position: relative;left: 106px;">
+        <button style="width: 100px;
+        display: inline;
+        position: relative;
+        top: 100px;
+        background: transparent;
+        color: #5BD4F6;
+        left: -65px;">CANCEL</button>
+        <button id="delete-confirm-btn" style="width: 100px;
+        display: inline;
+        position: relative;
+        top: 100px;
+        background-color: #FF2548;
+        border: none;
+        left: 6px;">DELETE</button>
+         
+      </div>
+</div>
 

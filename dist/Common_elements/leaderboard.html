@@ -1,0 +1,83 @@
+<script>
+    $(document).ready(function () {
+      for (var i = 0; i < 5; i++) {
+        var id = "poi_" + i;
+        var divs = document.createElement('div');
+        divs.id = id;
+        divs.className = "sort-style";
+        $('#leaderboard-lits').append(divs);
+        $('#' + id).load('https://pet-temp-host.web.app/Common_elements/leaderboard_element.html', function() {
+          $('.sort-style').enhanceWithin();
+        });
+      }
+    });
+  </script>
+
+<div class="background-container">
+    <div id="leaderboard-lits" class="list_users">
+
+
+    </div>
+    <script>
+        $(document).ready(function() {
+            function setAttributes() {
+                var data = [
+                    {
+                        name: "Annie Shirly",
+                        badge: "Dog Walking Master",
+                        level: "Level 20",
+                        xpamount: "+2000xp",
+                        profileImage: "../images/icon-map-1.jpg",
+                        place: "1"
+                    },
+                    {
+                        name: "Anne Marie",
+                        badge: "Dog Grooming Master",
+                        level: "Level 20",
+                        xpamount: "+1500xp",
+                        profileImage: "../images/marin.jpg",
+                        place: "2"
+                    },
+                    {
+                        name: "Chris Brown",
+                        badge: "Dog Training Master",
+                        level: "Level 16",
+                        xpamount: "+1425xp",
+                        profileImage: "../images/prof_pic2.jpg",
+                        place: "3"
+                    },
+                    {
+                        name: "Kirti Sanon",
+                        badge: "Dog Walking Master",
+                        level: "Level 15",
+                        xpamount: "+1200xp",
+                        profileImage: "../images/prof_pic.jpg",
+                        place: "4"
+                    },
+                    {
+                        name: "Devon Dipp",
+                        badge: "Dog Grooming Master",
+                        level: "Level 14",
+                        xpamount: "+1100xp",
+                        profileImage: "../images/prof_pic3.jpg",
+                        place: "5"
+                    }
+                    ];
+    
+                    for (var i = 0; i < 5; i++) {
+                        var id = "poi_"+i;
+                        $('#'+id+' .leaderboard_user .text_div').find('p.name_user').html(data[i].name);
+                        $('#'+id+' .leaderboard_user .text_div').find('p.badge').html(data[i].badge);
+                        $('#'+id+' .leaderboard_user .text_div').find('img.poi-image-leaderboad').attr("src", data[i].profileImage);
+                        $('#'+id+' .leaderboard_user .text_div').find('p.level').html(data[i].level);
+                        $('#'+id+' .leaderboard_user .text_div').find('p.xpnumber').html(data[i].xpamount);
+                        $('#'+id+' .leaderboard_user .place').find('p.place_text').html(data[i].place);
+                    }
+            }
+            setTimeout(setAttributes, 1000);
+    
+        });
+    
+    </script>
+
+</div>

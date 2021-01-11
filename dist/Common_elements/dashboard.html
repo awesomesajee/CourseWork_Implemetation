@@ -11,6 +11,7 @@
       divs.className = "sort-style";
       $('#test123').append(divs);
       $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi.html', function() {
+        $('.sort-style').enhanceWithin();
       });
     }
   });
