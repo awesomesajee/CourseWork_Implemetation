@@ -260,3 +260,10 @@ img {vertical-align: middle;}
   cursor: default !important;
   pointer-events: none;
 }
+
+
+.myCheckbox.checked {
+  width: 20px;  
+  height: 20px;
+  background-image: url("../images/right-icon.png");
+}
