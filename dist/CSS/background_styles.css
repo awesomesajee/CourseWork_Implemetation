@@ -261,9 +261,11 @@ img {vertical-align: middle;}
   pointer-events: none;
 }
 
-
-.myCheckbox.checked {
-  width: 20px;  
-  height: 20px;
-  background-image: url("../images/right-icon.png");
+.myCheckbox{
+  position: relative;
+    top: -80px;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.1;
 }

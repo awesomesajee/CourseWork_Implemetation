@@ -1,5 +1,13 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style>
+  .search-design{
+    width: 330px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+</style>
 <script>
     var textData = localStorage.getItem("favList");
     var data = JSON.parse(textData);
@@ -22,9 +30,9 @@
 </script>
 
 <div  class="background-container">
-     <!--Search text box for map-->
-  <div style="width: 320px;margin-left: 25px;margin-top: 20px;">
-    <input class="controls" type="text" placeholder="Search for favourites" style="height: 40px;"/>
+     <!--Search text box for favourites-->
+  <div class="search-design">
+      <input id="fav-input" class="controls" type="text" placeholder="Search your favourite" style="height: 40px;"/>
   </div>
   <hr>
   <p style="text-align: center;">Select your favourite caretakers and click on the email button to email.</p>
@@ -33,13 +41,13 @@
       <button id="delete-fav-btn" style="display: inline;
       height: 45px;
       width: 150px;
-      background-color: #FF2548;">DELETE</button>
-      <button style="width: 200px;
+      background-color: #FF2548;" disabled>DELETE</button>
+      <button id="email-btn" style="width: 200px;
       display: inline;
       height: 45px;
       position: relative;
-      top: 2px;"><img src="../images/email fav.png" alt="" style="margin-right: 5px;
-    margin-top: 3px;">EMAIL SELECTED</button>
+      top: 2px;" disabled><img src="../images/email fav.png" alt="" style="margin-right: 5px;
+    margin-top: 3px;" >EMAIL SELECTED</button>
   </div>
 
     <script>
@@ -63,20 +71,16 @@
        
         }
 
-        setTimeout(loadUserData, 500);
+        setTimeout(loadUserData, 500);  
 
-        $('.myCheckbox').each(function(){
-          $(this).hide();
-        });
-
-        $('.myCheckbox').on('click',function(){
-          $(this).addClass('checked').prev().prop('checked',$(this).is('.checked'))
+        $('#delete-fav-btn').click(function() {
+          $('#add-fav-success').popup("open");         
         });
 
         var favList = [];
         var obj = null
         var namesList = [];
-        $('#delete-fav-btn').on('click',function() {
+        $('#delete-confirm-btn').on('click',function() {
             console.log("test");
             $("input:checkbox[name=myCheckbox]:checked").each(function(){
                 namesList.push($(this).parent("div").find('p.poi_text').text());
@@ -106,10 +110,40 @@
                 index = array.indexOf(elem);
                 }
         }
+
+        $(function () {
+            $(document).on('change','.myCheckbox', function () {
+            $('#delete-fav-btn').prop('disabled', !$('.myCheckbox:checked').length);
+            $('#email-btn').prop('disabled', !$('.myCheckbox:checked').length); 
+            $(this).hide();
+            var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);         
+        });
+});
         
-    });
+    });    
+      
     </script>
-    <div id="userContent">
+    <div id="userContent" data-filter="true" data-input="#fav-input">
 
     </div>
+    <!--favourites confirmation pop up-->
+    <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+        <p style="color:#FF2548;font-size: 16px;">Are you sure you want to remove from favourites?</p>
+        <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;position: relative;left: 106px;">
+        <button style="width: 100px;
+        display: inline;
+        position: relative;
+        top: 100px;
+        background: transparent;
+        color: #5BD4F6;
+        left: -65px;">CANCEL</button>
+        <button id="delete-confirm-btn" style="width: 100px;
+        display: inline;
+        position: relative;
+        top: 100px;
+        background-color: #FF2548;
+        border: none;
+        left: 6px;">DELETE</button>
+         
+      </div>
 </div>
