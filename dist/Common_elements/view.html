@@ -23,15 +23,6 @@
           var header_text = e.target.name;
           $('#headerText').html(header_text);
         })
-        
-        var favarr = [];
-        $('#addFav-btn').on("click", function() {
-          var newitem = JSON.parse(localStorage.getItem("userData"));
-          favarr.push(newitem);
-          console.log(favarr);
-          var jsonarray = JSON.parse(favarr);
-          localStorage.setItem("favData",JSON.stringify(jsonarray));
-        });
 
         function loadUserData() {
           var textData = localStorage.getItem("userData");
@@ -139,7 +130,7 @@
       </div>
       <div style="width: 175px;height: 450px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 8px;position: relative;top: -165px;left: 10px;" class="prof-pic-div">
         <div style="width: 100%;" class="div-prof-small"><img src="../images/prof_pic.jpg" alt="" style="width: 100%;border-radius: 10px;" class="prof_pic_view_poi"></div>
-        <button id="addFav-btn" style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
+        <button id="add-fav-btn" style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
         <div style="width: 150px;margin: auto;margin-top: -60px;">
           <p style="font-weight: bold;">ABOUT</p>
           <p style="font-size: 10px;margin-top: -10px;">I have a beautiful black cat. It needs lots of care and attention. My best friend is my cat the dolly.</p>
