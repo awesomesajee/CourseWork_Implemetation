@@ -7,7 +7,8 @@
 
     const qrResult = document.getElementById("qr-result");
     const outputData = document.getElementById("outputData");
-    const btnScanQR = document.getElementById("btn-scan-qr");
+const btnScanQR = document.getElementById("btn-scan-qr");
+const contentBody = document.getElementsByClassName("background-container");
 
     let scanning = false;
 
@@ -23,7 +24,8 @@
  $('#qr-result').popup("open");
 qrResult.hidden = false;
 canvasElement.hidden = true;
-btnScanQR.hidden = false;
+                btnScanQR.hidden = false;
+                contentBody.hidden = false;
 }
 };
 
@@ -34,6 +36,7 @@ btnScanQR.hidden = false;
                 scanning = true;
                 qrResult.hidden = true;
                 btnScanQR.hidden = true;
+                contentBody.hidden = true;
                 canvasElement.hidden = false;
                 video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
                 video.srcObject = stream;
