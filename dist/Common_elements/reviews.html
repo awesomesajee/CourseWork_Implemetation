@@ -21,12 +21,11 @@
           var textData = localStorage.getItem("rateData");
           if(textData != null) {
             $('#comment-div').show();
-          } 
-
-          var data = JSON.parse(textData);
+            var data = JSON.parse(textData);
 
           $('#comment-div').find('p.comment-text').html(data.comment);
           $('#comment-div').find('p.rating-text').html(data.rating);
+          }         
           
         }
 
