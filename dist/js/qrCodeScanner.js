@@ -14,6 +14,7 @@ let scanning = false;
 
 qrcode.callback = res => {
     if (res) {
+        console.log(res);
         outputData.innerText = res;
         scanning = false;
 
