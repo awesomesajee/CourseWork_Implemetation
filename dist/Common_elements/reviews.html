@@ -1,0 +1,187 @@
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+    //read more functionality
+    $(".profile_about").hide();
+    $(".show_hide").on("click", function () {
+        if($(".profile_about").is(':visible'))
+        {
+            $(".profile_about").hide();
+            $(".show_hide").text("Read More");
+        }
+        else if(!($(".profile_about").is(':visible'))){
+            $(".profile_about").show();
+            $(".show_hide").text("Read Less");
+        }
+
+
+    });
+    //add comments
+    function loadUserData() {
+          var textData = localStorage.getItem("rateData");
+          if(textData != null) {
+            $('#comment-div').show();
+            var data = JSON.parse(textData);
+
+          $('#comment-div').find('p.comment-text').html(data.comment);
+          $('#comment-div').find('p.rating-text').html(data.rating);
+          }         
+          
+        }
+
+        setTimeout(loadUserData, 500);
+</script>
+<div>
+    <div style="background: rgba(91, 212, 246, 0.33);
+    position: relative;
+    top: 10px;height: 190px;">
+        <img src="../images/12-41.jpg" alt="" style="border-radius: 60%;
+        height: 59px;
+        width: 60px;
+        margin-top: 15px;
+        margin-left: 10px;
+        position: relative;
+        top: -63px;">
+        <p style="font-weight: bold;
+        font-size: 16px;
+        position: relative;
+        top: -133px;
+        text-shadow: none;
+        left: 80px;">Katie Perry</p>
+        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -150px;left: 80px;" class="poi-rating">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;" class="poi-rating-para">3.5</p>
+        </div>
+        <img src="../images/icons8-star-24.png" alt="" style="position: relative;
+        left: 238px;
+        top: -179px;">
+        <p style="color: #000000;
+        font-weight: bold;
+        position: relative;
+        top: -222px;
+        left: 321px;">5</p>
+        <p style="position: relative;
+        font-size: 12px;
+        top: -190px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;">Anne Marie is by far our first choice when we need a dog sitter.  </p>
+        <div class="profile_about" style="position: relative;
+        font-size: 12px;
+        top: -197px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;">
+        We have used her service on several occasions the last one for a period of three weeks.
+        </div>
+        <a href="" style="position: relative;
+        top: -199px;
+        font-size: 12px;
+        left: 15px;
+        color: black;" class="show_hide" data-content="toggle-text">Read More</a>
+    </div>
+
+    <div style="background: rgba(91, 212, 246, 0.33);
+    position: relative;
+    top: 22px;height: 200px;">
+        <img src="../images/frlix.jpg" alt="" style="border-radius: 60%;
+        height: 59px;
+        width: 60px;
+        margin-top: 15px;
+        margin-left: 10px;
+        position: relative;
+        top: -4px;">
+        <p style="font-weight: bold;
+        font-size: 16px;
+        position: relative;
+        top: -75px;
+        text-shadow: none;
+        left: 80px;">Felix Kjellberg</p>
+        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -91px;left: 80px;" class="poi-rating">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;" class="poi-rating-para">2.5</p>
+        </div>
+        <img src="../images/icons8-star-24.png" alt="" style="position: relative;
+        left: 238px;
+        top: -117px;">
+        <p style="color: #000000;
+        font-weight: bold;
+        position: relative;
+        top: -160px;
+        left: 321px;">4</p>
+        <p style="position: relative;
+        font-size: 12px;
+        top: -133px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;">I highly recommend Anne Marie! My two cats received the care and attention they needed, and my house was very well kept!</p>
+        <div class="profile_about" style="position: relative;
+        font-size: 12px;
+        top: -145px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;">
+        In fact, it seemed cleaner when I returned, than the day I left for our trip.
+        </div>
+        <a href="" style="position: relative;
+        top: -146px;
+        font-size: 12px;
+        left: 15px;
+        color: black;" class="show_hide" data-content="toggle-text">Read More</a>
+    </div>
+
+    <div style="background: rgba(91, 212, 246, 0.33);
+    position: relative;
+    top: 36px;height: 200px;display: none;" id="comment-div">
+        <img src="../images/caretaker_profile_picture.jpg" alt="" style="border-radius: 60%;
+        height: 59px;
+        width: 60px;
+        margin-top: 15px;
+        margin-left: 10px;
+        position: relative;
+        top: -4px;">
+        <p style="font-weight: bold;
+        font-size: 16px;
+        position: relative;
+        top: -75px;
+        text-shadow: none;
+        left: 80px;">Sarah Hyland</p>
+        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -91px;left: 80px;" class="poi-rating">
+            <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
+            <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;" class="poi-rating-para">3.5</p>
+        </div>
+        <img src="../images/icons8-star-24.png" alt="" style="position: relative;
+        left: 238px;
+        top: -117px;">
+        <p class="rating-text" style="color: #000000;
+        font-weight: bold;
+        position: relative;
+        top: -160px;
+        left: 321px;">4</p>
+        <p style="position: relative;
+        font-size: 12px;
+        top: -133px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;" class="comment-text">I highly recommend Anne Marie! My two cats received the care and attention they needed, and my house was very well kept!</p>
+        <div class="profile_about" style="position: relative;
+        font-size: 12px;
+        top: -145px;
+        width: 325px;
+        text-align: justify;
+        left: 13px;
+        text-shadow: none;">
+        In fact, it seemed cleaner when I returned, than the day I left for our trip.
+        </div>
+        <a href="" style="position: relative;
+        top: -146px;
+        font-size: 12px;
+        left: 15px;
+        color: black;" class="show_hide" data-content="toggle-text">Read More</a>
+    </div>
+</div>

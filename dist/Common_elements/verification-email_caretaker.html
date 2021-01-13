@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- head section which contains meta data -->
+<head>
+    <meta charset="utf-8">
+    <title>Canoodle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- the three things that jQuery Mobile needs to work -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="../CSS/button_styles.css" />
+    <link rel="stylesheet" href="../CSS/background_styles.css" />
+    <link rel="stylesheet" href="../CSS/progressbar.css">
+    <link rel="stylesheet" href="../themes/blue_test.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
+</head>
+<script>
+    $(document).on('click', '#resend-btn-email', function (e) {
+     window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation_caretaker.html';
+    });
+</script>
+<style>
+    #form {
+      max-width: 240px;
+      margin: 25px auto 0;
+    }
+      input {
+        margin: 0 5px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 50px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
+        width: 20%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+        margin-left: 10px;
+      }
+      .ui-page-theme-a .ui-body-inherit{
+        margin-left: 10px !important;
+        background-color: transparent !important;
+      }
+      .watermark{
+        position: relative;
+      }
+      .watermark:after{
+        content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 80px;
+  left: 35px;
+  background-image: url("../images/icons8-envelope-100.png");
+  background-size: 250px 250px;
+  background-position: 30px 30px;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+      }
+      
+    
+</style>
+<body>
+         <!-- start of the header section -->
+  <div data-role="header" data-theme="a" data-fullscreen="true">
+    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
+    <h1 id="headerText">EMAIL VERIFICATION</h1>    
+</div>
+<!-- End of header -->
+
+<div style="text-align: center;" class="watermark">
+    <img src="../images/icons8-envelope-100.png" alt="" style="display: none;">
+    <div style="text-align: center;">
+        <p style="font-size: 16px;
+        font-weight: bold;">Verify your Account</p>
+        <p style="font-size: 10px;
+        width: 300px;
+        margin: auto;
+        text-align: left;">Please enter the verification code sent to sarah.hyland@mail.com in order to activate your account</p>
+    </div>
+    <div id="form" style="width: 80px;
+    display: -webkit-inline-box;left: -125px;position: relative;z-index: 1;">
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" /><input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" /><input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+      </div>
+    <button id="resend-btn-email" style="background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 12px;
+    z-index: 1;"><img src="../images/arrow-verification.png" alt=""></button>
+    <a href="" style="text-decoration: none;
+    color: #5BD4F6;z-index: 1;">Resend Code</a>
+</div>
+    
+</body>
+</html>

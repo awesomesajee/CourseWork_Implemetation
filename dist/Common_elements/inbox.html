@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     <script>
       $(document).ready(function() {
@@ -24,16 +25,51 @@
           $('#headerText').html(header_text);
         })
       });
-
-      
-
     </script>
+    <style>
+      .chat-style {
+        background-color: transparent;
+        /* border-style: none none solid none; */
+        border-width: thin;
+        border-block-color: lightblue;
+        height: 100px;
+        border-radius: 0;
+        margin-left: 5px;
+      }
+      
+      .chat-image {
+        border: 8px solid lightblue;
+      }
+
+      .badge {
+        position: absolute;
+        padding: 8px 8px;
+        border-radius: 50%;
+        background: green;
+        margin-top: 65px;
+        /* margin-left: 65px; */
+        margin-left: -20px;
+      }
+      #inbox {
+        width: 100%;
+      }
+    </style>>
 
 <script>
-    $('#booking_btn').click(function(){
-     window.location.href='https://pet-temp-host.web.app/Common_elements/ordering.html';
-  })
-  </script>
+  $(document).ready(function () {
+    for (var i = 0; i < 5; i++) {
+      var id = "chat_" + i;
+      var divs = document.createElement('div');
+      divs.id = id;
+      divs.className = "sort-style";
+      $('#inbox').append(divs);
+      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi-chat.html', function() {
+        $('#' + id).enhanceWithin();
+      });
+    }
+  });
+</script>
+
 </head>
 <!-- End of head -->
 
@@ -48,7 +84,79 @@
 
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
-     
+    <!-- <div style="width: -webkit-fill-available;height: 60px;border-radius: 10px 10px 10px 10px; padding: 12px;">
+      <div style="width: -webkit-fill-available; height: -webkit-fill-available; border-radius: 10px 10px 10px 10px;box-shadow: 0px 0px 4px 2px grey;padding: 5px;">
+      Search | <input placeholder="Search for people" type="text" class="search"><i class="fa fa-search" aria-hidden="true" style="float: right;padding: 5px;color: grey;"></i>
+      </div>
+    </div>
+     -->
+
+  <!--Search text box for map-->
+  <div  class="background-container" style="width: -webkit-fill-available;">
+    <div style="margin: 15px;">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="height: 40px;"/>
+    </div>
+    <hr/>
+    <div id="inbox">
+    </div>
+  </div>
+  
+
+  <script>
+    $(document).ready(function() {
+      function setAttributes() {
+        var data = [
+          {
+            name: "Annie Shirly",
+            address: "You sent a sticker",
+            time: "12.21pm",
+            profilepic: "../images/icon-map-1.jpg",
+            status: "#06D33F",
+          },
+          {
+            name: "Anne Marie",
+            address: "oh wow! How cute!!",
+            time: "11.51pm",
+            profilepic: "../images/marin.jpg",
+            status: "grey",
+          },
+          {
+            name: "Chris Brown",
+            address: "good :)",
+            time: "11.21am",
+            profilepic: "../images/prof_pic2.jpg",
+            status: "#06D33F",
+          },
+          {
+            name: "Kirti Sanon",
+            address: "Same to you...",
+            time: "11.10am",
+            profilepic: "../images/prof_pic.jpg",
+            status: "#06D33F",
+          },
+          {
+            name: "Devon Dipp",
+            address: "Thanks a lot. <3",
+            time: "10.15am",
+            profilepic: "../images/prof_pic3.jpg",
+            status: "#06D33F",
+          }
+        ];
+        
+        for (var i = 0; i < 5; i++) {
+          var id = "chat_"+i;
+          $('#'+id+' .chat-style').find('p.chat_text').html(data[i].name);
+          $('#'+id+' .chat-style').find('p.chat_address').html(data[i].address);
+          $('#'+id+' .chat-style').find('img.chat-image').attr("src", data[i].profilepic);
+          $('#'+id+' .chat-style').find('span.badge').css("background-color", data[i].status);
+          $('#'+id+' .chat-style').find('span.chat-time').html(data[i].time);
+          
+        }
+      }
+      setTimeout(setAttributes, 1000);
+    
+    });
+  </script>
   </div>
     <!-- End of content -->
 

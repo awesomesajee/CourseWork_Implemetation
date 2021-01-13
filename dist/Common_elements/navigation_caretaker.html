@@ -23,7 +23,13 @@
           var header_text = e.target.name;
           $('#headerText').html(header_text);
         })
-      });    
+
+        $('#firstlink').trigger('click');
+        console.log("test");
+       
+      });  
+      
+     
     </script>
 </head>
 <!-- End of head -->
@@ -46,16 +52,16 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+    <a name="Search" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile" id="firstlink">
         <div class="nav_fonts">Pet Status</div>
       </a>
-      <a name="Profile" href="profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+      <a name="Profile" href="profile_caretaker.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
         <div class="nav_fonts">Profile</div>
       </a>
       <a name="My Jobs" href="jobs.html" class="ui-btn ui-btn-icon-top ui-icon-schedule tile">
         <div class="nav_fonts">My Jobs</div>
       </a>
-      <a name="Favourites" href="leaderboard.html" class="ui-btn ui-btn-icon-top ui-icon-leaderboard tile">
+      <a name="L E A D E R B O A R D" href="leaderboard.html" class="ui-btn ui-btn-icon-top ui-icon-leaderboard tile">
         <div class="nav_fonts">Leaderboard</div>
       </a>
       <a name="B A D G E  T O  A C H I E V E" href="achievements.html" class="ui-btn ui-btn-icon-top ui-icon-trophy tile">
