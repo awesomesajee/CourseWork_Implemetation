@@ -70,11 +70,12 @@ $('#add-pet-btn').click(function(e) {
 $('#cancel-pet-btn').click(function(e) {
     e.preventDefault();
     $('#add-pet').popup("close");
+});
+
 $('#sign-out-btn').click(function(){
    window.location.href='https://pet-temp-host.web.app/Common_elements/login.html';
     });
    
-});
 
 function readURL(input) {
     
@@ -152,13 +153,13 @@ function readURL(input) {
     margin-top: -25px;">
             
             <label class="label-basic-info" for="fname">PET NAME</label> 
-                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="fname" id="petname" placeholder="Enter Pet Name">
+                    <input style="border-color: #000000" type="text" name="fname" id="petname" placeholder="Enter Pet Name">
             <label class="label-basic-info" for="email">PET AGE</label> 
-                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="email" name="email" id="petage" placeholder="Enter Pet Age">
+                    <input style="border-color: #000000" type="email" name="email" id="petage" placeholder="Enter Pet Age">
             <label class="label-basic-info" for="phone_n">PET GENDER</label> 
-                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="phone_n" id="petgender" placeholder="Enter Pet Gender">
+                    <input style="border-color: #000000" type="text" name="phone_n" id="petgender" placeholder="Enter Pet Gender">
             <label class="label-basic-info" for="location">PET WEIGHT</label>
-                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="location" id="petweight" placeholder="Enter Pet Weight">
+                    <input style="border-color: #000000" type="text" name="location" id="petweight" placeholder="Enter Pet Weight">
             <button id="add-btn" style="
                     width: 100px;
                     position: relative;
