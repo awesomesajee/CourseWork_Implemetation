@@ -74,6 +74,13 @@
         $('#add-fav-btn').click(function() {
           $('#add-fav-success').popup("open");         
         });
+        $('#view-bg-btn').click(function() {
+          $('#view-badges-success').popup("open");         
+        });
+        $('#close-btn-badges').click(function () {
+          $('#view-badges-success').popup("close");
+        });
+
         $('#add-fav-btn').click(addFavList);
         
 
@@ -149,7 +156,7 @@
           <a href="" style="font-size: 10px;position: relative;top: -10px;color: red;text-decoration: none;">Read More</a>
           <div style="margin-top: -10px;">
             <button style="color: white;background-color: #FF8139 !important;margin-bottom:10px">BOOK</button>
-            <button>VIEW BADGES</button>
+            <button id="view-bg-btn">VIEW BADGES</button>
           </div>
         </div>
       </div>
@@ -253,6 +260,37 @@
         top: -2px;
         left: -5px;">
         VIEW FAVOURITES</button>
+    </div>
+
+    <!--view badges pop up-->
+    <div data-role="popup" id="view-badges-success" style="width: 300px;height: 284px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+      <div style="color:white;background-color: #5BD4F6;height: 35px;text-align: left;padding: 5px;border-radius: 8px;">My Badges</div>
+      <img src="../images/badge pop1.png" alt="" style="position: relative;
+      left: -38px;
+      top: 14px;">
+      <img src="../images/badge pop6.png" alt="" style="position: relative;
+      left: -52px;
+      top: 14px;">
+      <img src="../images/badge pop5.png" alt="" style="position: relative;
+      left: 151px;
+      top: -66px;">
+       <img src="../images/badge pop4.png" alt="" style="position: relative;
+       left: -146px;
+       top: 24px;">
+       <img src="../images/badge pop3.png" alt="" style="position: relative;
+       left: 58px;
+       top: -56px;">
+       <img src="../images/badge pop2.png" alt="" style="position: relative;
+       left: 44px;
+       top: -56px;">
+      <button id="close-btn-badges" style="width: 114px;
+      background-color: transparent;
+      color: #5BD4F6;
+      border: 2px solid #5BD4F6;
+      position: relative;
+      top: -49px;
+      left: 95px;
+      font-size: 12px;">CLOSE</button>
     </div>
       
      
