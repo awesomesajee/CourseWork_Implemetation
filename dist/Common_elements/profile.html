@@ -2,14 +2,13 @@
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
+        
+    $('#added-pet').hide();
     $('#inbox-btn').click(function(){
-   window.location.href='https://pet-temp-host.web.app/Common_elements/inbox.html';
+        window.location.href='https://pet-temp-host.web.app/Common_elements/inbox.html';
     });
 
-   
-
-   
     $('#edit-btn').on('click', function(e) {
         e.preventDefault();
         if ($(this).html() === "EDIT") {
@@ -30,12 +29,153 @@
           $('#content').load('https://pet-temp-host.web.app/Common_elements/moments.html');
           var header_text = e.target.name;
           $('#headerText').html(header_text);
+    });
+   
+    $('#add-btn').click(function() {
+        var age = $('#petage').val();
+        var name = $('#petname').val();
+        var weight = $('#petweight').val();
+                    
+        const addedPetData = {
+            age: age,
+            name: name,
+            weight: weight,
+        }
+        window.localStorage.setItem('addedPetData', JSON.stringify(addedPetData));
+        $('#add-pet').popup("close");
+
+        $('#added-name').text(name);
+        $('#added-age').text(age);
+        $('#added-weight').text(weight);
+
+        $('#added-pet').css('display','block');
+    });
+
+
+        $('#view-fav-btn').click(function(e) {
+          e.preventDefault();
+          $('#content').load('https://pet-temp-host.web.app/Common_elements/favourites.html');
+          var header_text = e.target.name;
+          $('#headerText').html(header_text);
+
+        });
 
 });
-   
+
+$('#add-pet-btn').click(function(e) {
+    e.preventDefault();
+    $('#add-pet').popup("open");
 });
+
+$('#cancel-pet-btn').click(function(e) {
+    e.preventDefault();
+    $('#add-pet').popup("close");
+});
+
+function readURL(input) {
+    
+    $('#default-upload-img').hide();
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#uploaded-img')
+                        .attr('src', e.target.result)
+                        .width(70)
+                        .height(70);
+                    $('#added-img')
+                        .attr('src', e.target.result)
+                        .width(80)
+                        .height(90);
+                };
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
 
 </script>
+
+<style>
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+  padding: 5px !important;
+    margin-top: 55px !important;
+    background-color: transparent;
+    color: lightblue;
+    background-color: transparent;
+    border: 1px solid lightblue;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+</style>
+
+<div data-role="popup" id="add-pet" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;" class="succes-pop-up ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
+    <div style="position: absolute;width: 300px;height: 25px;left: -1px;top: -1px;background: #14C2F3;border-radius: 0px;">
+        <p style="color: white; margin: 0;">Add New Pet</p>
+        <img id="close_popup" src="../images/close_btn.png" alt="" style="width: 20px;position: absolute;left: 92%;top: 10%;">
+    </div>
+    <div style="position: absolute;width: 270.5px;height: 276.01px;left: 14px;top: 68px;/* background: #F5F4F4; *//* border-radius: 10px; */">
+        <img id="uploaded-img" src="#" style="position:absolute;width: 70px;height: 70px;left: 10px;top: -8%;border: 1px solid black;border-radius: 10px;padding: 5px 5px 5px 10px;clear: both;"/>
+        <img id="default-upload-img" src="../images/upload-pet-img.png" style="position:absolute;width: 70px;height: 70px;left: 10px;top: -8%;border: 1px solid black;border-radius: 10px;padding: 5px 5px 5px 10px;clear: both;">
+
+    <span class="ui-btn ui-icon-plus ui-btn-icon-left ui-corner-all fileinput-button" data-role="button" >
+        <span>Upload</span>
+        <input type="file" name="files[]" onchange="readURL(this);" multiple data-role="none"/>
+    </span>
+
+
+    <div aria-hidden="false" style="
+    width: 55%;
+    text-align: left;
+    margin-left: auto;
+    top: 15px;
+    position: initial;
+    margin-top: -25px;">
+            
+            <label class="label-basic-info" for="fname">PET NAME</label> 
+                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="fname" id="petname" placeholder="Enter Pet Name">
+            <label class="label-basic-info" for="email">PET AGE</label> 
+                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="email" name="email" id="petage" placeholder="Enter Pet Age">
+            <label class="label-basic-info" for="phone_n">PET GENDER</label> 
+                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="phone_n" id="petgender" placeholder="Enter Pet Gender">
+            <label class="label-basic-info" for="location">PET WEIGHT</label>
+                    <input class="basic-info-txt disable-style" style="border-color: #000000" type="text" name="location" id="petweight" placeholder="Enter Pet Weight">
+            <button id="add-btn" style="
+                    width: 100px;
+                    position: relative;
+                    left: 26px;
+                    top: 5px;
+                    font-size: 12px;
+                    clear: both;
+                    " class=" ui-btn ui-shadow ui-corner-all">ADD</button>
+            <button id="cancel-pet-btn" style="
+                    width: 100px;
+                    position: relative;
+                    left: -100px;
+                    top: -40px;
+                    font-size: 12px;
+                    float: left;
+                    " class=" ui-btn ui-shadow ui-corner-all">CANCEL</button>
+
+        </div>
+    </div>
+
+</div>
 
 <div class="background-container">
     <div style="display: block;height: 45%;">
@@ -45,20 +185,20 @@
         </div>
         <div style="width: 320px;height:200px;margin: 5px auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);position: relative;top: -100px;">
             <div style="display: inline;float: left;width: 40%;">
-                <img src="../images/caretaker_profile_picture.jpg" alt="" style="max-width: 100%;height: 200px;">
+                <img id="profile_pic_image" src="../images/caretaker_profile_picture.jpg" alt="" style="max-width: 100%;height: 200px;">
             </div>
             <div style="display: inline;float: left;width: 60%;height: 100%;background-color: white;">
                 <p style="margin-left: 20px;font-weight: bold;">Sarah Hyland</p>
                 <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -14px;left: 19px;">
                     <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
-                    <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
+                    <p id="profile-rating" style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;">3.5</p>
                 </div>
                 <div style="position: relative;top: -25px;">
                     <p style="margin-left: 20px;font-size: 14px;">ABOUT</p>
                     <p style="margin-left: 20px;font-size: 11px;margin-top: -10px;">I have a beautiful black cat.</p>
                     <a href="" style="margin-left: 20px;font-size: 10px;color: red;text-decoration: none;position: relative;top: -10px;">Read More</a>
                 </div>
-                <button style="width: 165px;font-size: 12px;position: relative;top: -32px;background-color: #FF2548;border: none;left: 14px;"><img src="../images/heart icon.png" alt="" style="width: 25px;
+                <button id="view-fav-btn" name="Favourites" style="width: 165px;font-size: 12px;position: relative;top: -32px;background-color: #FF2548;border: none;left: 14px;"><img src="../images/heart icon.png" alt="" style="width: 25px;
                     margin-right: 10px;
                     margin-top: -5px;">MY FAVOURITES</button>
                     <a href="" style="position: relative;
@@ -152,7 +292,7 @@
                 <p>I love cuddles</p>
             </div>
             <div style="position: relative;
-            top: -77px;
+            top: -88px;
             left: 255px;">
                 <button style="width: 30px;
                 padding: 2px;
@@ -164,7 +304,46 @@
                 display: inline;"><img src="../images/edit-icon.png" alt="" style="width: 20px;"></button>
             </div>
         </div>
-        <button style="width: 100px;
+
+        <div id="added-pet" style="    display: block;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;
+        border-radius: 5px;
+        height: 88px;
+        position: relative;
+        top: 21px;
+        margin-bottom: 30px;">
+            <div style="width: 80px;
+            display: inline;">
+                <img id="added-img" src="#" alt="" style="width: 80px;
+                border-radius: 5px;height: 90px;">
+            </div>
+            <div style="display: inline;
+            width: 200px;
+            font-size: 12px;
+            position: relative;
+            float: right;
+            left: -30px;
+            top: -99px;">
+                <p id="added-name" style="font-size: 13px;
+                font-weight: bold;"></p>
+                <p>Age : <span id="added-age"></span></p>
+                <p>Weight : <span id="added-weight"></span></p>
+            </div>
+            <div style="position: relative;
+            top: -88px;
+            left: 255px;">
+                <button style="width: 30px;
+                padding: 2px;
+                height: 30px;
+                display: inline;"><img src="../images/eye-icon.png" alt="" style="width: 20px;"></button>
+                <button style="width: 30px;
+                height: 30px;
+                padding: 2px;
+                display: inline;"><img src="../images/edit-icon.png" alt="" style="width: 20px;"></button>
+            </div>
+        </div>
+
+        <button id="add-pet-btn" style="width: 100px;
         position: relative;
         left: 226px;
         top: 5px;
