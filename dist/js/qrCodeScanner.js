@@ -21,7 +21,7 @@ qrcode.callback = res => {
             track.stop();
         });
 
-        $('#qr-result').popup("open");
+        $('#qrCode').popup("open");
         qrResult.hidden = false;
         canvasElement.hidden = true;
         btnScanQR.hidden = false;
@@ -35,7 +35,7 @@ btnScanQR.onclick = () => {
         .then(function (stream) {
             scanning = true;
             qrResult.hidden = true;
-            $('#qr-result').popup("close");
+            $('#qrCode').popup("close");
             btnScanQR.hidden = true;
             contentBody.hidden = true;
             canvasElement.hidden = false;
