@@ -51,7 +51,7 @@
       height: 45px;
       position: relative;
       top: 1px;" disabled="disabled"><img src="../images/email fav.png" alt="" style="margin-right: 5px;
-    margin-top: 3px;" >EMAIL SELECTED(<script>$('.myCheckbox:checked').length</script>)</button>
+    margin-top: 3px;" >EMAIL SELECTED</button>
   </div>
 
     <script>
@@ -132,20 +132,25 @@
                     
                     $('#delete-fav-btn').removeAttr('disabled');
                     $('#email-btn').removeAttr('disabled');
+                    
                     //$(this).hide();
-                    var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);
-                   /*$('.myCheckbox').each(function () {
-                        if ($(this).is(":checked")) {
-                            $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);
-                        }
-                        else{
-                          $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").remove();
-                        }
-                  });*/
+                    //var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);
+                   
                 }
                 else {
-                    $('#delete-fav-btn').attr('disabled', 'disabled');
-                    $('#email-btn').attr('disabled', 'disabled');
+                    var isChecked = false;
+                    $('.myCheckbox').each(function () {
+                        if ($(this).is(":checked")) {
+                            $('#delete-fav-btn').removeAttr('disabled');
+                            $('#email-btn').removeAttr('disabled');
+                            isChecked = true;
+                        }
+                    });
+                    if (!isChecked) {
+                      $('#delete-fav-btn').attr('disabled', 'disabled');
+                      $('#email-btn').attr('disabled', 'disabled');
+                    }
+                    
                     
                 }
  

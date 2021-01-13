@@ -79,7 +79,16 @@
              $('.caretaker_address').html(orderSummary.address);
              $('.caretaker_name').html(orderSummary.name);
              $('.caretaker_animal').attr('src',orderSummary.animalImagePath);   
-              $('.caretaker_service').html(orderSummary.price.substring(1));
+             $('.caretaker_service').html(orderSummary.price.substring(1));
+             var pettypevalue = orderSummary.service;
+             var pettype = pettypevalue.slice(0,3);
+             $('.pet_type').text(pettype);
+             if(pettype=='CAT'){
+              $('.pet_name').text("KITTY");
+             }else{
+              $('.pet_name').text("DOGGIE");
+             }
+             
             }
 
     </script>
@@ -244,9 +253,9 @@
           <option value="Cat Grooming">Cat Grooming</option>
         </select>
         <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
-        <input type="date" name="pickup" placeholder="Select Pickup date/time" />
+        <input type="datetime-local" name="pickup" placeholder="Select Pickup date/time" />
         <label for="dropoff" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
-        <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
+        <input type="datetime-local" name="dropoff" placeholder="Select Dropoff date/time" />
         <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
     <fieldset id="fieldset2">
@@ -346,7 +355,7 @@
                         </p>
 
                         <p style="font-size: 11px;position: relative;top: -46px;left: 19px;font-family: system-ui;">
-                            Total: <b class="caretaker_amount">$ 1250 . 00</b>
+                            Total: <b class="caretaker_amount">$<span id="order-total">0</span></b>
                         </p>
                         <div style="display: inline;position: relative;top: -103px;left: 250px;">
                             <img class="caretaker_animal" src="" alt="" style="width: 25px;">
@@ -534,7 +543,7 @@
 	  
 
         $('#open-pop-up').on('click', function(e) {
-
+          
           //get value card or cash
           var radioValue = $("input[name='paymentM']:checked").val();
 
@@ -551,7 +560,7 @@
           else{
             $('#payment-success').popup("open");
           }
- 
+          $("#order-total").text($("#span-total").text());
           e.preventDefault();
         });
 
