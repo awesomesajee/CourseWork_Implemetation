@@ -15,7 +15,13 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script> -->
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgqhqtYHkqBSzCxVyOOGhLxEWMO2xILDQ&callback=initMap&libraries=places" defer></script>
     <script>
 
         $(document).ready(function () {
@@ -172,7 +178,10 @@
         .active, .dot:hover {
     background-color: transparent;
     }
-
+    #map_canvas {
+        width:100px; 
+        height:100px;
+    }
        
     </style>
 
@@ -219,7 +228,7 @@
 
 
     <div role="main" class="ui-content" id="content">
-        <div class="background-container">
+        <div class="background-container" style="height: 1500px;">
 
             <div id="userContent" style="margin-top: 10px;">
                 <div style="display: block;height: 45%;">
@@ -401,15 +410,36 @@
                 padding-left: 15px;
                 padding-right: 15px;
                 position: relative;
-                top: 10px;">
-                    <p style="font-size: 18px;
-                    position: relative;">Live Location</p>
+                top: 10px;
+                padding-bottom: 10px;">
+                <p style="font-size: 18px; position: relative; top: 10px;
+                padding: 10px 10px 10px 0px;">Live Location</p>
+                <div style="
+                    background-color: white;
+                    border-radius: 10px;
+                    position: relative;
+                    height: 200px;
+                    ">
+                    <div id="map" style="position: relative;overflow: hidden; height: 200px;
+                    width: 290px;"></div>
                 </div>
-
-                
-
+                <script>
+                    function initMap() {
+                        const myLatLng = { lat: -33.91721, lng: 151.2263 };
+                        const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom: 18,
+                            center: myLatLng,
+                        });
+                        new google.maps.Marker({
+                            position: myLatLng,
+                            map,
+                            title: "I am here!",
+                        });
+                    }
+                    
+                </script>
+                </div>
             </div>
-
 
         </div>
     </div>
