@@ -68,7 +68,7 @@
                 var textData = localStorage.getItem("userData");
                 var orderSummary = JSON.parse(textData);
 
-                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price;
+                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price+';CAT;KITTY';
                     var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
              $('#barcode').attr('src', url);
 
