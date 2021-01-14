@@ -1,12 +1,18 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 <style>
   .search-design{
     width: 330px;
     margin-left: 20px;
     margin-top: 20px;
     margin-right: 20px;
-}
+  } 
+
+  .sort-style{
+    height: 100px;
+    margin-bottom: 10px;
+  }
 </style>
 <script>
     var textData = localStorage.getItem("favList");
@@ -22,6 +28,7 @@
         $('.sort-style').enhanceWithin();
       });
     }
+   
   });
   $('#email-btn').click(function() {
   window.open('mailto:test@example.com');
@@ -34,25 +41,25 @@
       <input id="fav-input" class="controls" type="text" placeholder="Search your favourite" style="height: 40px;"/>
   </div>
   <hr>
-  <p style="text-align: center;">Select your favourite caretakers and click on the email button to email.</p>
+  <p style="font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 14px; display: flex; align-items: center; color: #000000; margin-left: 12px; margin-bottom: 4px;">Select your favourite caretakers and click on the email button to email.</p>
   <div style="text-align: center;
   font-size: 12px;">
       <button id="delete-fav-btn" style="display: inline;
       height: 45px;
       width: 150px;
-      background-color: #FF2548;" disabled>DELETE</button>
+      background-color: #FF2548;" disabled="disabled">DELETE</button>
       <button id="email-btn" style="width: 200px;
       display: inline;
       height: 45px;
       position: relative;
-      top: 2px;" disabled><img src="../images/email fav.png" alt="" style="margin-right: 5px;
+      top: 1px;" disabled="disabled"><img src="../images/email fav.png" alt="" style="margin-right: 5px;
     margin-top: 3px;" >EMAIL SELECTED</button>
   </div>
 
     <script>
         $(document).ready(function() {
             function loadUserData() {
-                console.log(data);
+                
 
                 for (var i = 0; i < data.length; i++) {
                 var id = "poi_"+i;
@@ -65,10 +72,11 @@
                 $('#'+id+' .poi-style .poi-animal').find('img.animal').attr("src", data[i].animalImagePath);
                 $('#'+id+' .poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data[i]._userpoints);
                 $('#'+id).append('<input type="checkbox" name="myCheckbox" class="myCheckbox"/>');
+                
                 }
 
        
-        }
+            }
 
         setTimeout(loadUserData, 500);  
 
@@ -76,11 +84,21 @@
           $('#add-fav-success').popup("open");         
         });
 
+        $('#cancel-btn').click(function() {
+          $('#add-fav-success').popup("close");         
+        });
+        
+
+        //click email button
+        $('#email-btn').click(function() {
+          $('#email-success').popup("open");         
+        });
+
         var favList = [];
         var obj = null
         var namesList = [];
         $('#delete-confirm-btn').on('click',function() {
-            console.log("test");
+            
             $("input:checkbox[name=myCheckbox]:checked").each(function(){
                 namesList.push($(this).parent("div").find('p.poi_text').text());
                 for (var i = 0; i < data.length; i++) {
@@ -110,26 +128,48 @@
                 }
         }
 
-        $(function () {
-            $(document).on('change','.myCheckbox', function () {
-            $('#delete-fav-btn').prop('disabled', !$('.myCheckbox:checked').length);
-            $('#email-btn').prop('disabled', !$('.myCheckbox:checked').length); 
-            $(this).hide();
-            var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);         
-        });
-});
+        
+        $(document).on('change','.myCheckbox', function () {
+                if ($(this).is(":checked")) {
+                    
+                    $('#delete-fav-btn').removeAttr('disabled');
+                    $('#email-btn').removeAttr('disabled');
+                    
+                    //$(this).hide();
+                    //var $image = $("<img src='../images/right-icon.png' style = 'width: 75px;position: relative;top: -97px;left: 8px;opacity: 0.8;'/>").insertAfter(this);
+                   
+                }
+                else {
+                    var isChecked = false;
+                    $('.myCheckbox').each(function () {
+                        if ($(this).is(":checked")) {
+                            $('#delete-fav-btn').removeAttr('disabled');
+                            $('#email-btn').removeAttr('disabled');
+                            isChecked = true;
+                        }
+                    });
+                    if (!isChecked) {
+                      $('#delete-fav-btn').attr('disabled', 'disabled');
+                      $('#email-btn').attr('disabled', 'disabled');
+                    }
+                    
+                    
+                }
+ 
+ 
+        })
         
     });    
       
     </script>
-    <div id="userContent" data-filter="true" data-input="#fav-input">
+    <div id="userContent" data-filter="true" data-input="#fav-input" style="margin-top: 12px;">
 
     </div>
     <!--favourites confirmation pop up-->
     <div data-role="popup" id="add-fav-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
         <p style="color:#FF2548;font-size: 16px;">Are you sure you want to remove from favourites?</p>
         <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;position: relative;left: 106px;">
-        <button style="width: 100px;
+        <button id="cancel-btn" style="width: 100px;
         display: inline;
         position: relative;
         top: 100px;
@@ -144,5 +184,14 @@
         border: none;
         left: 6px;">DELETE</button>
          
-      </div>
+    </div>
+    <!--email success pop up-->
+    <!--favourites pop up-->
+    <div data-role="popup" id="email-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="email-pop-up">
+      <p style="color:#5BD4F6;font-size: 25px;">Favourites emailed successfully!</p>
+      <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">
+    </div>
+       
+  </div>
 </div>
+

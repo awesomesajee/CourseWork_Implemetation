@@ -79,7 +79,16 @@
              $('.caretaker_address').html(orderSummary.address);
              $('.caretaker_name').html(orderSummary.name);
              $('.caretaker_animal').attr('src',orderSummary.animalImagePath);   
-              $('.caretaker_service').html(orderSummary.price.substring(1));
+             $('.caretaker_service').html(orderSummary.price.substring(1));
+             var pettypevalue = orderSummary.service;
+             var pettype = pettypevalue.slice(0,3);
+             $('.pet_type').text(pettype);
+             if(pettype=='CAT'){
+              $('.pet_name').text("KITTY");
+             }else{
+              $('.pet_name').text("DOGGIE");
+             }
+             
             }
 
     </script>
@@ -126,9 +135,6 @@
                 $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
                 $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
             }
-
-     
-
             setTimeout(loadUserData, 500);
 
         });
@@ -139,7 +145,58 @@
     background-color: transparent;
   }
   .ui-controlgroup-controls{
-    left: 140px;
+    left: 110px!important;
+    margin-top: 3px !important;
+  }
+  .poi-style{
+    background-color: aliceblue !important;
+  }
+  #progressbar li:after{
+    top: 12px;
+    height: 3px;
+  }
+  #progressbar li:before{
+    background-color: lavender;
+    border : 0;
+  }
+  .fs-title{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #484848;
+  }
+  .labelstyle{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+  .ui-input-text{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    margin-bottom: 20px;
+  }
+  #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-label{
+    margin-top: 4px;
+  }
+  #fieldset1 .ui-controlgroup-horizontal .ui-controlgroup-label{
+    margin-top: 30px;
+  }
+  #fieldset2 .ui-controlgroup-horizontal{
+    margin-bottom: -6px!important;
+  }
+  #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-controls{
+    top: -6px !important;
+    left: 0px !important;
   }
 </style>
 
@@ -168,73 +225,78 @@
   
 
 
-  <form id="msform">
+  <form id="msform" style="margin-top: 35px!important">
     <!-- progressbar -->
-    <ul id="progressbar">
+    <ul id="progressbar" style="padding-left: 18px; font-family: 'Roboto'; margin-bottom: 10px">
       <li class="active">Booking Details</li>
       <li>Payment Details</li>
       <li>Order Completion</li>
     </ul>
     <!-- fieldsets -->
-    <fieldset id="fieldset1">
+    <fieldset id="fieldset1" style="padding-top: 6px">
       <h2 class="fs-title">Booking Details</h2>
       <h3 class="fs-subtitle">Step 1</h3>
-      <label for="location">Location</label>
+      <label for="location" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000;">Location</label>
       <input type="text" name="email" placeholder="Select your location" />
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
-        <legend>Schedule</legend>
+        <legend class="labelstyle">Schedule</legend>
         <label for="rb4">Once</label>
         <input type="radio" name="schedule" id="rb4" value="Once"/>
         <label for="rb5">Recurring</label>
         <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="speed">Service</label>
+      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 11px;">Service</label>
         <select name="speed" id="speed">
           <option value="Dog Walking">Dog Walking</option>
           <option value="Dog Grooming">Dog Grooming</option>
           <option value="Cat Walking" selected="selected">Cat Walking</option>
           <option value="Cat Grooming">Cat Grooming</option>
         </select>
-        <label for="pickup">Pick Up Date/Time</label>    
-        <input type="date" name="pickup" placeholder="Select Pickup date/time" />
-        <label for="dropoff">Drop off Date/Time</label>  
-        <input type="date" name="dropoff" placeholder="Select Dropoff date/time" />
+        <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
+        <input type="datetime-local" name="pickup" placeholder="Select Pickup date/time" />
+        <label for="dropoff" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
+        <input type="datetime-local" name="dropoff" placeholder="Select Dropoff date/time" />
         <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
     <fieldset id="fieldset2">
       <h2 class="fs-title">Payment Details</h2>
       <h3 class="fs-subtitle">Step 2</h3>
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
-        <legend>Select Payment Method</legend>
-        <label for="rb1">CASH</label>
+        <legend style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Select Payment Method</legend>
+        <label for="rb1" style="width: 92px;">CASH
+          <img src="../images/cash.png" alt="cash" style="display: inline;position: absolute;top: 12px;left: 66px;">
+        </label>
+        <img src="../images/cash.png" alt="cash" style="display: inline;">
         <input type="radio" name="paymentM" id="rb1" value="cash"/>
-        <label for="rb2">CARD</label>
+        <label for="rb2" style="width: 93px;">CARD
+          <img src="../images/creditcard.png" alt="cash" style="display: inline;position: absolute;top: 14px;left: 66px;">
+        </label>
         <input type="radio" name="paymentM" id="rb2" value="card" checked="checked"/>
       </div>
-      <label for="speed">Redeem Happy Paw Points</label>
+      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Redeem Happy Paw Points</label>
       <select name="ts1" id="ts1" data-role="flipswitch">
         <option value="No" selected="selected">No</option>
         <option value="Yes">Yes</option>
       </select>
       
       <!--Happy Pow Table-->
-      <div id="show-me" style="margin-left: -15px;" class="hide-class">
-      <table style="width: 330px;border-collapse: collapse;">
+      <div id="show-me" style="margin-left: -15px; margin-bottom: 16px" class="hide-class">
+      <table style="margin-left: 15px;border-collapse: collapse; font-size: 14px; font-family: 'Roboto';">
         <tr>
           <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
           <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
             <div style="margin-top: 10px;text-align: center;margin: auto">
-              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;">50</p>
-              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 30px;height: 30px;margin-bottom: 8px;">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;font-size: 16px;">50</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 8px; margin-top: 5px;">
           </div>
           </td>
           <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
-          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 20px;font-weight: bold;">10</td>
+          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 18px;font-weight: bold;">10</td>
         </tr>
       </table>
     </div>
       <div class="ui-body ui-body-a ui-corner-all" style="padding: 8px; background-color:#5bd4f6">
-          <h6>Booking Summary</h6>
+          <h6 style="color: #FFFFFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Roboto;font-weight: bold;font-size: 18px;line-height: 18px;">Booking Summary</h6>
           <div id="summary"></div>
           <hr style="margin: 10px 0">
           <div id="totalVal"><h6><b>Total<span style='float:right'>$<span id="span-total">0</span></span></b></h6></div>
@@ -293,7 +355,7 @@
                         </p>
 
                         <p style="font-size: 11px;position: relative;top: -46px;left: 19px;font-family: system-ui;">
-                            Total: <b class="caretaker_amount">$ 1250 . 00</b>
+                            Total: <b class="caretaker_amount">$<span id="order-total">0</span></b>
                         </p>
                         <div style="display: inline;position: relative;top: -103px;left: 250px;">
                             <img class="caretaker_animal" src="" alt="" style="width: 25px;">
@@ -481,7 +543,7 @@
 	  
 
         $('#open-pop-up').on('click', function(e) {
-
+          
           //get value card or cash
           var radioValue = $("input[name='paymentM']:checked").val();
 
@@ -498,7 +560,7 @@
           else{
             $('#payment-success').popup("open");
           }
- 
+          $("#order-total").text($("#span-total").text());
           e.preventDefault();
         });
 
