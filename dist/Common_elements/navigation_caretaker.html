@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- head section which contains meta data -->
 <head>
     <meta charset="utf-8">
@@ -23,7 +23,13 @@
           var header_text = e.target.name;
           $('#headerText').html(header_text);
         })
-      });    
+
+        $('#firstlink').trigger('click');
+        console.log("test");
+       
+      });  
+      
+     
     </script>
 </head>
 <!-- End of head -->
@@ -46,7 +52,7 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+    <a name="Search" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile" id="firstlink">
         <div class="nav_fonts">Pet Status</div>
       </a>
       <a name="Profile" href="profile_caretaker.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">

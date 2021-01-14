@@ -74,6 +74,13 @@
         $('#add-fav-btn').click(function() {
           $('#add-fav-success').popup("open");         
         });
+        $('#view-bg-btn').click(function() {
+          $('#view-badges-success').popup("open");         
+        });
+        $('#close-btn-badges').click(function () {
+          $('#view-badges-success').popup("close");
+        });
+
         $('#add-fav-btn').click(addFavList);
         
 
@@ -83,6 +90,18 @@
           var header_text = e.target.name;
           $('#headerText').html(header_text);
 
+        });
+        
+        $('#services_btn').click(function(e) {
+          e.preventDefault();
+          $('#user-reviews-services').load('https://pet-temp-host.web.app/Common_elements/services.html');
+          
+        });
+
+        $('#reviews_btn').click(function(e) {
+          e.preventDefault();
+          $('#user-reviews-services').load('https://pet-temp-host.web.app/Common_elements/reviews.html');
+          
         });
       });
 
@@ -137,7 +156,7 @@
           <a href="" style="font-size: 10px;position: relative;top: -10px;color: red;text-decoration: none;">Read More</a>
           <div style="margin-top: -10px;">
             <button style="color: white;background-color: #FF8139 !important;margin-bottom:10px">BOOK</button>
-            <button>VIEW BADGES</button>
+            <button id="view-bg-btn">VIEW BADGES</button>
           </div>
         </div>
       </div>
@@ -176,19 +195,54 @@
               <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
             </div>
           </div>
-          <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;" class="price_array">
+          <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;height: 42px;" class="price_array">
             <p style="display: inline;margin-right: 10px;">Dog Grooming</p>
             <p style="display: inline;">$ 10.00/hr</p>
             <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
-              <p style="color: white !important;font-size: 9px;">10</p>
-              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
+              <p style="color: white !important;font-size: 9px;position: relative;
+              left: -7px;
+              top: -7px;">10</p>
+              <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;position: relative;
+              top: -30px;
+              left: 10px;">
             </div>
           </div>
 
         </div>
-        <div data-role="controlgroup" data-type="horizontal" style="margin-top: -10px;margin-left: 10px;">
-          <a href="#Page2" data-transition="flip" class="ui-btn" id="name_btn">REVIEWS</a>
-          <a href="#Page2" data-transition="flip" class="ui-btn" id="price_btn">SERVICES</a>
+        <div style="position: relative;
+        top: -458px;
+        width: 375px;
+        text-align: center;
+        margin-left: -1px;">
+          <div style="width: 185px;
+          border: 4px solid #6C6666;
+          box-sizing: border-box;
+          filter: drop-shadow(2px 0px 4px rgba(0, 0, 0, 0.25));
+          display: inline;
+          float: left;">
+            <button id="reviews_btn" style="background-color: transparent;
+            border: none;
+            box-shadow: none;
+            color: #6C6666;">REVIEWS</button>
+          </div>
+          <div style="width: 185px;
+          border: 4px solid #6C6666;
+          box-sizing: border-box;
+          filter: drop-shadow(2px 0px 4px rgba(0, 0, 0, 0.25));
+          display: inline;
+          float: left;
+          margin-left: -4px;">
+            <button id="services_btn" style="background-color: transparent;
+            border: none;
+            box-shadow: none;
+            color: #6C6666;">SERVICES</button>
+          </div>
+        </div>
+        <div id="user-reviews-services" style="position: relative;
+        top: -391px;
+        width: 350px;
+        margin-left: 8px;">
+
         </div>
 
       </div>
@@ -206,6 +260,37 @@
         top: -2px;
         left: -5px;">
         VIEW FAVOURITES</button>
+    </div>
+
+    <!--view badges pop up-->
+    <div data-role="popup" id="view-badges-success" style="width: 300px;height: 284px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+      <div style="color:white;background-color: #5BD4F6;height: 35px;text-align: left;padding: 5px;border-radius: 8px;">My Badges</div>
+      <img src="../images/badge pop1.png" alt="" style="position: relative;
+      left: -38px;
+      top: 14px;">
+      <img src="../images/badge pop6.png" alt="" style="position: relative;
+      left: -52px;
+      top: 14px;">
+      <img src="../images/badge pop5.png" alt="" style="position: relative;
+      left: 151px;
+      top: -66px;">
+       <img src="../images/badge pop4.png" alt="" style="position: relative;
+       left: -146px;
+       top: 24px;">
+       <img src="../images/badge pop3.png" alt="" style="position: relative;
+       left: 58px;
+       top: -56px;">
+       <img src="../images/badge pop2.png" alt="" style="position: relative;
+       left: 44px;
+       top: -56px;">
+      <button id="close-btn-badges" style="width: 114px;
+      background-color: transparent;
+      color: #5BD4F6;
+      border: 2px solid #5BD4F6;
+      position: relative;
+      top: -49px;
+      left: 95px;
+      font-size: 12px;">CLOSE</button>
     </div>
       
      

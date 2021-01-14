@@ -12,33 +12,79 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
 
     <script>
-      $(document).ready(function() {
-        $('a').click(function(e) {
+      $(document).ready(function() {    
+   
+        var header_text = "";
+   $('.navigation').click(function(e) {
           e.preventDefault();
-          $('#content').load($(this).attr('href'));
-          var header_text = e.target.name;
+          location.hash=$(this).attr('href').match(/(^.*)\./)[1];
+          header_text = e.target.name;
           $('#headerText').html(header_text);
-        })
+          localStorage.setItem("header", e.target.name);
+			return false          
+        });
+        
+		function hashChange(){
+      var page=location.hash.slice(1)
+			if (page!=""){
+        $('#content').load(page+".html");
+        var navLinks = $('.navigation').toArray();
+        for(i=0; i<navLinks.length; i++) {
+          if("https://pet-temp-host.web.app/Common_elements/"+page+".html" == navLinks[i].href){
+            $('#headerText').html(navLinks[i].name);
+          }
+        }
+          
+
+          
+        
+				
+			
+    }
+  }
+    if ("onhashchange" in window){ // cool browser
+			$(window).on('hashchange',hashChange).trigger('hashchange')
+		}else{ // lame browser
+			var lastHash=''
+			setInterval(function(){
+				if (lastHash!=location.hash)
+					hashChange()
+				lastHash=location.hash
+			},100)
+		}    
+
+      $('#firstlink').trigger('click'); 
       });    
+   
     </script>
 </head>
 <!-- End of head -->
 
 <body>
   <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">T I T L E</h1>
+  <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+      <a data-rel="back" id="back-btn" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" style="background-color: transparent;
+      border: none;
+      position: relative;
+      z-index: 1;
+      top: -8px;
+      left: -24px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+      <h1 id="headerText" style="position: relative;
+      top: -51px;font-family: 'Rajdhani', sans-serif;margin: 0px;left: 40px;
+    text-align: left;white-space: break-spaces;">T I T L E</h1>
       
   </div>
   <!-- End of header -->
 
   <!-- start of the content. Dynamically load your component here with footer navigation -->
-  <div role="main" class="ui-content" id="content">
+  <div role="main" class="ui-content" id="content" data-dom-cache="true">
      
   </div>
     <!-- End of content -->
@@ -46,22 +92,22 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+    <a name="N E A R   B Y   C A R E T A K E R S" href="dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search navigation tile " id="firstlink">
         <div class="nav_fonts">Search</div>
       </a>
-      <a name="Profile" href="profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+      <a name="M Y  P R O F I L E" href="profile.html"  class="ui-btn ui-btn-icon-top ui-icon-myprofile navigation tile">
         <div class="nav_fonts">Profile</div>
       </a>
-      <a name="Pet Status" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+      <a name="P E T  S T A T U S " href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus navigation tile">
         <div class="nav_fonts">Pet Status</div>
       </a>
-      <a name="Favourites" href="favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+      <a name="M Y  F A V O U R I T E S " href="favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites navigation tile">
         <div class="nav_fonts">Favourites</div>
       </a>
-      <a name="Booking History" href="bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+      <a name="B O O K I N G   H I S T O R Y" href="bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory navigation tile">
         <div class="nav_fonts">Book History</div>
       </a>
-      <a name="Help" href="help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+      <a name="H E L P" href="help.html" class="ui-btn ui-btn-icon-top ui-icon-help navigation tile">
         <div class="nav_fonts">Help</div>
       </a>
 </nav>
