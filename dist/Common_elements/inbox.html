@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<!-- head section which contains meta data -->
-<head>
-    <meta charset="utf-8">
-    <title>Canoodle</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- the three things that jQuery Mobile needs to work -->
-    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <link rel="stylesheet" href="../CSS/button_styles.css" />
-    <link rel="stylesheet" href="../CSS/background_styles.css" />
-    <link rel="stylesheet" href="../CSS/progressbar.css">
-    <link rel="stylesheet" href="../themes/blue_test.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -53,7 +40,7 @@
       #inbox {
         width: 100%;
       }
-    </style>>
+    </style>
 
 <script>
   $(document).ready(function () {
@@ -68,28 +55,9 @@
       });
     }
   });
+
 </script>
 
-</head>
-<!-- End of head -->
-
-<body>
-  <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">I N B O X</h1>
-      
-  </div>
-  <!-- End of header -->
-
-  <!-- start of the content. Dynamically load your component here with footer navigation -->
-  <div role="main" class="ui-content" id="content">
-    <!-- <div style="width: -webkit-fill-available;height: 60px;border-radius: 10px 10px 10px 10px; padding: 12px;">
-      <div style="width: -webkit-fill-available; height: -webkit-fill-available; border-radius: 10px 10px 10px 10px;box-shadow: 0px 0px 4px 2px grey;padding: 5px;">
-      Search | <input placeholder="Search for people" type="text" class="search"><i class="fa fa-search" aria-hidden="true" style="float: right;padding: 5px;color: grey;"></i>
-      </div>
-    </div>
-     -->
 
   <!--Search text box for map-->
   <div  class="background-container" style="width: -webkit-fill-available;">
@@ -142,6 +110,13 @@
             status: "#06D33F",
           }
         ];
+        function createCallback( i ){
+          return function(){
+            $('#content').load('https://pet-temp-host.web.app/Common_elements/chat.html');
+            //var header_text = e.target.name;
+            //$('#headerText').html(header_text);
+          }
+        }
         
         for (var i = 0; i < 5; i++) {
           var id = "chat_"+i;
@@ -150,6 +125,7 @@
           $('#'+id+' .chat-style').find('img.chat-image').attr("src", data[i].profilepic);
           $('#'+id+' .chat-style').find('span.badge').css("background-color", data[i].status);
           $('#'+id+' .chat-style').find('span.chat-time').html(data[i].time);
+          $('#'+id+' .chat-style').click(createCallback( i ));
           
         }
       }
@@ -157,36 +133,5 @@
     
     });
   </script>
-  </div>
-    <!-- End of content -->
 
-  <!-- start of the footer section -->
-<div data-role="footer" class="footer-style">
-  <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
-        <div class="nav_fonts">Search</div>
-      </a>
-      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
-        <div class="nav_fonts">Profile</div>
-      </a>
-      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
-        <div class="nav_fonts">Pet Status</div>
-      </a>
-      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
-        <div class="nav_fonts">Favourites</div>
-      </a>
-      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
-        <div class="nav_fonts">Book History</div>
-      </a>
-      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
-        <div class="nav_fonts">Help</div>
-      </a>
-</nav>
-</div>
-<!-- End of footer -->
-
-</body>
-
-
-
-</html>
+ 
