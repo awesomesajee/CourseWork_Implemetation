@@ -472,10 +472,10 @@
             return false;
         });
 
-        $('#open-pop-up').click(function() {
+        /**$('#open-pop-up').click(function() {
           $('#payment-success').popup("open");
           
-        });
+        });**/
         $('#checkout-btn').on("click", function() {
             var formvalues = $('#fieldset1').serializeArray();
             console.log(formvalues);
@@ -498,7 +498,7 @@
               price=260;
             }
 
-            $( "#summary" ).append("<h6><b>"+formvalues[3].value+" - "+formvalues[4].value+"</b></h6>");
+            $( "#summary" ).append("<h6 style='font-size:14px;'><b>"+formvalues[3].value+" - "+formvalues[4].value+"</b></h6>");
             $( "#summary" ).append("<h6><b>"+formvalues[0].value+"</b></h6>");
             $( "#summary" ).append("<h6><b>"+formvalues[2].value+"<span style='float:right'>$"+price+"</span></b></h6>");
             displayTotalPrice(price);
