@@ -1,12 +1,9 @@
 body{
-    max-height: 812px;
-    max-width: 375px;
 }
 .gammification_progress_text{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-style: normal;
     color: #FFFFFF;
-    margin-left: 10px;
     margin-top: 15px;
     margin-bottom: 5px;
     font-size: 18pt;
@@ -15,7 +12,6 @@ body{
 
 .gamification_progress_bar{
     background-color: #0B3954 !important;
-    width: 380px;
     height: 70px;
     display: block;
 }
@@ -43,11 +39,10 @@ body{
 
 .ui-content{
     padding: 0px !important;
-    display: flex !important;
 
 }
 .ui-collapsible-inset .ui-collapsible-heading .ui-btn{
-    width: 350px !important;
+    width: 93% !important;
     background-color: white !important;
     color: black !important;
     left: 7px !important;
@@ -60,20 +55,20 @@ body{
 }
 .ui-btn-icon-left:after{
     background-image: url("../images/icons8-double-right-48.png") !important;
-    width: 90px !important;
+    width: 25% !important;
     height: 55px !important;
     top: 10px !important;
-    left: 260px !important;
+    left: 75% !important;
 }
 .ui-icon-minus:after{
     background-image: url("../images/icons8-double-down-48.png") !important;
-    width: 90px !important;
+    width: 25% !important;
     height: 55px !important;
     top: 10px !important;
-    left: 260px !important;
+    left: 75% !important;
 }
 .ui-collapsible-inset.ui-collapsible-themed-content .ui-collapsible-content{
-    width: 350px !important;
+    width: 93% !important;
     margin: -5px 13px !important;
     border-right-width: 1px !important;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
@@ -97,16 +92,17 @@ body{
 }
 
 .background-container{
-    margin: 0 5px 0px 5px;
     height: 1000px;
 }
 .poi-style{
-    display: block;
-    width: 365px;
+    display: inline-block;
+    width: 363px;
     border-radius: 50px 10px 10px 50px;
     height: 100px;
     background-color: #FAE2DB;
     margin-bottom: 10px;
+    transform: scale(0.86);
+    margin-left: -19px;
 }
 .view-button{
     width: 55px !important;
@@ -128,9 +124,8 @@ body{
     border: 2px solid white !important;
 }
 .ui-controlgroup-horizontal .ui-controlgroup-controls{
-    position: relative !important;
-    top: -35px !important;
-    left: 90px !important;
+    width: 100% !important;
+    
 }
 
 .search-button{
@@ -307,4 +302,10 @@ img {vertical-align: middle;}
     width: 30px;
     height: 30px;
     opacity: 0.1;
+}
+.sort-style{
+  width: 322px;
+  height: 100px;
+  margin-right: auto;
+  margin-left: auto
 }
