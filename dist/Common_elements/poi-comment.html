@@ -1,0 +1,30 @@
+
+    <div style="background-color:white;width: 80%;float: right;border-radius: 10px;margin-right: 15px;">
+        <p style="padding-left: 5px; margin: 6px;">
+          <img src="../images/prof_pic2.jpg" style="height: 25px;width: 25px;border-radius: 50%;">
+          <span id="comment-text-new" style="padding-left: 15px;"></span>
+        </p>
+      </div>
+      <p id="reply-comment" onclick="replyComment();" class="comment-new" style="padding-left: 60px; color: lightblue;">Reply</p>
+  
+  <script>
+  $(document).ready(function () {
+      console.log(localStorage.getItem("comment"));
+      $("#comment-text-new").html(localStorage.getItem("comment"));
+       /// $('#'+id).find('span.comment-text').text(comment);
+  
+      $('#reply-comment').click(function() {
+          localStorage.setItem("replied", 1);
+      });
+  
+      $('#reply-comment').click(function() {
+        $('#new-comment').css('display','block');
+        var div = document.getElementById('new-comment');
+        //$('#inbox-reply').append(divs);
+        $('#inbox-reply').replaceWith(div);
+        $('#inbox-reply').enhanceWithin();
+        $('#new-comment').css('display','block');
+      });
+    });
+  </script>
+      
