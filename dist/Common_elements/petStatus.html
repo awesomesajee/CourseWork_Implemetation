@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <!-- head section which contains meta data -->
 <head>
     <meta charset="utf-8">
@@ -20,7 +21,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
       defer
     ></script> -->
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgqhqtYHkqBSzCxVyOOGhLxEWMO2xILDQ&callback=initMap&libraries=places" defer></script>
     <script>
 
@@ -28,50 +29,49 @@
             $('#open-pop-up').click(function () {
                 $('#payment-success').popup("open");
                 $('textarea').removeClass("ui-input-text");
-        $('textarea').removeClass("ui-shadow-inset");
-        $('textarea').removeClass("ui-body-inherit");
-        $('textarea').removeClass("ui-corner-all");
-        $('textarea').removeClass("ui-textinput-autogrow");
-        $('button').removeClass("ui-btn");
-        $('button').removeClass("ui-shadow");
-        $('button').removeClass("ui-corner-all");
+                $('textarea').removeClass("ui-shadow-inset");
+                $('textarea').removeClass("ui-body-inherit");
+                $('textarea').removeClass("ui-corner-all");
+                $('textarea').removeClass("ui-textinput-autogrow");
+                $('button').removeClass("ui-btn");
+                $('button').removeClass("ui-shadow");
+                $('button').removeClass("ui-corner-all");
 
             });
-
-             $('#close_popup').click(function () {
-                $('#payment-success').popup("close");
-             });
 
             $('#close_popup').click(function () {
                 $('#payment-success').popup("close");
             });
 
-             $('#skip').click(function () {
+            $('#close_popup').click(function () {
                 $('#payment-success').popup("close");
-             });
+            });
 
-             $('#submit').click(function () {
-                 var rating = $('#rating a.active').text();
-                 var comment = $('textarea').val();
+            $('#skip').click(function () {
+                $('#payment-success').popup("close");
+            });
 
-                 const rateData = {
-                     rating: rating,
-                     comment: comment,
-                 }
+            $('#submit').click(function () {
+                var rating = $('#rating a.active').text();
+                var comment = $('textarea').val();
 
-                 window.localStorage.setItem('rateData', JSON.stringify(rateData));
-                 $('#payment-success').popup("close");
+                const rateData = {
+                    rating: rating,
+                    comment: comment,
+                }
+
+                window.localStorage.setItem('rateData', JSON.stringify(rateData));
+                $('#payment-success').popup("close");
             });
 
             //read more functionality
             $(".profile_about").hide();
             $(".show_hide").on("click", function () {
-                if($(".profile_about").is(':visible'))
-                {
+                if ($(".profile_about").is(':visible')) {
                     $(".profile_about").hide();
                     $(".show_hide").text("Read More");
                 }
-                else if(!($(".profile_about").is(':visible'))){
+                else if (!($(".profile_about").is(':visible'))) {
                     $(".profile_about").show();
                     $(".show_hide").text("Read Less");
                 }
@@ -86,44 +86,44 @@
             $('.stars span').addClass('active');
         });
 
-       // change header image after 2 seconds
-        var images = ['../images/icons8-services.gif','../images/icons8-tick-box-48.png'];
+        // change header image after 2 seconds
+        var images = ['../images/icons8-services.gif', '../images/icons8-tick-box-48.png'];
 
         var current = 0;
-        setInterval(function(){
-			
-            $('#inprogress-img').attr('src', images[current]);
-            current = (current < images.length - 1)? current + 1: current;
+        setInterval(function () {
 
-        },2000);
+            $('#inprogress-img').attr('src', images[current]);
+            current = (current < images.length - 1) ? current + 1 : current;
+
+        }, 2000);
 
         var nextcurrent = 0;
-        setTimeout(function() {
-            setInterval(function(){
-			
-                $('#future-img').attr('src', images[nextcurrent]);
-                nextcurrent = (nextcurrent < images.length - 1)? nextcurrent + 1: nextcurrent;
-                
-    
+        setTimeout(function () {
+            setInterval(function () {
 
-            },2000);            
-                
+                $('#future-img').attr('src', images[nextcurrent]);
+                nextcurrent = (nextcurrent < images.length - 1) ? nextcurrent + 1 : nextcurrent;
+
+
+
+            }, 2000);
+
         }, 2500);
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('#payment-success').popup("open");
-                $('textarea').removeClass("ui-input-text");
-                $('textarea').removeClass("ui-shadow-inset");
-                $('textarea').removeClass("ui-body-inherit");
-                $('textarea').removeClass("ui-corner-all");
-                $('textarea').removeClass("ui-textinput-autogrow");
-                $('button').removeClass("ui-btn");
-                $('button').removeClass("ui-shadow");
-                $('button').removeClass("ui-corner-all");
+            $('textarea').removeClass("ui-input-text");
+            $('textarea').removeClass("ui-shadow-inset");
+            $('textarea').removeClass("ui-body-inherit");
+            $('textarea').removeClass("ui-corner-all");
+            $('textarea').removeClass("ui-textinput-autogrow");
+            $('button').removeClass("ui-btn");
+            $('button').removeClass("ui-shadow");
+            $('button').removeClass("ui-corner-all");
         }, 6500);
-        
 
-        
+
+
     </script>
 
     <style>
@@ -176,13 +176,13 @@
         }
 
         .active, .dot:hover {
-    background-color: transparent;
-    }
-    #map_canvas {
-        width:100px; 
-        height:100px;
-    }
-       
+            background-color: transparent;
+        }
+
+        #map_canvas {
+            width: 100px;
+            height: 100px;
+        }
     </style>
 
 
@@ -248,23 +248,25 @@
                             <p style="font-size: 12px;
                             width: 100px;
                             margin-left: 20px;
-                            margin-top: -10px;">Height: 56 cm
+                            margin-top: -10px;">
+                                Height: 56 cm
                                 Weight: 25 kg
-                                Gender: Female</p>
-                            
+                                Gender: Female
+                            </p>
+
                             <div style="position: relative;">
                                 <p style="margin-left: 20px;
                                 font-size: 12px;
                                 font-weight: bold;">ABOUT</p>
                                 <p style="margin-left: 20px;font-size: 11px;margin-top: -14px;">Type: Goldern Retriever.</p>
                                 <div class="profile_about" style="margin-left: 20px;font-size: 11px;margin-top: -10px;">
-                                Age: 4.                       
+                                    Age: 4.
                                 </div>
                                 <a href="" style="margin-left: 20px;font-size: 10px;color: red;text-decoration: none;position: relative;top: -10px;" class="show_hide" data-content="toggle-text">Read More</a>
                             </div>
-                            
+
                         </div>
-                    </div>      
+                    </div>
                 </div>
 
                 <div style="background: linear-gradient(180deg, #3EB8D9 0%, rgba(255, 255, 255, 0) 100%), #6EDDFC;
@@ -287,7 +289,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     height: 100px;margin-bottom: 15px;">
-                    <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
+                        <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
                     position: relative;
                     left: 250px;
                     top: 5px;">
@@ -311,7 +313,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     height: 100px;margin-bottom: 15px;">
-                    <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
+                        <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
                     position: relative;
                     left: 250px;
                     top: 5px;">
@@ -335,7 +337,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     height: 100px;margin-bottom: 15px;">
-                     <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
+                        <img src="../images/icons8-tick-box-48.png" alt="" style="width: 25px;
                      position: relative;
                      left: 250px;
                      top: 5px;">
@@ -359,7 +361,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     height: 100px;margin-bottom: 15px;">
-                    <img id="inprogress-img" src="../images/icons8-services.gif" alt="" style="width: 25px;
+                        <img id="inprogress-img" src="../images/icons8-services.gif" alt="" style="width: 25px;
                     position: relative;
                     left: 250px;
                     top: 5px;">
@@ -383,7 +385,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                     height: 100px;">
-                     <img id="future-img" src="" alt="" style="width: 25px;
+                        <img id="future-img" src="" alt="" style="width: 25px;
                      position: relative;
                      left: 250px;
                      top: 5px;">
@@ -412,32 +414,32 @@
                 position: relative;
                 top: 10px;
                 padding-bottom: 10px;">
-                <p style="font-size: 18px; position: relative; top: 10px;
+                    <p style="font-size: 18px; position: relative; top: 10px;
                 padding: 10px 10px 10px 0px;">Live Location</p>
-                <div style="
+                    <div style="
                     background-color: white;
                     border-radius: 10px;
                     position: relative;
                     height: 200px;
                     ">
-                    <div id="map" style="position: relative;overflow: hidden; height: 200px;
+                        <div id="map" style="position: relative;overflow: hidden; height: 200px;
                     width: 290px;"></div>
-                </div>
-                <script>
-                    function initMap() {
-                        const myLatLng = { lat: -33.91721, lng: 151.2263 };
-                        const map = new google.maps.Map(document.getElementById("map"), {
-                            zoom: 18,
-                            center: myLatLng,
-                        });
-                        new google.maps.Marker({
-                            position: myLatLng,
-                            map,
-                            title: "I am here!",
-                        });
-                    }
-                    
-                </script>
+                    </div>
+                    <script>
+                        function initMap() {
+                            const myLatLng = { lat: -33.91721, lng: 151.2263 };
+                            const map = new google.maps.Map(document.getElementById("map"), {
+                                zoom: 18,
+                                center: myLatLng,
+                            });
+                            new google.maps.Marker({
+                                position: myLatLng,
+                                map,
+                                title: "I am here!",
+                            });
+                        }
+
+                    </script>
                 </div>
             </div>
 
