@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
@@ -85,10 +87,20 @@ function showSlides(n) {
 <body>
     
      <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-    <h1 id="headerText">WHAT WE OFFER</h1>    
-</div>
+     <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+        <a data-rel="back" id="back-btn" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" style="background-color: transparent;
+        border: none;
+        position: relative;
+        z-index: 1;
+        top: -8px;
+        left: -24px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+        <h1 id="headerText" style="position: relative;
+        top: -51px;font-family: 'Rajdhani', sans-serif;margin: 0px;left: 40px;
+      text-align: left;white-space: break-spaces;">W H A T   W E   O F F E R</h1>
+       <img src="../images/small-logo.png" alt="" style="position: relative;
+       top: -86px;
+       left: 307px;"> 
+    </div>
 <!-- End of header -->
 <div style="position: relative;
 top: -14px;">
