@@ -16,6 +16,11 @@
                 $('.sort-style').enhanceWithin();
             });
         }
+
+         $('#QRResult').click(function () {
+                $('#qrCode').popup("open");   
+            });
+
     });
 
 
@@ -24,7 +29,7 @@
 <div class="background-container" id="content_jobs">
     <div style="font-size: 9px;
     margin-top: 10px;">
-        <button style="width: 119px;
+        <button id="QRResult" style="width: 119px;
         height: 45px;
         display: inline;
         float: left;
@@ -123,6 +128,11 @@
             setTimeout(setAttributes, 1000);
 
         });
+
+        function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
 
     </script>
 </div>
