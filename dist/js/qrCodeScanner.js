@@ -19,12 +19,14 @@ let scanning = false;
 qrcode.callback = res => {
     if (res) {
         console.log(res);
-        outputData.innerText = res;
+        //outputData.innerText = res;
 
         var nameArr = res.split(';');
-        pet_type.innerText = nameArr[3];
-        pet_name.innerText = nameArr[4];
-        pet_amount.innerText = nameArr[2];
+        //pet_type.innerText = nameArr[3];
+        //pet_name.innerText = nameArr[4];
+        //pet_amount.innerText = nameArr[2];
+
+        outputData.innerText = 'Pet type = ' + nameArr[3] + ', Pet name = ' + nameArr[4] + ', Pet amount = ' + nameArr[2];
 
         scanning = false;
 
