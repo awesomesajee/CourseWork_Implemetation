@@ -10,12 +10,22 @@ const outputData = document.getElementById("outputData");
 const btnScanQR = document.getElementById("btn-scan-qr");
 const contentBody = document.getElementById("content_jobs");
 
+const pet_type = document.getElementById("pet_type");
+const pet_name = document.getElementById("pet_name");
+const pet_amount = document.getElementById("pet_amount");
+
 let scanning = false;
 
 qrcode.callback = res => {
     if (res) {
         console.log(res);
         outputData.innerText = res;
+
+        var nameArr = names.split(';');
+        pet_type.innerText = nameArr[3];
+        pet_name.innerText = nameArr[4];
+        pet_amount.innerText = nameArr[2];
+
         scanning = false;
 
         video.srcObject.getTracks().forEach(track => {
