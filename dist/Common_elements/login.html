@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
@@ -32,25 +34,37 @@
 <body>
     
     <!-- start of the header section -->
- <div data-role="header" data-theme="a" data-fullscreen="true">
-   <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-   <h1 id="headerText">OWNER LOGIN</h1>    
-</div>
+    <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+        <a data-rel="back" id="back-btn" class="ui-btn ui-icon-arrow-l ui-btn-icon-left" style="background-color: transparent;
+        border: none;
+        position: relative;
+        z-index: 1;
+        top: -8px;
+        left: -24px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+        <h1 id="headerText" style="position: relative;
+        top: -51px;font-family: 'Rajdhani', sans-serif;margin: 0px;left: 40px;
+      text-align: left;white-space: break-spaces;">O W N E R    L O G I N</h1> 
+    </div>
 <!-- End of header -->
 
 <div style="background-color: #90DBF0;
 height: 622px;
 width: 100%;">
-    <img src="" alt="">
+   <img src="../images/logo-big.png" alt="" style="    position: relative;
+   top: 23px;
+   left: 116px;
+   background-color: #90dbf0;
+   z-index: 1;">
     <div style="border: 3px solid white;
     width: 300px;
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
     padding: 10px;
-    height: 315px;">
+    height: 321px;position: relative;
+    top: -45px;">
     
-    <div style="margin-bottom: -20px;">
+    <div style="margin-bottom: -20px;margin-top: 20px;">
         <input type="text" name="fullname" id="full_name" value="Anne Marie" placeholder="Enter Your Name" style="position: relative;
         left: 38px;
         width: 240px;
@@ -91,9 +105,9 @@ width: 100%;">
     </div>
 
     </div>
-    <div style="width: 130px;
+    <div style="width: 140px;
     position: relative;
-    left: 245px;">
+    left: 236px;top: -39px;">
         <img src="../images/login owner-picture.png" alt="" style="width: 100%;
         height: 100%;">
 
