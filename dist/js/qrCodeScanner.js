@@ -21,7 +21,7 @@ qrcode.callback = res => {
         console.log(res);
         outputData.innerText = res;
 
-        var nameArr = names.split(';');
+        var nameArr = res.split(';');
         pet_type.innerText = nameArr[3];
         pet_name.innerText = nameArr[4];
         pet_amount.innerText = nameArr[2];
