@@ -13,6 +13,12 @@
     height: 100px;
     margin-bottom: 10px;
   }
+  #email-success .ui-input-text{
+    width: 240px;
+    margin-left: 28px;
+    margin-top: 14px;
+    border-radius: 4px;
+  }
 </style>
 <script>
     var textData = localStorage.getItem("favList");
@@ -91,6 +97,24 @@
         $('#email-btn').click(function() {
           $('#email-success').popup("open");         
         });
+
+        //click send email button
+        $('#send-email-btn').click(function() {
+          var inputemail = $("#email-send").val();  
+          var subject = "Favourite Email List";
+          
+          var body = "";
+          for (var i = 0; i < data.length; i++) {
+            var str = (i+1)+".Name: "+data[i]._nameUser+" Address: "+data[i]._useraddress+" Rating: "+data[i]._userRating+" Service: "+data[i]._userservice+" Price: "+data[i]._price+"                                                                                                                                                                                        ";
+            body = body + str;
+            //body = body.concat(str);
+          }
+          console.log(str);
+          console.log(body);
+          window.open('mailto:'+inputemail+'?subject='+subject+'&body='+body);  
+                
+        });
+
 
         var favList = [];
         var obj = null
@@ -186,8 +210,10 @@
     <!--email success pop up-->
     <!--favourites pop up-->
     <div data-role="popup" id="email-success" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="email-pop-up">
-      <p style="color:#5BD4F6;font-size: 25px;">Favourites emailed successfully!</p>
-      <img src="../images/heart icon.png" alt="" style="width: 55px;margin-top: 5px;">
+      <p style="color:#5BD4F6;font-size: 17px;margin-top: 16px;">Enter email address</p>
+      <input type="email" name="email" id="email-send" placeholder="Enter your email" />
+      <button id="send-email-btn" style="height: 48px; width: 230px;margin: auto;margin-top: 25px;background-color: #FF2548;" name="Favourites">
+        <img src="../images/email fav.png" alt="" style="margin-right: 5px;margin-top: 3px;" >SEND EMAIL</button>
     </div>
        
   </div>
