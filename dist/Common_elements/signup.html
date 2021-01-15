@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
@@ -23,33 +25,45 @@
 
 <body>
     <!-- start of the header section -->
- <div data-role="header" data-theme="a" data-fullscreen="true">
-    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-    <h1 id="headerText">OWNER REGISTRATION</h1>    
- </div>
+    <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+        <a data-rel="back" id="back-btn" class="ui-btn ui-btn-icon-left" style="background-color: transparent;
+        border: none;
+        position: relative;
+        z-index: 1;
+        top: 2px;
+        left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+        <h1 id="headerText" style="
+        font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
+      text-align: left;white-space: break-spaces;">O W N E R   R E G I S T R A T I O N</h1>
+     
+    </div>
  <!-- End of header -->
 
- <div style="background-color: #90DBF0;
+ <div style="background-color: #90DBF0;text-align: center;
 height: 622px;
 width: 100%;">
-    <img src="" alt="">
+    <img src="../images/logo-big.png" alt="" style="position: relative;
+    top: 13px;
+    background-color: #90dbf0;
+    z-index: 1;">
     <div style="border: 3px solid white;
     width: 300px;
     margin: auto;
     margin-top: 50px;
     border-radius: 10px;
     padding: 10px;
-    height: 500px;">
+    height: 500px;position: relative;
+    top: -55px;">
     
-    <div style="margin-bottom: -20px;">
+    <div style="margin-bottom: -20px;margin-top: 25px;">
         <input type="text" name="fullname" id="full_name" value="" placeholder="Enter Your Name" style="position: relative;
         left: 38px;
         width: 240px;
         height: 40px;"/>
         <img src="../images/username-txt-box.png" alt="" style="width: 26px;
         position: relative;
-        top: -40px;
-        left: 8px;">
+        top: -42px;
+        left: -114px;">
     </div>
     <div style="margin-bottom: -20px;">
         <input type="password" name="password" id="password" value="" placeholder="Enter Your Password" style="position: relative;
@@ -58,8 +72,8 @@ width: 100%;">
         height: 40px;"/>
         <img src="../images/password-txtbox.png" alt="" style="width: 26px;
         position: relative;
-        top: -40px;
-        left: 8px;">
+        top: -42px;
+        left: -114px;">
     </div>  
     <div style="margin-bottom: -20px;">
         <input type="email" name="password" id="email" value="" placeholder="Enter Email Address" style="position: relative;
@@ -68,8 +82,8 @@ width: 100%;">
         height: 40px;"/>
         <img src="../images/email-icon-reg.png" alt="" style="width: 26px;
         position: relative;
-        top: -40px;
-        left: 8px;">
+        top: -42px;
+        left: -114px;">
     </div> 
     <div style="margin-bottom: -20px;">
         <input type="number" name="password" id="phone-number" value="" placeholder="Enter Phone Number" style="position: relative;
@@ -78,18 +92,21 @@ width: 100%;">
         height: 40px;"/>
         <img src="../images/phone-icon-reg.png" alt="" style="width: 26px;
         position: relative;
-        top: -40px;
-        left: 8px;">
+        top: -42px;
+        left: -114px;">
     </div>  
     <div style="margin-bottom: 21px;">
         <Button id="owner-sign-up-btn" style="background-color: #FF8139;">SIGN UP</Button>
     </div>        
     <div>
         <Button style="background-color: #4285F4;">Sign up with Google</Button>
-        <img src="../images/icons8-google-64.png" alt="" style="width: 36px; position: relative;background-color: white; top: -46px;left: 3px;border: 1px solid white;border-radius: 5px;">
+        <img src="../images/icons8-google-64.png" alt="" style="width: 36px; position: relative;background-color: white; top: -46px;left: -116px;border: 1px solid white;border-radius: 5px;">
     </div>
     <div>
-        <img src="" alt="">
+        <img src="../images/sign-up-image.png" alt="" style="position: relative;
+        top: -34px;
+        width: 130px;
+        left: 71px;">
     </div>
 
 

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
@@ -52,10 +54,9 @@
   height: 100%;
   position: absolute;
   top: 80px;
-  left: 35px;
   background-image: url("../images/icons8-envelope-100.png");
   background-size: 250px 250px;
-  background-position: 30px 30px;
+  background-position: 51% 1%;
   background-repeat: no-repeat;
   opacity: 0.7;
       }
@@ -64,10 +65,20 @@
 </style>
 <body>
          <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-    <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-    <h1 id="headerText">EMAIL VERIFICATION</h1>    
-</div>
+         <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+          <a data-rel="back" id="back-btn" class="ui-btn ui-btn-icon-left" style="background-color: transparent;
+          border: none;
+          position: relative;
+          z-index: 1;
+          top: 2px;
+          left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+          <h1 id="headerText" style="
+          font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
+        text-align: left;white-space: break-spaces;">E M A I L   V E R I F I C A T I O N</h1>
+         <img src="../images/small-logo.png" alt="" style="position: relative;
+         top: -92%;
+         left: 83%"> 
+      </div>
 <!-- End of header -->
 
 <div style="text-align: center;" class="watermark">
