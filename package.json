@@ -2,10 +2,10 @@
   "name": "qr-code-scanner",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "../dist/Common_elements/jobs.html",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "start": "parcel ../dist/Common_elements/jobs.html --open",
+    "build": "parcel build ../dist/Common_elements/jobs.html"
   },
   "dependencies": {},
   "devDependencies": {
