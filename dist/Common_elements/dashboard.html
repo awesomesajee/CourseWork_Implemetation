@@ -86,10 +86,10 @@
         <p class="gammification_progress_text">15/<small style="color: #F1C40F;font-size: 16px;">25</small></p>
         <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
       </div>
-      <div style="display: inline; float: left; margin-top: 5px;">
+      <div style="display: inline; float: left; margin-top: 5px;" class="remain-div">
         <p style="color: white; font-size: 12px; margin: 0 auto;display: block;text-align: center;">Reward Progress</p>
-        <div style="display: block;text-align: center;">
-          <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">collect 10</p>
+        <div style="display: block;text-align: center;" class="reamin-div-before">
+          <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;" class="remain_points_text">collect 10</p>
           <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 16px;height: 16px;margin-bottom: 5px;"> 
           <p style="display: inline; color: white; font-size: 10px; margin-top: 0px;">to a REWARD!!!</p>
         </div>
@@ -131,88 +131,93 @@
      -->
 
  <script>
-    let map;
+     let map;
 
-  function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(-33.91722, 151.23064),
-    zoom: 16,
+function initMap() {
+map = new google.maps.Map(document.getElementById("map"), {
+  center: new google.maps.LatLng(-33.91722, 151.23064),
+  zoom: 16,
+});
+
+
+const iconBase =
+  "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
+const icons = {
+  info: {
+    icon: iconBase + "info-i_maps.png",
+  },
+};
+const features = [
+  {
+    name: "Annie Shirly",
+    position: new google.maps.LatLng(-33.91721, 151.2263),
+    type: "info",
+    colour: "lightblue",
+    time: 3.1,
+    profilepic: "../images/icon-map-1.jpg",
+    rating: 3.7,
+  },
+  {
+    name: "Anne Marie",
+    position: new google.maps.LatLng(-33.91639, 151.2282),
+    type: "info",
+    colour: "lightseagreen",
+    time: 2.5,
+    profilepic: "../images/marin.jpg",
+    rating: 3.5,
+  },
+  {
+    name: "Chris Brown",
+    position: new google.maps.LatLng(-33.9201, 151.2263),
+    type: "info",
+    colour: "violet",
+    time: 1.2,
+    profilepic: "../images/prof_pic2.jpg",
+    rating: "4.0",
+  },
+  {
+    name: "Kirti Sanon",
+    position: new google.maps.LatLng(-33.9203, 151.22917),
+    type: "info",
+    colour: "lightcoral",
+    time: 2.6,
+    profilepic: "../images/prof_pic.jpg",
+    rating: 2.5,
+  },
+  {
+    name: "Devon Dipp",//-33.91721, 151.2263
+    position: new google.maps.LatLng(-33.91759, 151.23021),
+    type: "info",
+    colour: "grey",
+    time: 4.1,
+    profilepic: "../images/prof_pic3.jpg",
+    rating: 1.5,
+  },
+];
+
+// Create markers.
+for (let i = 0; i < features.length; i++) {
+  const marker = new google.maps.Marker({
+    position: features[i].position,
+    //icon: icons[features[i].type].icon,
+    map: map,
   });
 
-
-  const iconBase =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-  const icons = {
-    info: {
-      icon: iconBase + "info-i_maps.png",
-    },
-  };
-  const features = [
-    {
-      name: "Annie Shirly",
-      position: new google.maps.LatLng(-33.91721, 151.2263),
-      type: "info",
-      colour: "lightblue",
-      time: 3.1,
-      profilepic: "../images/icon-map-1.jpg",
-    },
-    {
-      name: "Anne Marie",
-      position: new google.maps.LatLng(-33.91539, 151.2282),
-      type: "info",
-      colour: "lightseagreen",
-      time: 2.5,
-      profilepic: "../images/marin.jpg",
-    },
-    {
-      name: "Chris Brown",
-      position: new google.maps.LatLng(-33.91747, 151.22912),
-      type: "info",
-      colour: "violet",
-      time: 1.2,
-      profilepic: "../images/prof_pic2.jpg",
-    },
-    {
-      name: "Kirti Sanon",
-      position: new google.maps.LatLng(-33.9191, 151.22907),
-      type: "info",
-      colour: "lightcoral",
-      time: 2.6,
-      profilepic: "../images/prof_pic.jpg",
-    },
-    {
-      name: "Devon Dipp",
-      position: new google.maps.LatLng(-33.91725, 151.23011),
-      type: "info",
-      colour: "grey",
-      time: 4.1,
-      profilepic: "../images/prof_pic3.jpg",
-    },
-  ];
-
-  // Create markers.
-  for (let i = 0; i < features.length; i++) {
-    const marker = new google.maps.Marker({
-      position: features[i].position,
-      //icon: icons[features[i].type].icon,
-      map: map,
+  //$('.gm-style-iw .gm-style-iw-c').css('background-color', features[i].colour);
+ // $('.gm-style-iw-c').css('background-color', features[i].colour);
+//  $('.gm-style-iw').css({"background-color":features[i].colour});
+//  $('.gm-style-iw-c').css({"background-color":features[i].colour});
+ 
+  var infowindow = new google.maps.InfoWindow({
+      content: 
+      '<div class="img-map"><img style="border-radius:50%; height: 45px; width: 45px; padding: 0;" src='+features[i].profilepic+'><div style="padding: 0px; float:left; backgroud-color:black; float: right">'+features[i].name+'<br/><i class="fa fa-star" aria-hidden="true"></i> '+features[i].rating+'<br/><i class="fa fa-home" aria-hidden="true"></i> '+features[i].time+'h</div></div>'
     });
-
-    //$('.gm-style-iw .gm-style-iw-c').css('background-color', features[i].colour);
-   // $('.gm-style-iw-c').css('background-color', features[i].colour);
-  //  $('.gm-style-iw').css({"background-color":features[i].colour});
-  //  $('.gm-style-iw-c').css({"background-color":features[i].colour});
-   
-    var infowindow = new google.maps.InfoWindow({
-        content: 
-        '<div class="img-map"><img style="border-radius:50%; height: 45px; width: 45px; padding: 0;" src='+features[i].profilepic+'><div style="padding: 0px; float:left; backgroud-color:black; float: right">'+features[i].name+'<br/><i class="fa fa-star" aria-hidden="true"></i> 5<br/><i class="fa fa-home" aria-hidden="true"></i> '+features[i].time+'h</div></div>'
-      });
-    //   height: 45px;
-    // width: 45px;
-    // padding: 0;
-    // margin: 0;
-      infowindow.open(map,marker);
-  }
+  //   height: 45px;
+  // width: 45px;
+  // padding: 0;
+  // margin: 0;
+    infowindow.open(map,marker);
+}
   //width:65px;
   //map searchbox
   var input = document.getElementById("pac-input");
@@ -273,9 +278,9 @@
   <div style="display: grid;
   grid-template-columns: 1fr 3fr;
   width: 100%;margin-top: -8px;">
-    <p style="margin-left: auto;
+    <p style="margin-left: auto;font-size: 12px;
     margin-right: auto;">Sort:</p>
-    <div data-role="controlgroup" data-type="horizontal" style="font-size: 13px;width: 100%;">
+    <div data-role="controlgroup" data-type="horizontal" style="font-size: 10px;width: 100%;">
       <a href="#Page2" data-transition="flip" class="ui-btn" id="name_btn" style="width: 30%;border-right: 1px solid white;">NAME</a>
       <a href="#Page2" data-transition="flip" class="ui-btn" id="price_btn" style="width: 30%;border-right: 1px solid white;">PRICE</a>
       <a href="#Page2" data-transition="flip" class="ui-btn" id="rating_btn" style="width: 30%;">RATING</a>
@@ -308,8 +313,8 @@
             profilepic: "../images/marin.jpg",
             animalImagePath: "../images/cat_image.png",
             service: "Cat Grooming",
-            price: "$ 15.00/hr",
-            points: "1.5"
+            price: "$ 40.00/hr",
+            points: "4"
           },
           {
             name: "Chris Brown",
@@ -338,8 +343,8 @@
             profilepic: "../images/prof_pic3.jpg",
             animalImagePath: "../images/cat_image.png",
             service: "Cat Walking",
-            price: "$ 8.00/hr",
-            points: "0.8"
+            price: "$ 15.00/hr",
+            points: "1"
           }
         ];
         function createCallback( i ){
@@ -444,16 +449,21 @@
     });
 
     });
-    var textData = localStorage.getItem("userData");
-    var data = JSON.parse(textData);
-
+    var textData = localStorage.getItem("point_array");
+    var data_points = JSON.parse(textData);
+    var total_points = 0
+    for(var i in data_points) {
+      total_points += data_points[i] << 0;
+    }
+    console.log(total_points);
     var progress_width = $('.gamification_progress_bar_full').width();
 
-    progress_width =  progress_width + (parseFloat(data.points)*12);
+    progress_width =  progress_width + (parseFloat(total_points)*18);
     var new_width = progress_width.toString();
     $(".gamification_progress_bar_full").css("width", new_width);
-    var updated_points = parseFloat($('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').text().substring(0, 2)) + parseFloat(data.points);
+    var updated_points = parseFloat($('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').text().substring(0, 2)) + parseFloat(total_points);
     $('.background-container .gamification_progress_bar .before-text').find('p.gammification_progress_text').html(updated_points.toString()+"/25");
+    $('.background-container .gamification_progress_bar .remain-div .reamin-div-before').find('p.remain_points_text').html("collect "+(25-updated_points).toString());
   </script>
 
   </div>

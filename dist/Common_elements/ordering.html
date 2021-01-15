@@ -588,7 +588,15 @@
 	  
 
         $('#open-pop-up').on('click', function(e) {
-          
+          var poi_point = 0; 
+          var point_all = []
+
+          var textData = localStorage.getItem("userData");
+          var data = JSON.parse(textData);
+          poi_point = data.points;
+          point_all = JSON.parse(localStorage.getItem("point_array") || '[]');
+          point_all.push(poi_point);
+          localStorage.setItem("point_array", JSON.stringify(point_all));
           //get value card or cash
           var radioValue = $("input[name='paymentM']:checked").val();
 
