@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
+    
     <script>
 
         $(document).ready(function () {
@@ -99,7 +100,6 @@
         $(document).ready(function () {
             $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
                 $('#userContent').enhanceWithin();
-
             });
             $('a').click(function (e) {
                 e.preventDefault();
@@ -134,6 +134,7 @@
                 $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
                 $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
                 $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+                $('.poi-style').css({"margin-left": "auto","margin-right":"auto", "margin-top": "3%"});
             }
             setTimeout(loadUserData, 500);
 
@@ -220,7 +221,8 @@
   <div role="main" class="ui-content" id="content">
     <div  class="background-container">
 
-      <div id="userContent" style="margin-top: 10px;"></div>
+      <div id="userContent" style="display: grid;
+      grid-template-columns: 1fr;width: 100%;"></div>
 
   
 
@@ -230,7 +232,7 @@
     <ul id="progressbar" style="padding-left: 18px; font-family: 'Roboto'; margin-bottom: 10px">
       <li class="active">Booking Details</li>
       <li>Payment Details</li>
-      <li>Order Completion</li>
+      <li>QR Code</li>
     </ul>
     <!-- fieldsets -->
     <fieldset id="fieldset1" style="padding-top: 6px">

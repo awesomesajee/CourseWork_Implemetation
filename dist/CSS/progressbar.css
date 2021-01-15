@@ -63,8 +63,7 @@
     padding: 15px;
 }
 #progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
+    overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
 }
@@ -109,9 +108,10 @@
 }
 
 #msform {
-	width: 400px;
+	width: 100%;
 	margin: 50px auto;
-	position: relative;
+    position: relative;
+    margin-top: -2%;
 }
 #msform fieldset {
 	background: white;
@@ -119,7 +119,7 @@
 	padding: 20px 30px;
 	box-sizing: border-box;
     width: 90%;
-    margin-left: 3px;
+    margin-left: 5%;
 	
 	/*stacking fieldsets above each other*/
 	position: relative;
