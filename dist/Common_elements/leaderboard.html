@@ -1,3 +1,19 @@
+
+<style>
+    @-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+.vert-move {
+    -webkit-animation: mover 1s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+    
+}
+</style>
 <script>
     $(document).ready(function () {
       for (var i = 0; i < 5; i++) {
@@ -15,7 +31,6 @@
 
 <div class="background-container">
     <div id="leaderboard-lits" class="list_users">
-
 
     </div>
     <script>
@@ -75,9 +90,43 @@
                     }
             }
             setTimeout(setAttributes, 1000);
+
+    
+
     
         });
+       
     
+    </script>
+
+    <script>
+        setTimeout(function () {
+            var ascendingname = false;
+    
+            var $divs = $("div.sort-style");
+    
+            var alphabeticallyOrderedDivs = $divs.sort(function(a,b) {
+
+                //console.log($(a).find("p.xpnumber").text().replace(/[^0-9.]/g, ""));
+                return (ascendingname == parseInt($(b).find("p.xpnumber").text().replace(/[^0-9.]/g, "")) > parseInt($(a).find("p.xpnumber").text().replace(/[^0-9.]/g, ""))) ? 1 : -1;
+      });
+     
+      $("#leaderboard-lits").html(alphabeticallyOrderedDivs);
+      var elemHeight = $(".sort-style").height();
+      var listHeight = $(".sort-style").innerHeight();
+      var moveUp = listHeight - (listHeight - elemTop);
+      var elemTop = $(".sort-style").position().top;
+      var moveDown = elemHeight;
+      $(".name_user").each(function() {
+        if ($(this).text() === "Kirti Sanon") {
+            $(this).parent().parent().css({"background":"#FFEB38"})
+            $(this).parent().parent().addClass('vert-move');
+        }
+       
+    });
+ 
+        }, 4000);
+   
     </script>
 
 </div>
