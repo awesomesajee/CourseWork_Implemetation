@@ -375,15 +375,27 @@ function readURL(input) {
             <p style="text-align: center;margin-top: -10px;">Happy Paws Balance</p>
             <script type="text/javascript">
                 $(".pointsbar li:nth-child(4)").addClass('before-pro');
-                var textData = localStorage.getItem("userData");
-                var data = JSON.parse(textData);
-                var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(data.points);
+                var textData = localStorage.getItem("point_array");
+                var data_points = JSON.parse(textData);
+                var total_points = 0
+                for(var i in data_points) {
+                    total_points += data_points[i] << 0;
+                }
+                var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(total_points);
                 $('.rewards .div-before').find('div.div-within').html(received_points);
                 if(textData != null)
                 {
                     $(".pointsbar li:nth-child(4)").removeClass('before-pro');
                     $(".pointsbar li:nth-child(4)").addClass('new-pro');
                 }
+
+                $('.redeem_btn_points').click(function() {
+                $('#redeems').popup("open");         
+                });
+
+                $('#bok').click(function() {
+                    window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';     
+                });
                 
             </script>
             <div class="progress" style="width: 100%;" data-value="10">
@@ -435,7 +447,7 @@ function readURL(input) {
                         <p class="gammification_progress_text" style="color: black !important;">25</p>
                         <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
                     </div>
-                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                    <button class="redeem_btn_points" style="width: 150px;margin: auto;">REDEEM</button>
                 </div>
 
                 <div style="border: 7px solid white;background-color: #C5F0FC;border-radius: 35px;width: 275px;margin: auto;height: 275px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-top: 20px;">
@@ -445,12 +457,17 @@ function readURL(input) {
                         <p class="gammification_progress_text" style="color: black !important;">50</p>
                         <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 5px;">
                     </div>
-                    <button style="width: 150px;margin: auto;">REDEEM</button>
+                    <button class="redeem_btn_points" style="width: 150px;margin: auto;">REDEEM</button>
                 </div>
             </div>
 
         </div>
-
+         <!--favourites pop up-->
+    <div data-role="popup" id="redeems" style="width: 300px;height: 230px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
+        <p style="color:#5BD4F6;font-size: 25px;">Reward was Redeemed</p>
+        <p>Please click below button to enjoy your free service</p>
+        <button id="bok" style="display: inline;width: 120px;color: white;background-color: #FF8139 !important">BOOK</button>
+      </div>
     </div>
     
 

@@ -98,8 +98,6 @@
             _animal: animal,
             _userpoints: userpoints
           }
-          console.log(poi_details);
-          console.log(favList);
           favList = JSON.parse(localStorage.getItem("favList") || '[]');
           favList.push(poi_details);
           localStorage.setItem("favList", JSON.stringify(favList));
@@ -136,6 +134,9 @@
           e.preventDefault();
           $('#user-reviews-services').load('https://pet-temp-host.web.app/Common_elements/reviews.html');
           
+        });
+        $('#bok').click(function() {
+          window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';     
         });
       });
 
@@ -201,7 +202,7 @@
           width: 100%;
           font-size: 12px;
           margin-left: 10%">
-            <button style="display: inline;width: 120px;color: white;background-color: #FF8139 !important">BOOK</button>
+            <button id="bok" style="display: inline;width: 120px;color: white;background-color: #FF8139 !important">BOOK</button>
             <button id="view-bg-btn" style="width: 120px;display: inline">VIEW BADGES</button>
           </div>
         </div>
