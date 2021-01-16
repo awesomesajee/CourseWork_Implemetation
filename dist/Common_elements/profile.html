@@ -78,6 +78,11 @@ $('#cancel-pet-btn').click(function(e) {
 $('#sign-out-btn').click(function(){
    window.location.href='https://pet-temp-host.web.app/Common_elements/login.html';
     });
+
+    $('#editable').click(function(){
+    var $div=$('#aboutMe'), isEditable=$div.is('.editable');
+    $('#aboutMe').prop('contenteditable',!isEditable).toggleClass('editable')
+});
    
 
 function readURL(input) {
@@ -100,10 +105,17 @@ function readURL(input) {
 
             }
         }
+        $('#close_popup').click(function () {
+                $('#add-pet').popup("close");
+            });
 
 </script>
 
 <style>
+.editable
+{ 
+    background:#EAEAEA
+}
 .fileinput-button {
   position: relative;
   overflow: hidden;
@@ -132,9 +144,11 @@ function readURL(input) {
 
 </style>
 
-<div data-role="popup" id="add-pet" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;" class="succes-pop-up ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
-    <div style="position: absolute;width: 300px;height: 25px;left: -1px;top: -1px;background: #14C2F3;border-radius: 0px;">
-        <p style="color: white; margin: 0;">Add New Pet</p>
+<div data-role="popup" id="add-pet" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:5px;" class="succes-pop-up ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
+    <div style="position: absolute;width: 300px;height: 25px;left: -1px;top: -1px;background: #5BD4F6;border-radius: 5px;">
+        <p style="color: white; margin: 0;left: -91px;top: 1px;
+        position: relative;
+        font-size: 14px;">Add New Pet</p>
         <img id="close_popup" src="../images/close_btn.png" alt="" style="width: 20px;position: absolute;left: 92%;top: 10%;">
     </div>
     <div style="position: absolute;width: 270.5px;height: 276.01px;left: 14px;top: 68px;/* background: #F5F4F4; *//* border-radius: 10px; */">
@@ -197,6 +211,7 @@ function readURL(input) {
                 <img id="profile_pic_image" src="../images/caretaker_profile_picture.jpg" alt="" style="max-width: 100%;height: 200px;">
             </div>
             <div style="display: inline;float: left;width: 60%;height: 100%;background-color: white;">
+                <img id="editable" src="../images/edit-profile-icon.png" style="height:20px;width:20px;position:absolute;left: 290px;top: 17px;">
                 <p style="margin-left: 20px;font-weight: bold;">Sarah Hyland</p>
                 <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: -14px;left: 19px;">
                     <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
@@ -204,7 +219,7 @@ function readURL(input) {
                 </div>
                 <div style="position: relative;top: -25px;">
                     <p style="margin-left: 20px;font-size: 14px;">ABOUT</p>
-                    <p style="margin-left: 20px;font-size: 11px;margin-top: -10px;">I have a beautiful black cat.</p>
+                    <p id="aboutMe" style="margin-left: 20px;font-size: 11px;margin-top: -10px;">I have a beautiful black cat.</p>
                     <a href="" style="margin-left: 20px;font-size: 10px;color: red;text-decoration: none;position: relative;top: -10px;">Read More</a>
                 </div>
                 <button id="view-fav-btn" name="Favourites" style="width: 165px;font-size: 12px;position: relative;top: -32px;background-color: #FF2548;border: none;left: 14px;"><img src="../images/heart icon.png" alt="" style="width: 25px;
