@@ -297,11 +297,11 @@ img {vertical-align: middle;}
 
 .myCheckbox{
   position: relative;
-    top: -80px;
+    top: -276px;
     left: 30px;
     width: 30px;
     height: 30px;
-    opacity: 0.1;
+    opacity: 0.01;
 }
 .sort-style{
   width: 322px;

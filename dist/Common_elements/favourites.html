@@ -19,6 +19,29 @@
     margin-top: 14px;
     border-radius: 4px;
   }
+ 
+  input[type=checkbox]+ label{
+    position: relative;
+    top: -100px;
+    left: 1px; 
+    height: 70px;
+    width: 70px;
+    margin-left: 10px;
+    margin-top: -191px;
+    
+  }
+  input[type=checkbox]:checked + label{
+    background:url("../images/right-icon.png") no-repeat;
+    position: relative;
+    opacity: 0.8;
+    border-radius: 60%;
+    background-size: 100%;
+    width: 75px!important;
+    height: 75px!important;
+    left: -1px!important;
+    top: -343px !important;
+    transform: scale(0.86) !important;
+  }
 </style>
 <script>
     var textData = localStorage.getItem("favList");
@@ -75,6 +98,9 @@
                 $('#'+id+' .poi-style .poi-animal').find('img.animal').attr("src", data[i].animalImagePath);
                 $('#'+id+' .poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data[i]._userpoints);
                 $('#'+id).append('<input type="checkbox" name="myCheckbox" class="myCheckbox"/>');
+                $('#'+id+' .myCheckbox').attr('id','checkbox_'+i);
+                $('#'+id).append('<label style="position: relative;top: -100px;left: 1px; width: 30px; height: 30px;height: 70px;width: 70px;margin-top: 15px;margin-left: 10px;"></label>');
+                $('#'+id+' label').attr('for','checkbox_'+i);
                 
                 }
 
@@ -126,7 +152,7 @@
             
             window.open('mailto:'+inputemail+'?subject='+subject+'&body='+body);
           } 
-        
+          $('#email-success').popup("close");
         });
         //validting email address
         function IsEmail(email) {
