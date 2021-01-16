@@ -230,14 +230,13 @@
   .ui-input-text{
     background: #FFFFFF;
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
     margin-bottom: 20px;
   }
   #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-label{
     margin-top: 4px;
   }
   #fieldset1 .ui-controlgroup-horizontal .ui-controlgroup-label{
-    margin-top: 30px;
+    margin-top: 3px;
   }
   #fieldset2 .ui-controlgroup-horizontal{
     margin-bottom: -6px!important;
@@ -245,6 +244,9 @@
   #fieldset2 .ui-controlgroup-horizontal .ui-controlgroup-controls{
     top: -6px !important;
     left: 0px !important;
+  }
+  #fieldset1 .ui-select{
+    margin-top: 7px;
   }
 </style>
 
@@ -295,25 +297,25 @@
       <h2 class="fs-title">Booking Details</h2>
       <h3 class="fs-subtitle">Step 1</h3>
       <label for="location" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000;">Location</label>
-      <input type="text" name="email" placeholder="Select your location" />
-      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
+      <input type="text" id="location" name="location" placeholder="Select your location" />
+      <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -15px;">
         <legend class="labelstyle">Schedule</legend>
         <label for="rb4">Once</label>
         <input type="radio" name="schedule" id="rb4" value="Once"/>
         <label for="rb5">Recurring</label>
         <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 11px;">Service</label>
-        <select name="speed" id="speed">
+      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 28px;">Service</label>
+        <select name="speed" id="caretaker-service">
           <option value="Dog Walking">Dog Walking</option>
           <option value="Dog Grooming">Dog Grooming</option>
           <option value="Cat Walking" selected="selected">Cat Walking</option>
           <option value="Cat Grooming">Cat Grooming</option>
         </select>
         <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
-        <input type="datetime-local" name="pickup" placeholder="Select Pickup date/time" />
+        <input type="datetime-local" id="pickup" name="pickup" placeholder="Select Pickup date/time" />
         <label for="dropoff" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
-        <input type="datetime-local" name="dropoff" placeholder="Select Dropoff date/time" />
+        <input type="datetime-local" id="dropoff" name="dropoff" placeholder="Select Dropoff date/time" />
         <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
     <fieldset id="fieldset2">
@@ -630,8 +632,28 @@
             }
           });
 	  
-
-        $('#open-pop-up').on('click', function(e) {
+          var b_data = [];
+          function setAttributes() {
+             b_data = [
+              {
+                name: "Sarah Hyland",
+                address: $("#location").val(),
+                schedule: $("input[name='schedule']:checked").val(),
+                service: $("#caretaker-service").val(),
+                pickup_date: $("#pickup").val().toString(),
+                dropoff_date: $("#dropoff").val().toString(),
+                petname: "Max",
+                breed: "Golden Retriever",
+                height: "56cm",
+                weight: "25 kg",
+                gender: "female",
+                grandTotal: $( "#span-total" ).text()
+              }
+            ];
+          } 
+          
+          $('#open-pop-up').on('click', function(e) {
+       
           var poi_point_minus = parseInt($('#redeem-txt').val()); 
           var minus_point_all = []
           minus_point_all = JSON.parse(localStorage.getItem("minus_point_array") || '[]');
@@ -666,6 +688,9 @@
           else{
             $('#payment-success').popup("open");
           }
+          setAttributes();
+              //storing the booking details to localstorage
+              localStorage.setItem("bookData", JSON.stringify(b_data));
           $("#order-total").text($("#span-total").text());
           e.preventDefault();
         });
