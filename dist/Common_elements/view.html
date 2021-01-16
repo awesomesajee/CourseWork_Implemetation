@@ -12,17 +12,51 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
     <script>
       $(document).ready(function() {
-        $('a').click(function(e) {
+        var header_text = "";
+   $('.navigation').click(function(e) {
           e.preventDefault();
-          $('#content').load($(this).attr('href'));
-          var header_text = e.target.name;
+          location.hash=$(this).attr('href').match(/(^.*)\./)[1];
+          header_text = e.target.name;
           $('#headerText').html(header_text);
-        })
+          localStorage.setItem("header", e.target.name);
+			return false          
+        });
+        
+		function hashChange(){
+      var page=location.hash.slice(1)
+			if (page!=""){
+        $('#content').load(page+".html");
+        var navLinks = $('.navigation').toArray();
+        for(i=0; i<navLinks.length; i++) {
+          if("https://pet-temp-host.web.app/Common_elements/"+page+".html" == navLinks[i].href){
+            $('#headerText').html(navLinks[i].name);
+          }
+        }
+          
+
+          
+        
+				
+			
+    }
+  }
+    if ("onhashchange" in window){ // cool browser
+			$(window).on('hashchange',hashChange).trigger('hashchange')
+		}else{ // lame browser
+			var lastHash=''
+			setInterval(function(){
+				if (lastHash!=location.hash)
+					hashChange()
+				lastHash=location.hash
+			},100)
+		}    
 
         function loadUserData() {
           var textData = localStorage.getItem("userData");
@@ -64,8 +98,6 @@
             _animal: animal,
             _userpoints: userpoints
           }
-          console.log(poi_details);
-          console.log(favList);
           favList = JSON.parse(localStorage.getItem("favList") || '[]');
           favList.push(poi_details);
           localStorage.setItem("favList", JSON.stringify(favList));
@@ -103,6 +135,9 @@
           $('#user-reviews-services').load('https://pet-temp-host.web.app/Common_elements/reviews.html');
           
         });
+        $('#bok').click(function() {
+          window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';     
+        });
       });
 
       
@@ -115,56 +150,68 @@
 
 <body>
   <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">C A R E T A K E R  P R O F I L E</h1>
-      
-  </div>
+  <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+    <a data-rel="back" id="back-btn" class="ui-btn ui-btn-icon-left" style="background-color: transparent;
+    border: none;
+    position: relative;
+    z-index: 1;
+    top: 2px;
+    left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+    <h1 id="headerText" style="
+    font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
+  text-align: left;white-space: break-spaces;">C A R E T A K E R  P R O F I L E</h1>
+   <img src="../images/small-logo.png" alt="" style="position: relative;
+   top: -92%;
+   left: 83%"> 
+</div>
   <!-- End of header -->
 
   <!-- start of the content. Dynamically load your component here with footer navigation -->
   <div role="main" class="ui-content" id="content">
-    <div  class="background-container">
-      <div style="background-color: #9e9e9e;width: 365px;height: 200px;display: block;margin-top: -20px;" class="wrap">
-        <div style="position: relative;top: 105px;left: 156px;">
+    <div  class="background-container" style="width: 100%;">
+      <div style="background-color: #F4ABBE;height: 200px;display: block;margin-top: -20px;" class="wrap">
+        <div style="position: relative;top: 105px;left: 42%;">
           <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: 5px;"><img src="../images/phone-call.svg" alt="" style="width: 30px;"></button>
           <button style="background-color: transparent;border: none;box-shadow: none;display: block;position: relative;top: -15px;"><img src="../images/chat.svg" alt="" style="width: 30px;"></button>
         </div>
         <div style="position: relative;top: -125px;" class="style-details">
-        <p style="position: relative;left: 200px;top: 55px;font-size: 16px;font-weight: bold;color: white;text-shadow: 1px 1px grey;" class="view-name-poi">Anne Shirly</p>
-        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: 40px;left: 200px;" class="poi-rating">
+        <p style="position: relative;left: 54%;top: 55px;font-size: 16px;font-weight: bold;color: white;text-shadow: 1px 1px grey;" class="view-name-poi">Anne Shirly</p>
+        <div style="display: inline;border: 2px solid #FFEB38;padding: 1px;border-radius: 10px;background-color: black;color: white;position: relative;top: 40px;left: 54%" class="poi-rating">
           <img src="../images/star.png" alt="" style="width: 45px;margin-left: -13px;margin-bottom: 4px;padding: 5px;">
           <p style="display: inline;margin-left: -20px;padding: 3px;position: relative;font-size: 10px;top: -3px;margin-right: 2px;" class="poi-rating-para">3.5</p>
         </div>
-        <a href="" style="position: relative;left: 205px;top: 37px;font-size: 9px;text-decoration: underline;color: black;">32 Reviews</a>
-        <div style="position: relative;left: 200px;top: 30px;margin-top: 8px;">
+        <a href="" style="position: relative;left: 56%;top: 37px;font-size: 9px;text-decoration: underline;color: black;">32 Reviews</a>
+        <div style="position: relative;left: 54%;top: 30px;margin-top: 8px;">
           <img src="../images/dog_image.png" alt="" style="width: 35px;">
           <img src="../images/cat_image.png" alt="" style="width: 30px;margin-left: -2px;">
         </div>
         <div class="address-div" style="margin-top: 8px;">
-          <img src="../images/location-pin.png" alt="" style="width: 25px;position: relative;left: 200px;top: 25px;">
-          <p style="font-size: 10px;width: 80px;position: relative;left: 230px;top: -10px;color: black;" class="poi-view-address">No: 116,School Lane,California, USA</p>
+          <img src="../images/location-pin.png" alt="" style="width: 25px;position: relative;left: 54%;top: 25px;">
+          <p style="font-size: 10px;width: 80px;position: relative;left: 61%;top: -10px;color: black;" class="poi-view-address">No: 116,School Lane,California, USA</p>
         </div>
       </div>
       </div>
-      <div style="width: 175px;height: 450px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 8px;position: relative;top: -165px;left: 10px;" class="prof-pic-div">
+      <div style="width: 45%;height: 451px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);border-radius: 8px;position: relative;top: -165px;left:5%;" class="prof-pic-div">
         <div style="width: 100%;" class="div-prof-small"><img src="../images/prof_pic.jpg" alt="" style="width: 100%;border-radius: 10px;" class="prof_pic_view_poi"></div>
         <button id="add-fav-btn" style="background-color: transparent;box-shadow: none;border: none;top: -40px;"><img src="../images/icons8-heart-50.png" alt="" style="width: 40px;"></button>        
-        <div style="width: 150px;margin: auto;margin-top: -60px;">
+        <div style="width: 86%;margin: auto;margin-top: -60px;">
           <p style="font-weight: bold;">ABOUT</p>
           <p style="font-size: 10px;margin-top: -10px;">I have a beautiful black cat. It needs lots of care and attention. My best friend is my cat the dolly.</p>
           <a href="" style="font-size: 10px;position: relative;top: -10px;color: red;text-decoration: none;">Read More</a>
-          <div style="margin-top: -10px;">
-            <button style="color: white;background-color: #FF8139 !important;margin-bottom:10px">BOOK</button>
-            <button id="view-bg-btn">VIEW BADGES</button>
+          <div style="margin-top: -4%;
+          width: 100%;
+          font-size: 12px;
+          margin-left: 10%">
+            <button id="bok" style="display: inline;width: 120px;color: white;background-color: #FF8139 !important">BOOK</button>
+            <button id="view-bg-btn" style="width: 120px;display: inline">VIEW BADGES</button>
           </div>
         </div>
       </div>
       <div style="margin-top: 60px;">
-        <div style="width: 160px;border:2px solid #03D13C;position: relative;top: -495px;left: 198px;padding: 3px;border-radius: 5px;">
+        <div style="width: 42%;border:2px solid #03D13C;position: relative;top: -495px;left: 53%;padding: 3px;border-radius: 5px;margin-top: -2%;">
           <p style="font-size: 12px;margin-top: 2px;">Documents</p>
           <hr style="border: 1px solid #03D13C;margin-top: -8px;">
-          <table style="font-size: 10px;margin-top: -13px;">
+          <table style="font-size: 10px;margin-top: -13px;width: 100%;">
             <tr>
               <td>Identification Certificate</td>
               <td><img src="../images/right-icon.png" alt="" style="width: 15px;margin-left: 4px;"></td>
@@ -184,10 +231,10 @@
           </table>
 
         </div>
-        <div style="width: 160px;height: 129px;margin-top: 14px;border:2px solid #0159A0;position: relative;top: -495px;left: 198px;padding: 3px;border-radius: 5px;" class="services-table">
+        <div style="width: 42%;height: 129px;margin-top: 14px;border:2px solid #0159A0;position: relative;top: -495px;left: 53%;padding: 3px;border-radius: 5px;margin-top: 2%;" class="services-table">
           <p style="font-size: 12px;margin-top: 2px;">Services</p>
           <hr style="border: 1px solid #0159A0;margin-top: -8px;">
-          <div style="top: -16px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;margin-bottom: 7px;" class="price_array">
+          <div style="top: -16px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;width: 100%;padding: 5px;margin-bottom: 7px;" class="price_array">
             <p style="display: inline;margin-right: 10px;" class="poi-service">Dog Walking</p>
             <p style="display: inline;" class="price_text">$ 10.00/hr</p>
             <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
@@ -195,7 +242,7 @@
               <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 15px;height: 15px;margin-bottom: 2px;">
             </div>
           </div>
-          <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;left: 3px;padding: 5px;height: 42px;" class="price_array">
+          <div style="top: -19px;position: relative;background-color: #0159A0;color: white;font-size: 9px;border: 1px solid #0159A0;width: 144px;text-align: center;width: 100%;padding: 5px;height: 42px;" class="price_array">
             <p style="display: inline;margin-right: 10px;">Dog Grooming</p>
             <p style="display: inline;">$ 10.00/hr</p>
             <div style="margin-top: 10px;text-align: center;margin: auto;display: inline;position: relative;left: 45px;top: 3px;" class="happy-pow">
@@ -211,10 +258,10 @@
         </div>
         <div style="position: relative;
         top: -458px;
-        width: 375px;
+        width: 100%;
         text-align: center;
-        margin-left: -1px;">
-          <div style="width: 185px;
+        margin-left: 1px;margin-top: 0%;">
+          <div style="width: 50%;
           border: 4px solid #6C6666;
           box-sizing: border-box;
           filter: drop-shadow(2px 0px 4px rgba(0, 0, 0, 0.25));
@@ -225,7 +272,7 @@
             box-shadow: none;
             color: #6C6666;">REVIEWS</button>
           </div>
-          <div style="width: 185px;
+          <div style="width: 50%;
           border: 4px solid #6C6666;
           box-sizing: border-box;
           filter: drop-shadow(2px 0px 4px rgba(0, 0, 0, 0.25));
@@ -300,22 +347,22 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+    <a name="N E A R   B Y   C A R E T A K E R S" href="dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search navigation tile">
         <div class="nav_fonts">Search</div>
       </a>
-      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+      <a name="M Y  P R O F I L E" href="profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile navigation tile">
         <div class="nav_fonts">Profile</div>
       </a>
-      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+      <a name="P E T  S T A T U S" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus navigation tile">
         <div class="nav_fonts">Pet Status</div>
       </a>
-      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+      <a name="M Y  F A V O U R I T E S" href="favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites navigation tile">
         <div class="nav_fonts">Favourites</div>
       </a>
-      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+      <a name="B O O K I N G   H I S T O R Y" href="bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory navigation tile">
         <div class="nav_fonts">Book History</div>
       </a>
-      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+      <a name="H E L P" href="help.html" class="ui-btn ui-btn-icon-top ui-icon-help navigation tile">
         <div class="nav_fonts">Help</div>
       </a>
 </nav>

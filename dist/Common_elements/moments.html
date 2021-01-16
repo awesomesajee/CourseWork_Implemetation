@@ -1,31 +1,36 @@
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <div class="background-container">
-  <div>
-    <input type="text" name="fname" id="full_name" value="" placeholder="Post updates about pets" style="    background: #FFFFFF;
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    border: none;
-    width: 342px;
-    position: relative;
-    left: 12px;
-    height: 35px;
-    top: 21px;"/>
-    <img src="../images/camera-icon.png" alt="" style="position: relative;
-    left: 290px;
-    top: -9px;
-    width: 25px;">
-    <img src="../images/send-icon.png" alt="" style="position: relative;
-    left: 293px;
-    width: 25px;
-    top: -9px;">
+  <div style="padding: 10px;
+  margin-right: auto;
+  margin-left: auto;">
+    <input class="controls" type="text" placeholder="Share your post" style="height: 40px;"/>
+    <div style="display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 77%;
+    margin-top: -39px;">
+      <div style="text-align: center;" id="camera-btn">
+        <a href="../Common_elements/AR-Examples-master/shadow-balls.html">
+          <img src="../images/camera-icon.png" alt="" style="position: relative;">
+        </a>        
+      </div>
+      <div style="text-align: center;">
+        <img src="../images/send-icon.png" alt="" style="position: relative;">
+      </div>
+
+    </div>
+    
+    
+   
   </div>
   
   <div>
     <div style="background: rgba(219, 247, 255, 0.63);
     border-radius: 10px;
-    width: 350px;
+    width: 98%;
     position: relative;
-    left: 8px;
-    top: 20px;height: 507px;margin-bottom: 20px;">
+    top: 20px;margin-bottom: 20px;margin-right: auto;
+    margin-left: auto;">
       <img src="../images/caretaker_profile_picture.jpg" alt="" style="position: relative;
       width: 50px;
       height: 50.17px;
@@ -51,20 +56,21 @@
       position: relative;
       top: -82px;
       left: 16px;
-      width: 324px;
+      width: 95%;
       color: #979797;">My favourite moment with my pet. Today she had the best day!!!</p>
       <div style="    background: #FFFFFF;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
-      height: 355px;
+      height: auto;
       position: relative;
       top: -79px;
-      width: 336px;
-      left: 7px;">
-        <img src="../images/moments-page-img-1.png" alt="">
+      width: 96%;
+      margin-left: auto;
+      margin-right: auto;">
+        <img src="../images/moments-page-img-1.png" alt="" style="width: 100%;">
         <img src="../images/heart-large.png" alt="" style="position: relative;
         top: -15px;
-        left: 145px;">
+        left: 45%;">
         <img src="../images/heart-small.png" alt="" style="position: relative;
         left: -30px;">
         <p style="position: relative;
@@ -73,92 +79,134 @@
         left: 30px;">12</p>
         <img src="../images/msg-icon.png" alt="" style="position: relative;
         top: -67px;
-        left: 243px;
+        left: 72%;
         width: 15px;">
         <p style="font-size: 11px;
         position: relative;
         top: -95px;
         text-shadow: none;
-        left: 262px;">1 comment</p>
-        <div style="background-color: #E8FAFF;
+        left: 77%;">1 comment</p>
+        <div style="
+        background-color: #E8FAFF;
         border-radius: 10px;
-        width: 309px;
-        height: 106px;
+        width: 94%;
+        height: 225px;
         position: relative;
         top: -98px;
-        left: 13px;"></div>
+        margin-left: auto;
+    margin-right: auto;
+        ">
+      <p style="padding: 15px;">
+        <img src="../images/prof_pic.jpg" style="height: 25px;width: 25px;border-radius: 50%;">
+        <span style="padding-left: 15px;">Wow! She is so cute!</span>
+      </p>
+      <p style="
+        margin-top: -30px;
+        padding-left: 60px;
+        color: lightblue;
+        ">Reply</p>
+      <div id="old-comment">
+        <div style="background-color:white;width: 80%;float: right;border-radius: 10px;margin-right: 15px;">
+          <p style="padding-left: 5px; margin: 6px;">
+            <img src="../images/prof_pic2.jpg" style="height: 25px;width: 25px;border-radius: 50%;">
+            <span style="padding-left: 15px;">Thanks a lot!</span>
+          </p>
+        </div>
+        <p style="padding-left: 60px; color: lightblue;">Reply</p>
+      </div>
+      <div id="new-comment" style="background-color: #E2E2E2;width: 80%;float: right;border-radius: 50px;margin-right: 15px;opacity: 80%;margin-top: 6px;">
+        <p style="padding: 5px; margin: 5px;">
+        <img src="../images/prof_pic3.jpg" style="height: 25px;width: 25px;border-radius: 50%; vertical-align: middle;">
+        <!-- <span style="padding-left: 15px;"> -->
+          <input id="posted-comment" type="text" value="I totally agre|" style="
+            border: none;
+            border-radius: 15px;
+            padding-left: 10px;
+            width: 195px;
+            outline: none;
+            background-color: #f1f1f1c2;
+          " onchange="readComment();">
+          <img src="../images/emoji-icon.png" style="position: absolute;right: 50px;min-width: 25px;transition: right 0.2s;">
+          <img id="post-new-comment" src="../images/comment-icon.png" style="position: absolute;right: 32px;padding-top: 4px;transition: right 0.2s;min-width: 20px;">
+          
+        </p>
+      </div>
+      <div id="inbox">
+      </div>
+      <div id="inbox-reply">
+        
+      </div>
+
+      
+      </div>
       </div>
     </div>
 
-
-    <div style="background: rgba(219, 247, 255, 0.63);
-    border-radius: 10px;
-    width: 350px;
-    position: relative;
-    left: 8px;
-    top: 20px;height: 507px;">
-      <img src="../images/caretaker_profile_picture.jpg" alt="" style="position: relative;
-      width: 50px;
-      height: 50.17px;
-      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-      border-radius: 60px;
-      top: 13px;
-      left: 13px;">
-      <p style="font-weight: bold;
-      font-size: 16px;
-      position: relative;
-      top: -47px;
-      left: 74px;">Sarah Hyland</p>
-      <p style="font-size: 12px;
-      position: relative;
-      top: -61px;
-      left: 75px;">6 minutes ago</p>
-      <img src="../images/globe.png" alt="" style="width: 15px;
-      position: relative;
-      top: -96px;
-      left: 165px;">
-
-      <p style="font-size: 12px;
-      position: relative;
-      top: -82px;
-      left: 16px;
-      width: 324px;
-      color: #979797;">My favourite moment with my pet. Today she had the best day!!!</p>
-      <div style="    background: #FFFFFF;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      height: 355px;
-      position: relative;
-      top: -79px;
-      width: 336px;
-      left: 7px;">
-        <img src="../images/moments-page-img-1.png" alt="">
-        <img src="../images/heart-large.png" alt="" style="position: relative;
-        top: -15px;
-        left: 145px;">
-        <img src="../images/heart-small.png" alt="" style="position: relative;
-        left: -30px;">
-        <p style="position: relative;
-        top: -35px;
-        font-size: 11px;
-        left: 30px;">12</p>
-        <img src="../images/msg-icon.png" alt="" style="position: relative;
-        top: -67px;
-        left: 243px;
-        width: 15px;">
-        <p style="font-size: 11px;
-        position: relative;
-        top: -95px;
-        text-shadow: none;
-        left: 262px;">1 comment</p>
-        <div style="background-color: #E8FAFF;
-        border-radius: 10px;
-        width: 309px;
-        height: 106px;
-        position: relative;
-        top: -98px;
-        left: 13px;"></div>
-      </div>
-    </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+    var comment = $('#posted-comment').val();
+    localStorage.setItem("comment", comment);
+    //onchange="readComment();
+
+    var replied = localStorage.getItem("replied");
+    if(replied == "1") {
+      console.log(replied);
+       $('#new-comment').css('display','block');
+      var div = document.getElementById('new-comment');
+      //$('#inbox-reply').append(divs);
+      $('#inbox-reply').replaceWith(div);
+    }
+
+    $('#reply-comment').click(function() {
+      $('#new-comment').css('display','block');
+      var div = document.getElementById('new-comment');
+      //$('#inbox-reply').append(divs);
+      $('#inbox-reply').replaceWith(div);
+      
+      $('#inbox-reply').enhanceWithin();
+      $('#new-comment').css('display','block');
+    });
+
+  $('#post-new-comment').click(function() {
+    console.log(comment);
+    for (var i = 0; i < 1; i++) {
+      var id = "comment_" + i;
+      var divs = document.createElement('div');
+      divs.id = id;
+      $('#inbox').append(divs);
+      $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi-comment.html', function() {
+        $('#' + id).enhanceWithin();
+      });
+      console.log(id);
+      
+      //$('#comment-text-new').text(comment);
+      //$("#comment-text-new").val(comment);
+     /// $('#'+id).find('span.comment-text').text(comment);
+      $('#new-comment').css('display','none');
+    }
+  });
+});
+
+    $('#posted-comment').change(function() {
+      var comment = $('#posted-comment').val();
+      console.log(comment)+" read!";
+      localStorage.setItem("comment", comment);
+    });
+    function replyComment() {
+      //         //e.preventDefault();
+      //       localStorage.setItem("replied", 1);
+      $('#new-comment').css('display','block');
+      var div = document.getElementById('new-comment');
+      //$('#inbox-reply').append(divs);
+      $('#inbox-reply').replaceWith(div);
+      $('#new-comment').css('display','block');
+    }
+
+    $('#camera-btn').click(function() {    
+          window.location.href = 'https://pet-temp-host.web.app/Common_elements/AR-Examples-master/shadow-balls.html';
+    });
+    
+</script>

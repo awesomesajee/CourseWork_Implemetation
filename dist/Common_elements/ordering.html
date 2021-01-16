@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="../CSS/progressbar.css">
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
+    
     <script>
 
         $(document).ready(function () {
@@ -24,12 +27,44 @@
                 $('#userContent').enhanceWithin();
 
             });
-            $('a').click(function (e) {
-                e.preventDefault();
-                $('#content').load($(this).attr('href'));
-                var header_text = e.target.name;
-                $('#headerText').html(header_text);
-            });
+            var header_text = "";
+   $('.navigation').click(function(e) {
+          e.preventDefault();
+          location.hash=$(this).attr('href').match(/(^.*)\./)[1];
+          header_text = e.target.name;
+          $('#headerText').html(header_text);
+          localStorage.setItem("header", e.target.name);
+			return false          
+        });
+        
+		function hashChange(){
+      var page=location.hash.slice(1)
+			if (page!=""){
+        $('#content').load(page+".html");
+        var navLinks = $('.navigation').toArray();
+        for(i=0; i<navLinks.length; i++) {
+          if("https://pet-temp-host.web.app/Common_elements/"+page+".html" == navLinks[i].href){
+            $('#headerText').html(navLinks[i].name);
+          }
+        }
+          
+
+          
+        
+				
+			
+    }
+  }
+    if ("onhashchange" in window){ // cool browser
+			$(window).on('hashchange',hashChange).trigger('hashchange')
+		}else{ // lame browser
+			var lastHash=''
+			setInterval(function(){
+				if (lastHash!=location.hash)
+					hashChange()
+				lastHash=location.hash
+			},100)
+		}    
 
             $('#ts1').change(function (e) {
                 e.preventDefault();
@@ -68,7 +103,7 @@
                 var textData = localStorage.getItem("userData");
                 var orderSummary = JSON.parse(textData);
 
-                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price;
+                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price+';CAT;KITTY';
                     var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
              $('#barcode').attr('src', url);
 
@@ -99,7 +134,6 @@
         $(document).ready(function () {
             $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
                 $('#userContent').enhanceWithin();
-
             });
             $('a').click(function (e) {
                 e.preventDefault();
@@ -134,6 +168,7 @@
                 $('.poi-style .poi-animal').find('img.animal').attr("src", data.animalImagePath);
                 $('.poi-style .price_array .happy-pow').find('p.gammification_progress_text').html(data.points);
                 $('.succes-pop-up .pow-number').find('p.happy-pow-earned').html(data.points);
+                $('.poi-style').css({"margin-left": "auto","margin-right":"auto", "margin-top": "3%"});
             }
             setTimeout(loadUserData, 500);
 
@@ -207,11 +242,20 @@
 
 <body>
   <!-- start of the header section -->
-  <div data-role="header" data-theme="a" data-fullscreen="true">
-      <a data-rel="back" class="ui-btn ui-icon-arrow-l ui-btn-icon-left"> </a>
-      <h1 id="headerText">B O O K</h1>
-      
-  </div>
+  <div data-role="header" data-theme="a" data-fullscreen="true" style="height: 42px;">
+    <a data-rel="back" id="back-btn" class="ui-btn ui-btn-icon-left" style="background-color: transparent;
+    border: none;
+    position: relative;
+    z-index: 1;
+    top: 2px;
+    left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
+    <h1 id="headerText" style="
+    font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
+  text-align: left;white-space: break-spaces;">B O O K  C A R E T A K E R</h1>
+   <img src="../images/small-logo.png" alt="" style="position: relative;
+   top: -92%;
+   left: 83%"> 
+</div>
   <!-- End of header -->
 
   
@@ -220,7 +264,8 @@
   <div role="main" class="ui-content" id="content">
     <div  class="background-container">
 
-      <div id="userContent" style="margin-top: 10px;"></div>
+      <div id="userContent" style="display: grid;
+      grid-template-columns: 1fr;width: 100%;"></div>
 
   
 
@@ -230,7 +275,7 @@
     <ul id="progressbar" style="padding-left: 18px; font-family: 'Roboto'; margin-bottom: 10px">
       <li class="active">Booking Details</li>
       <li>Payment Details</li>
-      <li>Order Completion</li>
+      <li>QR Code</li>
     </ul>
     <!-- fieldsets -->
     <fieldset id="fieldset1" style="padding-top: 6px">
@@ -472,10 +517,10 @@
             return false;
         });
 
-        /**$('#open-pop-up').click(function() {
+      /*   $('#open-pop-up').click(function() {
           $('#payment-success').popup("open");
           
-        });**/
+        }); */
         $('#checkout-btn').on("click", function() {
             var formvalues = $('#fieldset1').serializeArray();
             console.log(formvalues);
@@ -543,7 +588,15 @@
 	  
 
         $('#open-pop-up').on('click', function(e) {
-          
+          var poi_point = 0; 
+          var point_all = []
+
+          var textData = localStorage.getItem("userData");
+          var data = JSON.parse(textData);
+          poi_point = data.points;
+          point_all = JSON.parse(localStorage.getItem("point_array") || '[]');
+          point_all.push(poi_point);
+          localStorage.setItem("point_array", JSON.stringify(point_all));
           //get value card or cash
           var radioValue = $("input[name='paymentM']:checked").val();
 
@@ -592,22 +645,22 @@
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">
   <nav data-role="navbar" class="tile-container" data-theme="a">
-    <a name="Search" href="../Common_elements/dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search tile">
+    <a name="N E A R   B Y   C A R E T A K E R S" href="dashboard.html" class="ui-btn ui-btn-icon-top ui-icon-search navigation tile">
         <div class="nav_fonts">Search</div>
       </a>
-      <a name="Profile" href="../Common_elements/profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile tile">
+      <a name="M Y  P R O F I L E" href="profile.html" class="ui-btn ui-btn-icon-top ui-icon-myprofile navigation tile">
         <div class="nav_fonts">Profile</div>
       </a>
-      <a name="Pet Status" href="../Common_elements/petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus tile">
+      <a name="P E T  S T A T U S" href="petStatus.html" class="ui-btn ui-btn-icon-top ui-icon-petstatus navigation tile">
         <div class="nav_fonts">Pet Status</div>
       </a>
-      <a name="Favourites" href="../Common_elements/favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites tile">
+      <a name="M Y  F A V O U R I T E S" href="favourites.html" class="ui-btn ui-btn-icon-top ui-icon-favourites navigation tile">
         <div class="nav_fonts">Favourites</div>
       </a>
-      <a name="Booking History" href="../Common_elements/bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory tile">
+      <a name="B O O K I N G   H I S T O R Y" href="bookingHistory.html" class="ui-btn ui-btn-icon-top ui-icon-orderhistory navigation tile">
         <div class="nav_fonts">Book History</div>
       </a>
-      <a name="Help" href="../Common_elements/help.html" class="ui-btn ui-btn-icon-top ui-icon-help tile">
+      <a name="H E L P" href="help.html" class="ui-btn ui-btn-icon-top ui-icon-help navigation tile">
         <div class="nav_fonts">Help</div>
       </a>
 </nav>

@@ -15,6 +15,7 @@
             $('#' + id).load('https://pet-temp-host.web.app/Common_elements/poi-caretaker.html', function () {
                 $('.sort-style').enhanceWithin();
             });
+
         }
     });
 
@@ -23,32 +24,37 @@
 
 <div class="background-container" id="content_jobs">
     <div style="font-size: 9px;
-    margin-top: 10px;">
-        <button style="width: 119px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;">
+        <button style="width:96%;
         height: 45px;
         display: inline;
         float: left;
-        margin-right: 5px;">
+        margin-left: auto;
+    margin-right: auto;">
             <img src="../images/icons8-calendar-150 (1).png" alt="" style="width: 13px;
     margin-right: 10px;
     position: relative;
     top: -1px;">VIEW CALENDAR
         </button>
-        <button style="width: 119px;
+        <button style="width: 96%;
         height: 45px;
         display: inline;
         float: left;
-        margin-right: 5px;">
+        margin-left: auto;
+    margin-right: auto;">
             <img src="../images/icons8-time-machine-100.png" alt="" style="width: 14px;
     margin-right: 10px;
     position: relative;
     top: -1px;">JOB HISTORY
         </button>
 
-        <button id="btn-scan-qr" style="width: 117px;
+        <button id="btn-scan-qr" style="width: 96%;
         height: 45px;
         display: inline;
-        float: left;">
+        float: left;margin-left: auto;
+    margin-right: auto;">
             <img src="../images/icons8-qr-code-64.png" alt="" style="width: 13px;
     margin-right: 10px;
     position: relative;
@@ -59,7 +65,10 @@
 
     <div id="datepicker"></div>
 
-    <div id="poi-cont" class="poi_container" style="margin-top: 75px;">
+    <div id="poi-cont" class="poi_container" style="margin-top: 15px;
+    -webkit-columns: 303px 2;
+    height: 80%;width: 100%;
+    margin-left: -1.9%;">
 
     </div>
     <!--Data loading script-->
@@ -84,11 +93,11 @@
                         profileImage: "../images/12-41.jpg"
                     },
                     {
-                        name: "Felix Kjellberg",
-                        description: "Edgar Age: 6, from Thur 1 Jan to Fri 2 Jan",
+                        name: "Felix",
+                        description: "Edgar Age: 6, Thur 1 Jan, 1",
                         waitingTime: "8 minutes ago",
                         xpamount: "+20xp",
-                        service: "Dog Grooming",
+                        service: "Dog Walking",
                         profileImage: "../images/frlix.jpg"
                     },
                     {
@@ -100,7 +109,7 @@
                         profileImage: "../images/EJBpKpsU0AUwuAg.jpg"
                     },
                     {
-                        name: "Marzia Kjellberg",
+                        name: "Marzia",
                         description: "Maya Age: 3, from Thur 1 Jan, 1 walk",
                         waitingTime: "15 minutes ago",
                         xpamount: "+10xp",
@@ -117,6 +126,7 @@
                     $('#' + id + ' .poi-style-caretaker').find('p.poi_time').html(data[i].waitingTime);
                     $('#' + id + ' .poi-style-caretaker').find('p.poi_service').html(data[i].service);
                     $('#' + id + ' .poi-style-caretaker .xp').find('p.xp_text').html(data[i].xpamount);
+                    $('#' + id).css({"transform": "scale(0.89)", "display": "block", "margin-bottom":"4%"});
                 }
 
             }
@@ -130,16 +140,13 @@
 
 <canvas id="qr-canvas" style="margin: auto; width: calc(100% - 20px); max-width: 400px;"></canvas>
 
-<div data-role="popup" id="qrCode" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;" class="succes-pop-up ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
-
-    <div style="position: absolute;width: 270.5px;height: 276.01px;left: 14px;top: 98px;background: #F5F4F4;border-radius: 10px;">
-
-        <div id="qr-result" style="position: absolute;width: 210px;left: 6%;top: 29%;font-size: 12px;color: #838383;">
-            <b>Data:</b> <span id="outputData"></span>
-        </div>
+<div data-role="popup" id="qrCode" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;">
 
 
+    <div id="qr-result" style="position: absolute;width: 210px;left: 6%;top: 29%;font-size: 12px;color: #838383;">
+        <b>Pet Details:</b> <span id="outputData"></span>
     </div>
+
 
 </div>
 
