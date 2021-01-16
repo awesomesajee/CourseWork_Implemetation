@@ -13,6 +13,7 @@ const contentBody = document.getElementById("content_jobs");
 const pet_type = document.getElementById("pet_type");
 const pet_name = document.getElementById("pet_name");
 const pet_amount = document.getElementById("pet_amount");
+const close_popup = document.getElementById("close_popup");
 
 let scanning = false;
 
@@ -26,7 +27,7 @@ qrcode.callback = res => {
         //pet_name.innerText = nameArr[4];
         //pet_amount.innerText = nameArr[2];
 
-        outputData.innerText = 'Pet type = ' + nameArr[3] + ', Pet name = ' + nameArr[4] + ', Pet amount = ' + nameArr[2];
+        outputData.innerText = '';
 
         scanning = false;
 
@@ -60,6 +61,8 @@ btnScanQR.onclick = () => {
         });
 };
 
+
+
 function tick() {
     canvasElement.height = video.videoHeight;
     canvasElement.width = video.videoWidth;
@@ -72,7 +75,7 @@ function scan() {
     try {
         qrcode.decode();
     } catch (e) {
-        setTimeout(scan, 300);
+        setTimeout(scan, 600);
     }
 }
 

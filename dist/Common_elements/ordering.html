@@ -18,7 +18,15 @@
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
-
+<style>
+  .txt-new-style{
+    border-radius: 3px !important;
+    width: 100% !important;
+    box-shadow: 0px 0px 4px 1px #F1C40F !important;
+    height: 100% !important;
+    margin-top: 21px !important;
+  }
+</style>
     
     <script>
 
@@ -77,7 +85,10 @@
                 }
             });
 
-
+            $('#back-btn').click(function() {
+              console.log("worked");
+              window.history.back();
+            });
 
             function loadUserData() {
                 var textData = localStorage.getItem("userData");
@@ -130,6 +141,8 @@
 
 
     <script>
+      $('#redeem-txt').parent().removeClass('ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset');
+      $('#redeem-txt').parent().addClass('txt-new-style');
 
         $(document).ready(function () {
             $('#userContent').load('https://pet-temp-host.web.app/Common_elements/poi.html', function () {
@@ -325,18 +338,20 @@
       </select>
       
       <!--Happy Pow Table-->
-      <div id="show-me" style="margin-left: -15px; margin-bottom: 16px" class="hide-class">
-      <table style="margin-left: 15px;border-collapse: collapse; font-size: 14px; font-family: 'Roboto';">
+      <div id="show-me" style="margin-bottom: 16px;height: 88px" class="hide-class">
+      <table style="border-collapse: collapse; font-size: 14px; font-family: 'Roboto';width: 100%;height: 100%;">
         <tr>
-          <td style="width: 10px;border: 2px solid black;padding: 3px;">Points available</td>
-          <td style="border: 3px solid #F1C40F;width: 90px;padding: 3px;">
-            <div style="margin-top: 10px;text-align: center;margin: auto">
-              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;font-size: 16px;">50</p>
+          <td style="width: 25%;border: 2px solid black;padding: 3px;">Points available</td>
+          <td style="border: 3px solid #F1C40F;width: 25%;padding: 3px;">
+            <div style="margin-top: 10px;text-align: center;margin: auto" class="pre-class">
+              <p class="gammification_progress_text" style="color:#F1C40F !important;font-weight: bold;font-size: 16px;">15</p>
               <img src="../images/icons8-dog-paw-print-100.png" alt="Happy Paw Points" style="display: inline;width: 20px;height: 20px;margin-bottom: 8px; margin-top: 5px;">
           </div>
           </td>
-          <td style="width: 90px;padding: 3px;border: 2px solid black;">Redeem Amount</td>
-          <td style="text-align: center;border: 3px solid #F1C40F;width: 90px;color: #F1C40F;font-size: 18px;font-weight: bold;">10</td>
+          <td style="width: 25%;padding: 3px;border: 2px solid black;">Redeem Amount</td>
+          <td style="height: 100%;text-align: center;border: 3px solid #F1C40F;width: 25%;color: #F1C40F;font-size: 18px;font-weight: bold;"><input type="number" value="0" style="position: relative;
+            top: 12px;
+            color: #F1C40F;" id="redeem-txt"></td>
         </tr>
       </table>
     </div>
@@ -517,6 +532,24 @@
             return false;
         });
 
+        $(function() {
+          var textDataMinus = localStorage.getItem("minus_point_array");
+          var data_points_minus = JSON.parse(textDataMinus);
+          var total_minus_points = 0;
+          for(var i in data_points_minus) {
+            total_minus_points += data_points_minus[i] << 0;
+          }
+
+          var textData = localStorage.getItem("point_array");
+          var data_points = JSON.parse(textData);
+          var total_points = 0
+          for(var i in data_points) {
+            total_points += data_points[i] << 0;
+          }
+            var total_to_be_updated = total_points - total_minus_points;
+            var final_updated_points = parseInt($('.hide-class .pre-class').find('p.gammification_progress_text').text()) + total_to_be_updated;
+            $('.hide-class .pre-class').find('p.gammification_progress_text').html(final_updated_points.toString());
+        });
       /*   $('#open-pop-up').click(function() {
           $('#payment-success').popup("open");
           
@@ -549,20 +582,31 @@
             displayTotalPrice(price);
         });
         function displayTotalPrice(totprice){
-          $('#ts1').change(function(e) {
-            e.preventDefault();
-            var myswitch = $(this);
-            var switchValue = myswitch.children("option:selected").val();
-            console.log(switchValue); 
-
-            if(switchValue=="Yes"){
-              totprice = totprice - 10;
-              $( "#span-total" ).text(totprice);
-            }
-            console.log(totprice);
-          });
           $( "#span-total" ).text(totprice);
-          console.log(totprice);
+
+          $('#redeem-txt').keypress(function() {
+            if($(this).val().length != 0){
+                totprice = totprice - parseInt($(this).val());
+                $( "#span-total" ).text(totprice);
+                if(parseInt($('.hide-class .pre-class').find('p.gammification_progress_text').text())-parseInt($(this).val()) >= 0)
+                {
+                  var value_after = parseInt($('.hide-class .pre-class').find('p.gammification_progress_text').text())-parseInt($(this).val());
+                  $('.hide-class .pre-class').find('p.gammification_progress_text').html(value_after.toString());
+                }
+                else{
+                  console.log("Invalid amount to Redeem");
+                }
+                
+              }
+              else{
+                $( "#span-total" ).text(totprice);
+              }
+
+          })
+            
+             
+         
+          
           
         }
 
@@ -588,6 +632,15 @@
 	  
 
         $('#open-pop-up').on('click', function(e) {
+          var poi_point_minus = parseInt($('#redeem-txt').val()); 
+          var minus_point_all = []
+          minus_point_all = JSON.parse(localStorage.getItem("minus_point_array") || '[]');
+          if(poi_point_minus !== null)
+          {
+            minus_point_all.push(poi_point_minus);
+            localStorage.setItem("minus_point_array", JSON.stringify(minus_point_all));
+          }
+
           var poi_point = 0; 
           var point_all = []
 
@@ -641,6 +694,9 @@
 
   </div>
     <!-- End of content -->
+    <script>
+
+    </script>
 
   <!-- start of the footer section -->
 <div data-role="footer" class="footer-style">

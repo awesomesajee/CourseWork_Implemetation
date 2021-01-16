@@ -17,10 +17,16 @@
             });
 
         }
+
+        $('#close_popup').click(function () {
+                $('#qrCode').popup("close");
+            });
+ 
     });
 
 
 </script>
+
 
 <div class="background-container" id="content_jobs">
     <div style="font-size: 9px;
@@ -126,7 +132,7 @@
                     $('#' + id + ' .poi-style-caretaker').find('p.poi_time').html(data[i].waitingTime);
                     $('#' + id + ' .poi-style-caretaker').find('p.poi_service').html(data[i].service);
                     $('#' + id + ' .poi-style-caretaker .xp').find('p.xp_text').html(data[i].xpamount);
-                    $('#' + id).css({"transform": "scale(0.89)", "display": "block", "margin-bottom":"4%"});
+                    $('#' + id).css({ "transform": "scale(0.89)", "display": "block", "margin-bottom": "4%" });
                 }
 
             }
@@ -137,17 +143,148 @@
     </script>
 </div>
 
+<canvas hidden id="qr-canvas" style="margin: auto;width: calc(100%);max-width: 400px;top: 190px;position:absolute;"></canvas>
 
-<canvas id="qr-canvas" style="margin: auto; width: calc(100% - 20px); max-width: 400px;"></canvas>
-
-<div data-role="popup" id="qrCode" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;">
+<!--<div data-role="popup" id="qrCode" style="width: 300px;height: 400px;margin-top: -100px;text-align: center;position: relative;border-radius:0px;">
 
 
     <div id="qr-result" style="position: absolute;width: 210px;left: 6%;top: 29%;font-size: 12px;color: #838383;">
         <b>Pet Details:</b> <span id="outputData"></span>
+
     </div>
 
 
+</div>-->
+
+
+<div data-role="popup" id="qrCode" style="width: 300px;height: 190px;margin-top: -100px;text-align: center;position: absolute; top: 15px;left:-149px; border-radius: 8px;">
+
+    <span id="outputData"></span>
+
+    <div id="qr-result" style="position: absolute;width: 210px;left: 6%;top: 52%;font-size: 12px;color: #838383; border-radius: 8px;">
+
+        <div style="
+           position:absolute;
+           background-color: white;
+
+           width: 300px;
+           margin: auto;
+           margin-top: -100px;
+           height: 190px;
+           left: -9%;
+           border: 3px solid #5BD4F6;
+           border-radius: 8px;
+           ">
+            <div style="position: absolute;width: 300px;height: 22px;left: -3px;top: -4px;background: #14C2F3;border-top-left-radius: 8px;
+            border-top-right-radius: 8px;">
+                <img id="close_popup" src="../images/close_btn.png" style="position: absolute;width: 20px;height: 20px;left: 277px;top: 1px;">
+
+                <p style="
+               font-size: 13px;
+
+               position: relative;
+               top: -62%;
+               left: -1%;color: #FFFFFF;
+               ">Order details</p>
+            </div>
+
+            <p style="
+               font-size: 16px;
+               font-weight: bold;
+               position: relative;
+               top: 17px;
+               left: -18%;
+               ">Anne Marie</p>
+
+
+            <p style="
+              position: relative;
+              top: 18px;
+              left: 3%;
+              ">No: 116, School Lane, California, USA</p>
+
+            <p style="
+              position: relative;
+              top: 15px;
+              left: -22%;
+              ">Pet Type: CAT</p>
+            <p style="
+              position: relative;
+              top: 10px;
+              left: -20%;
+              ">Pet Name: Dolly</p>
+            <p style="
+              position: relative;
+              top: 5px;
+              left: -20%;
+              ">Total:      $ 200 . 00 </p>
+
+        </div>
+    </div>
 </div>
+
+        <!--<div id="qr-result" style="position: absolute;width: 210px;left: 6%;top: 52%;font-size: 12px;color: #838383;">
+        <div style="
+           position:absolute;
+           background-color: white;
+
+           width: 300px;
+           margin: auto;
+           margin-top: -100px;
+           height: 190px;
+           left: -9%;
+           border: 3px solid #5BD4F6;
+           ">
+            <div style="position: absolute;width: 300px;height: 22px;left: -3px;top: -4px;background: #14C2F3;">
+                <img src="../images/close_btn.png" style="position: absolute;width: 20px;height: 20px;left: 277px;top: 1px;">
+
+                <p style="
+               font-size: 13px;
+
+               position: relative;
+               top: -62%;
+               left: -1%;color: #FFFFFF;
+               ">Order details</p>
+            </div>
+
+
+
+
+            <p style="
+               font-size: 16px;
+               font-weight: bold;
+               position: relative;
+               top: 17px;
+               left: -18%;
+               ">Anne Marie</p>
+
+
+            <p style="
+              position: relative;
+              top: 18px;
+              left: 3%;
+              ">No: 116, School Lane, California, USA</p>
+
+            <p style="
+              position: relative;
+              top: 15px;
+              left: -22%;
+              ">Pet Type: CAT</p>
+            <p style="
+              position: relative;
+              top: 10px;
+              left: -20%;
+              ">Pet Name: Dolly</p>
+            <p style="
+              position: relative;
+              top: 5px;
+              left: -20%;
+              ">Total:      $ 200 . 00 </p>
+
+        </div>
+    </div>-->
+
+
+  
 
 <script src="../js/qrCodeScanner.js"></script>
