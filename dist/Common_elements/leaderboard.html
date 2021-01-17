@@ -1,3 +1,5 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
 
 <style>
     @-webkit-keyframes mover {
@@ -30,7 +32,8 @@
   </script>
 
 <div class="background-container">
-    <div id="leaderboard-lits" class="list_users">
+    <div id="leaderboard-lits" class="list_users" style="position: relative;
+    top: -7px;">
 
     </div>
     <script>
@@ -38,28 +41,12 @@
             function setAttributes() {
                 var data = [
                     {
-                        name: "Annie Shirly",
-                        badge: "Dog Walking Master",
-                        level: "Level 20",
-                        xpamount: "+2000xp",
-                        profileImage: "../images/icon-map-1.jpg",
-                        place: "1"
-                    },
-                    {
-                        name: "Anne Marie",
+                        name: "Devon Dipp",
                         badge: "Dog Grooming Master",
-                        level: "Level 20",
-                        xpamount: "+1500xp",
-                        profileImage: "../images/marin.jpg",
-                        place: "2"
-                    },
-                    {
-                        name: "Chris Brown",
-                        badge: "Dog Training Master",
-                        level: "Level 16",
-                        xpamount: "+1425xp",
-                        profileImage: "../images/prof_pic2.jpg",
-                        place: "3"
+                        level: "Level 14",
+                        xpamount: "+1100xp",
+                        profileImage: "../images/prof_pic3.jpg",
+                        place: "5"
                     },
                     {
                         name: "Kirti Sanon",
@@ -70,12 +57,28 @@
                         place: "4"
                     },
                     {
-                        name: "Devon Dipp",
+                        name: "Chris Brown",
+                        badge: "Dog Training Master",
+                        level: "Level 16",
+                        xpamount: "+1425xp",
+                        profileImage: "../images/prof_pic2.jpg",
+                        place: "3"
+                    },
+                    {
+                        name: "Anne Marie",
                         badge: "Dog Grooming Master",
-                        level: "Level 14",
-                        xpamount: "+1100xp",
-                        profileImage: "../images/prof_pic3.jpg",
-                        place: "5"
+                        level: "Level 20",
+                        xpamount: "+1500xp",
+                        profileImage: "../images/marin.jpg",
+                        place: "2"
+                    },
+                    {
+                        name: "Annie Shirly",
+                        badge: "Dog Walking Master",
+                        level: "Level 20",
+                        xpamount: "+2000xp",
+                        profileImage: "../images/icon-map-1.jpg",
+                        place: "1"
                     }
                     ];
     
@@ -108,7 +111,7 @@
             var alphabeticallyOrderedDivs = $divs.sort(function(a,b) {
 
                 //console.log($(a).find("p.xpnumber").text().replace(/[^0-9.]/g, ""));
-                return (ascendingname == parseInt($(b).find("p.xpnumber").text().replace(/[^0-9.]/g, "")) > parseInt($(a).find("p.xpnumber").text().replace(/[^0-9.]/g, ""))) ? 1 : -1;
+                return (ascendingname == parseInt($(b).find("p.xpnumber").text().replace(/[^0-9.]/g, "")) < parseInt($(a).find("p.xpnumber").text().replace(/[^0-9.]/g, ""))) ? 1 : -1;
       });
      
       $("#leaderboard-lits").html(alphabeticallyOrderedDivs);

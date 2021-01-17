@@ -208,7 +208,7 @@
     border : 0;
   }
   .fs-title{
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -218,7 +218,7 @@
     color: #484848;
   }
   .labelstyle{
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -266,7 +266,7 @@
     left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
     <h1 id="headerText" style="
     font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
-  text-align: left;white-space: break-spaces;">B O O K  C A R E T A K E R</h1>
+  text-align: left;white-space: break-spaces;font-weight: bold;">B O O K  C A R E T A K E R</h1>
    <img src="../images/small-logo.png" alt="" style="position: relative;
    top: -92%;
    left: 83%"> 
@@ -287,8 +287,8 @@
 
   <form id="msform" style="margin-top: 35px!important">
     <!-- progressbar -->
-    <ul id="progressbar" style="padding-left: 18px; font-family: 'Roboto'; margin-bottom: 10px">
-      <li class="active">Booking Details</li>
+    <ul id="progressbar" style="padding-left: 18px; font-family: 'Roboto', sans-serif; margin-bottom: 10px">
+      <li class="active">Booking</li>
       <li>Payment Details</li>
       <li>QR Code</li>
     </ul>
@@ -296,7 +296,7 @@
     <fieldset id="fieldset1" style="padding-top: 6px">
       <h2 class="fs-title">Booking Details</h2>
       <h3 class="fs-subtitle">Step 1</h3>
-      <label for="location" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000;">Location</label>
+      <label for="location" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000;">Location</label>
       <input type="text" id="location" name="location" placeholder="Select your location" />
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -15px;">
         <legend class="labelstyle">Schedule</legend>
@@ -312,9 +312,9 @@
           <option value="Cat Walking" selected="selected">Cat Walking</option>
           <option value="Cat Grooming">Cat Grooming</option>
         </select>
-        <label for="pickup" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
+        <label for="pickup" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000; margin-top: 14px;">Pick Up Date/Time</label>    
         <input type="datetime-local" id="pickup" name="pickup" placeholder="Select Pickup date/time" />
-        <label for="dropoff" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
+        <label for="dropoff" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000; margin-top: 10px;">Drop off Date/Time</label>  
         <input type="datetime-local" id="dropoff" name="dropoff" placeholder="Select Dropoff date/time" />
         <input class="next" type="button" id="checkout-btn" value="SECURE CHECKOUT" />
     </fieldset>
@@ -322,7 +322,7 @@
       <h2 class="fs-title">Payment Details</h2>
       <h3 class="fs-subtitle">Step 2</h3>
       <div data-role="controlgroup" data-type="horizontal" style="margin-top: 10px;margin-bottom: -35px;">
-        <legend style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Select Payment Method</legend>
+        <legend style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Select Payment Method</legend>
         <label for="rb1" style="width: 92px;">CASH
           <img src="../images/cash.png" alt="cash" style="display: inline;position: absolute;top: 12px;left: 66px;">
         </label>
@@ -333,7 +333,7 @@
         </label>
         <input type="radio" name="paymentM" id="rb2" value="card" checked="checked"/>
       </div>
-      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Redeem Happy Paw Points</label>
+      <label for="speed" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000; margin-top: 12px;">Redeem Happy Paw Points</label>
       <select name="ts1" id="ts1" data-role="flipswitch">
         <option value="No" selected="selected">No</option>
         <option value="Yes">Yes</option>
@@ -341,7 +341,7 @@
       
       <!--Happy Pow Table-->
       <div id="show-me" style="margin-bottom: 16px;height: 88px" class="hide-class">
-      <table style="border-collapse: collapse; font-size: 14px; font-family: 'Roboto';width: 100%;height: 100%;">
+      <table style="border-collapse: collapse; font-size: 14px; font-family: 'Roboto', sans-serif;width: 100%;height: 100%;">
         <tr>
           <td style="width: 25%;border: 2px solid black;padding: 3px;">Points available</td>
           <td style="border: 3px solid #F1C40F;width: 25%;padding: 3px;">
@@ -358,7 +358,7 @@
       </table>
     </div>
       <div class="ui-body ui-body-a ui-corner-all" style="padding: 8px; background-color:#5bd4f6">
-          <h6 style="color: #FFFFFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Roboto;font-weight: bold;font-size: 18px;line-height: 18px;">Booking Summary</h6>
+          <h6 style="color: #FFFFFF; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: 'Roboto', sans-serif;font-weight: bold;font-size: 18px;line-height: 18px;">Booking Summary</h6>
           <div id="summary"></div>
           <hr style="margin: 10px 0">
           <div id="totalVal"><h6><b>Total<span style='float:right'>$<span id="span-total">0</span></span></b></h6></div>
