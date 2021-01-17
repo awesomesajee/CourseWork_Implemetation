@@ -17,10 +17,35 @@
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
+<style>
+  .error {
+    width:80%;
+    height:20px;
+    height:auto;
+    margin-left:auto;
+    margin-right: auto;
+    bottom:-15%;
+    background-color: #4285F4;
+    color: #F0F0F0;
+    font-family: Calibri;
+    font-size: 20px;
+    padding:10px;
+    text-align:center;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
 <script>
     $(document).on('click', '#resend-btn-email', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation_caretaker.html';
     });
+    $(document).ready(function() {
+    $(document).click(function() {
+      $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+    });
+  });
 </script>
 <style>
     #form {
@@ -101,8 +126,12 @@
     box-shadow: none;
     margin-top: 12px;
     z-index: 1;"><img src="../images/arrow-verification.png" alt=""></button>
-    <a href="" style="text-decoration: none;
-    color: #5BD4F6;z-index: 1;">Resend Code</a>
+    <button id="resend-code-btn" style="color: #5BD4F6;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 33px;">Resend Code</button>
+    <div class='error' style='display:none'>Code resend to sarah.hyland@mail.com</div>
 </div>
     
 </body>

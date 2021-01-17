@@ -15,12 +15,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>  
+ 
 </head>
+<style>
+  .error {
+    width:80%;
+    height:20px;
+    height:auto;
+    margin-left:auto;
+    margin-right: auto;
+    bottom:-15%;
+    background-color: #4285F4;
+    color: #F0F0F0;
+    font-family: Calibri;
+    font-size: 20px;
+    padding:10px;
+    text-align:center;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+</style>
 <script>
     $(document).on('click', '#resend-btn', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/verification-email.html';
     });
+    $(document).ready(function() {
+    $(document).click(function() {
+      $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+    });
+  });
+
 </script>
 <style>
     #form {
@@ -72,8 +99,7 @@
           z-index: 1;
           top: 2px;
           left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
-          <h1 id="headerText" style="
-          font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
+          <h1 id="headerText" style="font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
         text-align: left;white-space: break-spaces;">P H O N E   V E R I F I C A T I O N</h1>
          <img src="../images/small-logo.png" alt="" style="position: relative;
          top: -92%;
@@ -104,9 +130,16 @@
     box-shadow: none;
     margin-top: 10px;
     z-index: 1;"><img src="../images/arrow-verification.png" alt=""></button>
-    <a href="" style="text-decoration: none;
-    color: #5BD4F6;">Resend Code</a>
+    
+    <button id="resend-code-btn" style="color: #5BD4F6;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin-top: 33px;">Resend Code</button>
+    <div class='error' style='display:none'>Code resend to +94 71 234 5678</div>
 </div>
+
+
     
 </body>
 </html>
