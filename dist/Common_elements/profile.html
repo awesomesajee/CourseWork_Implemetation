@@ -47,24 +47,7 @@ $('#close_popup').click(function(e) {
     e.preventDefault();
     $('#add-pet').popup("close");
 });
-
-
-    $('#edit-btn').on('click', function(e) {
-        e.preventDefault();
-        if ($(this).html() === "EDIT") {
-            $('.basic-info-txt').attr('disabled', false);
-            $('.basic-info-txt').closest('div').removeClass('ui-state-disabled');
-            $(this).html('SAVE')
-        }
-        else if ($(this).html() === "SAVE") {
-            $('.basic-info-txt').attr('disabled', true);
-            $('.basic-info-txt').closest('div').addClass('ui-state-disabled');
-            $(this).html('EDIT')
-        }
-        
-    }).trigger();
-
-    $('#moments-btn').click(function(e) {
+$('#moments-btn').click(function(e) {
           e.preventDefault();
           $('#content').load('https://pet-temp-host.web.app/Common_elements/moments.html');
           var header_text = e.target.name;
@@ -81,9 +64,14 @@ $('#close_popup').click(function(e) {
           $('#headerText').html(header_text);
 
         });
+        $('#sign-out-btn').click(function(){
+   window.location.href='https://pet-temp-host.web.app/Common_elements/login.html';
+    });
 
+    $('#editable').click(function(){
+    var $div=$('#aboutMe'), isEditable=$div.is('.editable');
+    $('#aboutMe').prop('contenteditable',!isEditable).toggleClass('editable')
 });
-
 function readURL(input) {
     
     $('#default-upload-img').hide();
@@ -105,16 +93,30 @@ function readURL(input) {
             }
         }
 
+    $('#edit-btn').on('click', function(e) {
+        e.preventDefault();
+        if ($(this).html() === "EDIT") {
+            $('.basic-info-txt').attr('disabled', false);
+            $('.basic-info-txt').closest('div').removeClass('ui-state-disabled');
+            $(this).html('SAVE')
+        }
+        else if ($(this).html() === "SAVE") {
+            $('.basic-info-txt').attr('disabled', true);
+            $('.basic-info-txt').closest('div').addClass('ui-state-disabled');
+            $(this).html('EDIT')
+        }
+        
+    }).trigger();
 
 
-$('#sign-out-btn').click(function(){
-   window.location.href='https://pet-temp-host.web.app/Common_elements/login.html';
-    });
 
-    $('#editable').click(function(){
-    var $div=$('#aboutMe'), isEditable=$div.is('.editable');
-    $('#aboutMe').prop('contenteditable',!isEditable).toggleClass('editable')
 });
+
+
+
+
+
+
    
 
 
