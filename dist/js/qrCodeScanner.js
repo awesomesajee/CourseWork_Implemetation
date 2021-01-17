@@ -1,4 +1,3 @@
-
 const qrcode = window.qrcode;
 
 const video = document.createElement("video");
@@ -15,6 +14,16 @@ const pet_name = document.getElementById("pet_name");
 const pet_amount = document.getElementById("pet_amount");
 const close_popup = document.getElementById("close_popup");
 
+const bookOwnerName = document.getElementById("bookOwnerName");
+const bookOwnerAddress = document.getElementById("bookOwnerAddress");
+const bookOwnerFrequency = document.getElementById("bookOwnerFrequency");
+const bookOwnerPetname = document.getElementById("bookOwnerPetname");
+const bookOwnerServices = document.getElementById("bookOwnerServices");
+
+const bookOwnerPickupDate = document.getElementById("bookOwnerPickupDate");
+const bookOwnerDropOffDate = document.getElementById("bookOwnerDropOffDate");
+const bookOwnerTotal = document.getElementById("bookOwnerTotal");
+
 let scanning = false;
 
 qrcode.callback = res => {
@@ -23,9 +32,15 @@ qrcode.callback = res => {
         //outputData.innerText = res;
 
         var nameArr = res.split(';');
-        //pet_type.innerText = nameArr[3];
-        //pet_name.innerText = nameArr[4];
-        //pet_amount.innerText = nameArr[2];
+        bookOwnerName.innerText = nameArr[0];
+        bookOwnerAddress.innerText = 'Location: ' +nameArr[1];
+        bookOwnerFrequency.innerText = 'Frequency: ' + nameArr[2];
+        bookOwnerServices.innerText = 'Services: ' + nameArr[3];
+
+        bookOwnerPickupDate.innerText = 'Pick up: ' + nameArr[4];
+        bookOwnerDropOffDate.innerText = 'Drop off: ' + nameArr[5];
+        bookOwnerPetname.innerText = 'Pet Name: ' + nameArr[6];
+        bookOwnerTotal.innerText = 'Total: $' + nameArr[7];
 
         outputData.innerText = '';
 
@@ -78,4 +93,3 @@ function scan() {
         setTimeout(scan, 600);
     }
 }
-
