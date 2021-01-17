@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../themes/blue_test.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&family=Raleway&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>   
 </head>
@@ -81,7 +81,12 @@ function showSlides(n) {
     $(document).on('click', '#signup-selection', function (e) {
      window.location.href = 'https://pet-temp-host.web.app/Common_elements/signup-selection.html';
     });
+
+    $('#close_popup').click(function () {
+    $('#payment-success').popup("close");
 });
+});
+
 </script>
 
 <body>
@@ -96,7 +101,7 @@ function showSlides(n) {
         left: -1px;"> <img src="../images/icons8-back-26.png" alt="" style="width: 16px;"></a>
         <h1 id="headerText" style="
         font-family: 'Rajdhani', sans-serif;margin-top: -35px;margin-left: 41px;
-      text-align: left;white-space: break-spaces;">W H A T   W E   O F F E R</h1>
+      text-align: left;white-space: break-spaces; font-weight: bold;">W H A T   W E   O F F E R</h1>
        <img src="../images/small-logo.png" alt="" style="position: relative;
        top: -92%;
        left: 83%"> 
@@ -106,25 +111,25 @@ function showSlides(n) {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
 margin-top: 28px;
-margin-bottom: 24px;">
+margin-bottom: 24px;font-family: 'Rajdhani', sans-serif;">
     <div style="width: 100px;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;    margin-left: auto;
     margin-right: auto;">
         <p style="font-size: 22px;position: relative;top: -14px;">100%</p>
-        <p style="font-size: 12px;margin-top: -40px;color: #808080;">Happy</p>
+        <p style="font-size: 12px;margin-top: -40px;color: #808080;font-weight: bold;">Happy</p>
         <p style="font-size: 12px;margin-top: -14px;color: #808080;">Pets Everday</p>
     </div>
     <div style="width: 100px;background-color: #C9F1FC;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;margin-left: auto;
     margin-right: auto;
     margin-top: -16px;">
         <img src="../images/pet-logo-1.png" alt="" style="width:40px;margin-top: 10px;">
-        <p style="margin-top: -2px;color: #808080;">LIFETIME</p>
+        <p style="margin-top: -2px;color: #808080;font-weight: bold;">LIFETIME</p>
         <P style="font-size: 9px;margin-top: -15px;color: #808080;">Friendships BFF</P>
     </div>
     <div style="width: 100px;height: 100px;border: 6px solid #C9F1FC;border-radius: 100px;text-align: center;margin-left: auto;
     margin-right: auto;">
         <img src="../images/crown-images.png" alt="" style="width: 45px;">
         <p style="font-size: 9px;margin-top: 2px;color: #808080;">Largest Provider of</p>
-        <p style="font-size: 11px;margin-top: -10px;color: #808080;">PET HOSTERS</p>
+        <p style="font-size: 11px;margin-top: -10px;color: #808080;font-weight: bold;">PET HOSTERS</p>
     </div>
 </div>
 <div style="text-align:center;
@@ -137,7 +142,7 @@ top: -20px;">
 </div>
 <div class="slideshow-container" style="position: relative;
 top: -21px;
-height: fit-content;">
+height: fit-content;font-family: 'Raleway', sans-serif;">
 
     <div class="mySlides fade">
       <div class="numbertext">1 / 4</div>
@@ -167,7 +172,7 @@ height: fit-content;">
 </div>
 <div style="text-align: center;
 margin-top: -24px;
-width: 100%;">
+width: 100%;font-family: 'Roboto', sans-serif;">
     <button id="login-selection" style="display: inline;background-color: transparent;width: 48%;color: #5BD4F6;border: 3px solid #5BD4F6;position: relative;
     top: 1px;">LOGIN</button>
     <button id="signup-selection" style="display: inline;width: 48%;background-color: #FF8139;border: 3px solid #FF8139;">SIGN UP</button>
@@ -176,10 +181,15 @@ width: 100%;">
 <!--Login selection pop-up-->
 <div data-role="popup" id="payment-success" style="width: 300px;height: 246px;margin-top: -100px;text-align: center;position: relative;" class="succes-pop-up">
     <div style="position: absolute;width: 300px;height: 25px;left: -1px;top: -1px;background: #5BD4F6;border-radius: 5px;"></div>
-    <p style="color: white; margin: 0;left: -91px;top: 1px;
+    <p style="color: white;
+    margin: 0;
+    left: -111px;
     position: relative;
     font-size: 14px;">Login As</p>
-    <img id="close_popup" src="../images/close_btn.png" alt="" style="width: 20px;position: absolute;left: 92%;top: 10%;">
+    <img id="close_popup" src="../images/close_btn.png" alt="" style="width: 20px;
+    position: absolute;
+    left: 92%;
+    top: 0.5%;">
     <div>
         <button id="pet-caretaker-btn" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background-color: transparent;
