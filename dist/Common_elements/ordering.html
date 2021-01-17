@@ -114,7 +114,8 @@
                 var textData = localStorage.getItem("userData");
                 var orderSummary = JSON.parse(textData);
 
-                    var nric = orderSummary.name+';'+orderSummary.address+';'+orderSummary.price+';CAT;KITTY';
+                    var nric = 'Sarah Hyland;' + $("#location").val() + ';' + $("input[name='schedule']:checked").val() + ';' +
+                $("#caretaker-service").val()+';'+$("#pickup").val().toString()+';'+$("#dropoff").val().toString()+';Max;'+$("#span-total").text();
                     var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=60x60';
              $('#barcode').attr('src', url);
 
@@ -305,7 +306,7 @@
         <label for="rb5">Recurring</label>
         <input type="radio" name="schedule" id="rb5" value="Recurring" checked="checked"/>
       </div>
-      <label for="speed" style="font-family: Roboto; font-weight: bold; font-size: 16px; color: #000000; margin-top: 28px;">Service</label>
+      <label for="speed" style="font-family: 'Roboto', sans-serif; font-weight: bold; font-size: 16px; color: #000000; margin-top: 28px;">Service</label>
         <select name="speed" id="caretaker-service">
           <option value="Dog Walking">Dog Walking</option>
           <option value="Dog Grooming">Dog Grooming</option>
