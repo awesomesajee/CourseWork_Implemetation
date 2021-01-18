@@ -23,14 +23,63 @@
         var password = $('#password').val();
         if(username === "Anne Marie" && password === "123")
         {
+            $('.success-response').stop().fadeIn(400).delay(3000).fadeOut(400);
             window.location.href = 'https://pet-temp-host.web.app/Common_elements/navigation.html';
+            
         }
         else
         {
-            console.log("Incorrect Username or Password");
+            $('.error').stop().fadeIn(400).delay(3000).fadeOut(400);
+            //console.log("Incorrect Username or Password");
         }
     });
 </script>
+<style>
+    .success-response{
+
+        width:80%;
+      height:20px;
+      height:auto;
+      margin-left:auto;
+      margin-right: auto;
+      bottom:-15%;
+      background-color: green;
+      color: #F0F0F0;
+      font-family: Calibri;
+      font-size: 20px;
+      padding:10px;
+      text-align:center;
+      border-radius: 2px;
+      -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      z-index: 1;
+      position: relative;
+    top: -172px;
+    }
+    .error {
+      width:80%;
+      height:20px;
+      height:auto;
+      margin-left:auto;
+      margin-right: auto;
+      bottom:-15%;
+      background-color: red;
+      color: #F0F0F0;
+      font-family: Calibri;
+      font-size: 20px;
+      padding:10px;
+      text-align:center;
+      border-radius: 2px;
+      -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+      z-index: 1;
+      position: relative;
+    top: -172px;
+  }
+  </style>
+
 <body>
     
     <!-- start of the header section -->
@@ -113,6 +162,8 @@ width: 100%;text-align: center;">
         height: 100%;">
 
     </div>
+    <div class='error' style='display:none'>Invalid Credentials</div>
+    <div class='success-response' style='display:none'>Login Successful</div>
     
 </div>
 </body>
