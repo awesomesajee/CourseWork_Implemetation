@@ -2,6 +2,39 @@
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+<script type="text/javascript">
+    $(".pointsbar li:nth-child(4)").addClass('before-pro');
+
+    var textDataMinus = localStorage.getItem("minus_point_array");
+    var data_points_minus = JSON.parse(textDataMinus);
+    var total_minus_points = 0;
+    for(var i in data_points_minus) {
+        total_minus_points += data_points_minus[i] << 0;
+    }
+    var textData = localStorage.getItem("point_array");
+    var data_points = JSON.parse(textData);
+    var total_points = 0
+    for(var i in data_points) {
+        total_points += data_points[i] << 0;
+    }
+    var total_to_be_updated = total_points - total_minus_points;
+    var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(total_to_be_updated);
+    $('.rewards .div-before').find('div.div-within').html(received_points);
+    if(textData != null)
+    {
+        $(".pointsbar li:nth-child(4)").removeClass('before-pro');
+        $(".pointsbar li:nth-child(4)").addClass('new-pro');
+    }
+
+    $('.redeem_btn_points').click(function() {
+    $('#redeems').popup("open");         
+    });
+
+    $('#bok').click(function() {
+        window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';     
+    });
+    
+</script>
 <script>
 $(document).ready(function() {
         
@@ -401,39 +434,7 @@ function readURL(input) {
                 <div style="display: inline;"><img src="../images/icons8-dog-paw-print-100.png" alt="" style="margin-top: -60px;margin-left: -10px;"></div>
             </div>
             <p style="text-align: center;margin-top: -10px;font-family: 'Roboto', sans-serif;font-weight: bold;">Happy Paws Balance</p>
-            <script type="text/javascript">
-                $(".pointsbar li:nth-child(4)").addClass('before-pro');
-
-                var textDataMinus = localStorage.getItem("minus_point_array");
-                var data_points_minus = JSON.parse(textDataMinus);
-                var total_minus_points = 0;
-                for(var i in data_points_minus) {
-                    total_minus_points += data_points_minus[i] << 0;
-                }
-                var textData = localStorage.getItem("point_array");
-                var data_points = JSON.parse(textData);
-                var total_points = 0
-                for(var i in data_points) {
-                    total_points += data_points[i] << 0;
-                }
-                var total_to_be_updated = total_points - total_minus_points;
-                var received_points = parseFloat($('.rewards .div-before').find('div.div-within').text()) + parseFloat(total_to_be_updated);
-                $('.rewards .div-before').find('div.div-within').html(received_points);
-                if(textData != null)
-                {
-                    $(".pointsbar li:nth-child(4)").removeClass('before-pro');
-                    $(".pointsbar li:nth-child(4)").addClass('new-pro');
-                }
-
-                $('.redeem_btn_points').click(function() {
-                $('#redeems').popup("open");         
-                });
-
-                $('#bok').click(function() {
-                    window.location.href = 'https://pet-temp-host.web.app/Common_elements/ordering.html';     
-                });
-                
-            </script>
+            
             <div class="progress" style="width: 100%;" data-value="10">
                 <ul class="pointsbar">
                     <li class="active">25</li>
